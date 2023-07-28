@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +18,6 @@ public class Request {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long idRequest;
-
   private String firstNameRequest;
   private String lastNameRequest;
   private String emailRequest;
