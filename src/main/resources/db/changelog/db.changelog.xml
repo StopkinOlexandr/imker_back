@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="#1" author="vadim">
+        <createTable tableName="requests">
+            <column name="id_request" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name_request" type="varchar(50)"/>
+            <column name="last_name_request" type="varchar(50)"/>
+            <column name="email_request" type="varchar(50)"/>
+            <column name="phone_request" type="varchar(50)"/>
+            <column name="text_of_request" type="varchar(500)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
