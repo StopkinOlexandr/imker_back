@@ -7,7 +7,8 @@ import de.imker.dto.RequestsDto;
 import de.imker.services.RequestsService;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,6 +24,11 @@ public class RequestsController implements RequestsApi {
 @Override
   public RequestsDto getAllRequests(){
     return requestsService.findAll();
+  }
+
+  @Override
+  public RequestDto deleteRequest(Long idRequest) {
+    return requestsService.removeById(idRequest);
   }
 
 

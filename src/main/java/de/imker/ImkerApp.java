@@ -1,8 +1,10 @@
 package de.imker;
 
+import de.imker.InitializationData.RequestsInitialization;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -22,7 +24,9 @@ public class ImkerApp {
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(ImkerApp.class, args);
+    ApplicationContext context = SpringApplication.run(ImkerApp.class, args);
+    RequestsInitialization requestsInitialization = context.getBean(RequestsInitialization.class);
+    requestsInitialization.reqInit();
   }
 
 }

@@ -1,9 +1,11 @@
 package de.imker.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Schema(description = "Data for creating a request")
 public class NewRequestDto {
   @Schema(description = "User first name", example = "John")
