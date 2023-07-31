@@ -28,5 +28,5 @@ public class Event {
     private Status status;
     private String date;
 
-    private List<Event_Stopkin> events;
+    private List<Event> events;
 }

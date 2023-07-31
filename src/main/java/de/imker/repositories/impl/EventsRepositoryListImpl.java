@@ -14,7 +14,7 @@ public class EventsRepositoryListImpl implements EventsRepository {
     private static List<Event> events = new ArrayList<>();
 
     @Override
-    public void saveEvent(Event event) {
+    public void save(Event event) {
         if (event.getId() == null) {
             event.setId((long) events.size() + 1);
             events.add(event);
@@ -26,7 +26,7 @@ public class EventsRepositoryListImpl implements EventsRepository {
     }
 
     @Override
-    public List<Event> findAllEvents() {
+    public List<Event> findAll() {
         return new ArrayList<>(events);
     }
 
@@ -41,7 +41,7 @@ public class EventsRepositoryListImpl implements EventsRepository {
     }
 
     @Override
-    public void clearEvents() {
+    public void clear() {
         events.clear();
     }
 

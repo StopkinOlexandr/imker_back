@@ -38,5 +38,9 @@ public class EventsController implements EventsApi {
         return eventsService.updateEvent(eventId,updateEvent);
     }
 
+    @Override
+    public EventsDto getPaginatedEvents(int page, int size) {
+        return eventsService.getPaginatedEvents(page,size);
+    }
 
 }

@@ -9,10 +9,10 @@ import java.util.Optional;
 
 public interface EventsRepository {
 
-    void saveEvent(Event event);
-    List<Event> findAllEvents();
+    void save(Event event);
+    List<Event> findAll();
     Optional<Event> findById(Long id);
-    void clearEvents();
+    void clear();
 
     void delete(Event event);
 }
