@@ -32,13 +32,13 @@ public class EventsServiceImpl implements EventsService {
                 .photo(newEvent.getPhoto())
                 .date(newEvent.getDate())
                 .status(Event.Status.EXPECTED).build();
-        eventsRepository.saveEvent(event);
+        eventsRepository.save(event);
         return EventDto.from(event);
     }
 
     @Override
     public EventsDto getAllEvents() {
-        List<Event> events = eventsRepository.findAllEvents();
+        List<Event> events = eventsRepository.findAll();
         return EventsDto.builder()
                 .events(from(events))
                 .count(events.size())
@@ -65,7 +65,7 @@ public class EventsServiceImpl implements EventsService {
         event.setStatus(Event.Status.valueOf(updateEvent.getNewStatus()));
         //TODO change place
 
-        eventsRepository.saveEvent(event);
+        eventsRepository.save(event);
         return from(event);
     }
 
@@ -73,4 +73,23 @@ public class EventsServiceImpl implements EventsService {
         return eventsRepository.findById(eventId).orElseThrow(
                 () -> new NotFoundException("Event with id <" + eventId + "> not found"));
     }
+
+    @Override
+    public EventsDto getPaginatedEvents(int page, int size) {
+        List<Event> events = eventsRepository.findAll();
+        int startIndex = page*size;
+        int endIndex = Math.min(startIndex + size, events.size());
+
+        if(startIndex >=endIndex){
+            return (EventsDto) List.of();// Return an empty list if the specified range exceeds the list limits
+        }
+
+        List<Event> paginatedEvent=events.subList(startIndex,endIndex);
+
+        return EventsDto.builder()
+                .events(from(paginatedEvent))
+                .count(paginatedEvent.size())
+                .build();
+    }
+
 }

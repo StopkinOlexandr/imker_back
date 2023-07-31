@@ -58,5 +58,12 @@ public interface EventsApi {
                          @PathVariable("event-id") Long eventId,
                          @RequestBody UpdateEventDto updateEvent);
 
+    @Operation(summary = "Get paginated event")
+    @GetMapping("/paginated")
+    EventsDto getPaginatedEvents(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "3") int size);
+
+
+
 
 }

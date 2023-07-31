@@ -13,4 +13,5 @@ public interface EventsService {
     EventDto deleteEvent(Long eventId);
 
     EventDto updateEvent(Long eventId, UpdateEventDto updateEvent);
+    EventsDto getPaginatedEvents(int page, int size);
 }
