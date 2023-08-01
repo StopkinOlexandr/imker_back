@@ -29,14 +29,14 @@ public class User {
   private String email;
   private String name;
   private String password;
-  private String address;
+  private String plz;
   private String phone;
   private String image;
-  private String token;
-  private String coordinates;
-
+  private String secretQuestion;
   private Role role;
   private State state;
   private Boolean isLogin;
 
+//  private String token;
+//  private String coordinates;
 }
