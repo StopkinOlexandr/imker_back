@@ -1,6 +1,11 @@
 package de.imker.controllers;
 
+import de.imker.controllers.api.UsersApi;
+import de.imker.dto.EventDto;
+import de.imker.dto.NewEventDto;
 import de.imker.dto.NewUserDto;
+import de.imker.dto.UpdateEventDto;
+import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
 import de.imker.dto.UsersDto;
 import lombok.RequiredArgsConstructor;
@@ -10,19 +15,27 @@ import de.imker.services.UsersService;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/users")
-public class UsersController {
+
+public class UsersController implements UsersApi {
 
   private final UsersService usersService;
 
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
+  @Override
   public UserDto addUser(@RequestBody NewUserDto newUser) {
     return usersService.addUser(newUser);
   }
 
-  @GetMapping
+  @Override
   public UsersDto getAllUsers() {
     return usersService.getAllUsers();
   }
+
+  @Override
+  public UserDto deleteUser(Long userId) { return usersService.deleteUser(userId);}
+
+  @Override
+  public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
+    return usersService.updateUser(userId,updateUser);
+  }
+
 }

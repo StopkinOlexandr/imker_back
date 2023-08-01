@@ -3,11 +3,15 @@ package de.imker.repositories;
 
 import de.imker.models.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UsersRepository {
-  void save(User user);
+  void saveUser(User user);
 
-  List<User> findAll();
+  List<User> findAllUsers();
 
-  void clear();
+  Optional<User> findById(Long id);
+
+  void delete(User user);
+  void clearUsers();
 }
