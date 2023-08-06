@@ -23,4 +23,20 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="#2" author="vadim">
+        <createTable tableName="posts">
+            <column name="id_post" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="creation_time_post" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title_post" type="varchar(300)"/>
+            <column name="link_to_img" type="varchar(300)"/>
+            <column name="short_post_description" type="varchar(300)"/>
+            <column name="text_of_post" type="TEXT"/>
+            <column name="id_user" type="varchar(10)"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

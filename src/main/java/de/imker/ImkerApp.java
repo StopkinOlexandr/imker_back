@@ -1,5 +1,6 @@
 package de.imker;
 
+import de.imker.InitializationData.PostsInitialization;
 import de.imker.InitializationData.RequestsInitialization;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +27,9 @@ public class ImkerApp {
   public static void main(String[] args) {
     ApplicationContext context = SpringApplication.run(ImkerApp.class, args);
     RequestsInitialization requestsInitialization = context.getBean(RequestsInitialization.class);
+    PostsInitialization postsInitialization = context.getBean(PostsInitialization.class);
     requestsInitialization.reqInit();
+    postsInitialization.postInit();
   }
 
 }
