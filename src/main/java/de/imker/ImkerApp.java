@@ -1,5 +1,6 @@
 package de.imker;
 
+import com.jpomykala.springhoc.cors.EnableCORS;
 import de.imker.InitializationData.PostsInitialization;
 import de.imker.InitializationData.RequestsInitialization;
 import org.jetbrains.annotations.NotNull;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+@EnableCORS
 public class ImkerApp {
 
   @Bean
