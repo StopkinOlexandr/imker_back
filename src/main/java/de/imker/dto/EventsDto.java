@@ -12,11 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Schema(description = "Users events")
 public class EventsDto {
-    @Schema(description = "List of users events")
+    @Schema(description = "List of events")
     private List<EventDto> events;
-    @Schema(description = "Number of users events")
+
+    @Schema(description = "Quantity of users events")
     private Integer count;
+
+    @Schema(description = "Events Count", example = "3")
+    private Integer eventsCount;
 }
 
 

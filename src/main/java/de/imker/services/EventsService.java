@@ -9,9 +9,12 @@ import de.imker.dto.UpdateEventDto;
 public interface EventsService {
     EventDto addEvent(NewEventDto newEvent);
 
-    EventsDto getAllEvents();
+
+    EventsDto getAllEvents(Integer page, String orderBy, Boolean desc, String filterBy, String filterValue);
+
     EventDto deleteEvent(Long eventId);
 
     EventDto updateEvent(Long eventId, UpdateEventDto updateEvent);
-    EventsDto getPaginatedEvents(int page, int size);
+
+    EventsDto getEventsOfUser(Long userId);
 }

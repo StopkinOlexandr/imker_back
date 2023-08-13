@@ -1,19 +1,19 @@
 package de.imker.repositories;
 
 
-
 import de.imker.models.Event;
+import okhttp3.internal.concurrent.Task;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
 
-public interface EventsRepository {
+public interface EventsRepository extends JpaRepository<Event,Long> {
 
-    void save(Event event);
-    List<Event> findAll();
-    Optional<Event> findById(Long id);
-    void clear();
+    Page<Event> findAllByDate(String startDate, Pageable pageable);
+ //   Page<Event> findAllByFinishDate(LocalDate finishDate, Pageable pageable);
 
-    void delete(Event event);
+
 }
 

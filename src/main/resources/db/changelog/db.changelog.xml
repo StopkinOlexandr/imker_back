@@ -23,6 +23,7 @@
         </createTable>
     </changeSet>
 
+
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
             <column name="id_post" type="int" autoIncrement="true">
@@ -38,5 +39,10 @@
             <column name="text_of_post" type="TEXT"/>
             <column name="id_user" type="varchar(10)"/>
         </createTable>
+
+
+
+
+
     </changeSet>
 </databaseChangeLog>

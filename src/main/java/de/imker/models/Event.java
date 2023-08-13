@@ -1,10 +1,8 @@
 package de.imker.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -12,21 +10,35 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "events")
+//@EqualsAndHashCode(exclude = "events")
+//@ToString(exclude = "events")
 public class Event {
     public enum Status {
         EXPECTED,
         ENDED,
         ARCHIVE
     }
-    private Long id;
-    private String name;
-    private String quantityOfMembers;
-    private String place;
-    private String description;
-    private String author;
-    private String photo;
-    private Status status;
-    private String date;
 
-    private List<Event> events;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String address;
+    private String author;
+    private String description;
+    private String quantityOfMembers;
+    private String photo;
+    private String date;
+    private String startTime;
+    private String endTime;
+    private String location;
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
+
+//    @OneToMany(mappedBy = "user_ID")//TODO
+//    private List<Event> events;
+
+
 }
