@@ -25,10 +25,10 @@ class EventsControllerTest {
     @Autowired
     private EventsRepository eventsRepository;
 
-    @BeforeEach
-    public void setUp() {
-        eventsRepository.clear();
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        eventsRepository.clear();
+//    }
 
     @Nested
     @DisplayName("getAllEvents() method is works: ")

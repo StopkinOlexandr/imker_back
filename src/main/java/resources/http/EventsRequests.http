@@ -5,13 +5,13 @@ POST http://localhost:8080/api/events
 Content-Type: application/json
 
 {
-  "name": "Wine festival",
+  "title": "Wine festival",
   "description": "Many local winemakers",
+  "address": "Berlin, Winehof, 8",
   "author": "Andrii",
-  "place": "Berlin, Winehof, 8",
   "quantityOfMembers": "25",
-  "photo": "added photo",
-  "date": "01/08/2023"
+  "photo": "C://Photos/added_photo.png",
+  "date": "2023-02-02"
 
 }
 

@@ -14,13 +14,18 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Schema(description = "Events Value")
 public class EventDto {
 
     @Schema(description = "Event's ID", example = "1")
     private Long id;
 
-    @Schema(description = "Events place", example = "Berlin, Hoffner str. 21")
-    private String place;
+    @Schema(description = "Events title", example = "Some event's title...")
+    private String title;
+
+
+    @Schema(description = "Event's address", example = "Berlin, Kirchweg str., 13")
+    private String address;
 
     @Schema(description = "Events author", example = "Andrii")
     private String author;
@@ -28,12 +33,46 @@ public class EventDto {
     @Schema(description = "Events status - EXPECTED, ENDED, ARCHIVE ", example = "EXPECTED")
     private String status;
 
+    @Schema(description = "Events description", example = "Wash car")
+    private String description;
+
+    @Schema(description = "Location of event", example = "https://gpp/gl/maps/...")
+    private String location;
+
+
+    @Schema(description = "Planned number of participants", example = "182")
+    private String quantityOfMembers;//int
+
+    @Schema(description = "Address of photo", example = "./src/photo/photo12.png")
+    private String photo;
+
+
+    @Schema(description = "Publishing date in format YYYY-MM-DD", example = "2022-02-02")
+    private String date;
+
+    @Schema(description = "Start time of event", example = "16:00")
+    private String startTime;
+
+    @Schema(description = "End time of event", example = "18:00")
+    private String endTime;
+
+    @Schema(description = "author Id", example = "1")
+    private Long idUser;
+
     public static EventDto from(Event event) {
+
         return EventDto.builder()
                 .id(event.getId())
-                .place(event.getPlace())
+                .title(event.getTitle())
+                .description(event.getDescription())
+                .address(event.getAddress())
                 .author(event.getAuthor())
-                .status(event.getStatus().name())
+                .location(event.getLocation())
+                .photo(event.getPhoto())
+                .date(event.getDate())
+                .startTime(event.getStartTime())
+                .endTime(event.getEndTime())
+
                 .build();
     }
 
