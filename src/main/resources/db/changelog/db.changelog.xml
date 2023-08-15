@@ -24,6 +24,7 @@
     </changeSet>
 
 
+
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
             <column name="id_post" type="int" autoIncrement="true">
@@ -40,9 +41,33 @@
             <column name="id_user" type="varchar(10)"/>
         </createTable>
 
-
-
-
-
     </changeSet>
+
+    <changeSet id="#4" author="andrii">
+        <createTable tableName="events">
+            <column name="id_event" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="title" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="address" type="varchar(250)"/>
+            <column name="author" type="varchar(50)"/>
+            <column name="description" type="text"/>
+            <column name="photo" type="varchar(250)"/>
+            <column name="date" type="varchar(50)"/>
+            <column name="start_time" type="varchar(50)"/>
+            <column name="end_time" type="varchar(50)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="status" type="varchar(50)"/>
+            <column name="quantity_of_members" type="varchar(50)"/>
+            <column name="id" type="int"/>
+
+        </createTable>
+    </changeSet>
+
+
+
 </databaseChangeLog>

@@ -66,7 +66,7 @@ public interface EventsApi {
             @RequestParam(value = "orderBy", required = false) String orderBy,
             @Parameter(description = "If True -> DESC")
             @RequestParam(value = "desc", required = false) Boolean desc,
-            @RequestParam(value = "filterBy. Enable: startDate, finishDate", required = false) String filterBy,
+            @RequestParam(value = "filterBy", required = false) String filterBy,
             @RequestParam(value = "filterValue", required = false) String filterValue);
 
 
