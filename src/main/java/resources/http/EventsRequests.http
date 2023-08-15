@@ -118,26 +118,22 @@ GET localhost:8080/api/events?orderBy=endTime&desc=false&page=0
 
 
 ### Get Event (sort) by startTime And Filtred BY Finish date
-GET localhost:8080/api/events?orderBy=startTime&desc=true&page=0&filterBy=date&filterValue=2023-02-02
+GET localhost:8080/api/events?orderBy=startTime&desc=true&page=0&filterBy=date&filterValue=2023-01-12
 
 
 
 
 
-### Delete Event
+### Delete Event WORKS
 
-DELETE localhost:8080/api/events/100
+DELETE localhost:8080/api/events/2
 
-### Update event №1
+### Update event WORKS
 
-PUT localhost:8080/api/events/1
+PUT localhost:8080/api/events/3
 Content-Type: application/json
 
 {
   "newStatus" : "ENDED"
 }
 
-
-### Get paginated event
-
-GET localhost:8080/api/events/paginated?page=0&size=2
