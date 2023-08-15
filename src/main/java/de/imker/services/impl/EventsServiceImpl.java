@@ -131,15 +131,15 @@ public class EventsServiceImpl implements EventsService {
             page = eventsRepository.findAll(pageRequest);
         } else {
             checkField(filterFields, filterBy);
-            if (filterBy.equals("startDate")) {
+            if (filterBy.equals("startTime")) {
                 LocalDate date = LocalDate.parse(filterValue);
                 //     System.out.println("Filtering by finishDate: " + date);
-                page = eventsRepository.findAllByDate(date.toString(), pageRequest);
+                page = eventsRepository.findAllByStartTime(date.toString(), pageRequest);
 
-           } //else if (filterBy.equals("finishDate")) {
-//                LocalDate date = LocalDate.parse(filterValue);
-//                page = eventsRepository.findAllByFinishDate(date, pageRequest);
-//            }
+           } else if (filterBy.equals("endTime")) {
+                LocalDate date = LocalDate.parse(filterValue);
+                page = eventsRepository.findAllByEndTime(date, pageRequest);
+            }
 
         }
         return page;

@@ -97,11 +97,31 @@ Content-Type: application/json
 
 
 
+### Get Event (sort)order by description - works
+GET localhost:8080/api/events?orderBy=description&desc=false&page=0
 
 
-### Get all events
+### Get Event (sort)order by description - works DESC
+GET localhost:8080/api/events?orderBy=description&desc=true&page=0
 
-GET localhost:8080/api/events
+
+### Get Event (sort)order by Title WORKS
+GET localhost:8080/api/events?orderBy=title&desc=false&page=1
+
+
+### Get Event (sort)order by startTime WORKS
+GET localhost:8080/api/events?orderBy=startTime&desc=false&page=1
+
+
+### Get Event (sort)order by endDate WORKS
+GET localhost:8080/api/events?orderBy=endTime&desc=false&page=0
+
+
+### Get Event (sort) by startTime And Filtred BY Finish date
+GET localhost:8080/api/events?orderBy=startTime&desc=true&page=0&filterBy=date&filterValue=2023-02-02
+
+
+
 
 
 ### Delete Event
