@@ -9,7 +9,6 @@ import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.Event;
 import de.imker.repositories.EventsRepository;
-import de.imker.repositories.UsersRepository;
 import de.imker.services.EventsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,6 +47,10 @@ public class EventsServiceImpl implements EventsService {
                 .quantityOfMembers(newEvent.getQuantityOfMembers())
                 .photo(newEvent.getPhoto())
                 .date(newEvent.getDate())
+                .startTime(newEvent.getStartTime())
+                .endTime(newEvent.getEndTime())
+                .location(newEvent.getLocation())
+                .status(Event.Status.EXPECTED)
                 .id(newEvent.getIdUser())
                 .build();
         eventsRepository.save(event);

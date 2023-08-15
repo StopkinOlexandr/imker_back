@@ -10,9 +10,11 @@ Content-Type: application/json
   "address": "Berlin, Winehof, 8",
   "author": "Andrii",
   "quantityOfMembers": "25",
+  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
   "photo": "C://Photos/added_photo.png",
+  "startTime": "12:00",
+  "endTime": "18:00",
   "date": "2023-02-02"
-
 }
 
 ### Add event №2
