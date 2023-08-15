@@ -62,7 +62,7 @@ public class EventDto {
     public static EventDto from(Event event) {
 
         return EventDto.builder()
-                .idEvent(event.getId())
+                .idEvent(event.getEventId())
                 .title(event.getTitle())
                 .description(event.getDescription())
                 .address(event.getAddress())

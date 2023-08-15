@@ -51,8 +51,7 @@ public class EventsServiceImpl implements EventsService {
                 .endTime(newEvent.getEndTime())
                 .location(newEvent.getLocation())
                 .status(Event.Status.EXPECTED)
-                .id(newEvent.getIdUser())
-                .build();
+                                .build();
         eventsRepository.save(event);
         return EventDto.from(event);
     }
