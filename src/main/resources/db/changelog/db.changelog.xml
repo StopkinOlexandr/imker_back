@@ -68,6 +68,33 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="#5" author="Valentyna">
+        <createTable tableName="member">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="state" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar(100)"/>
+            <column name="description" type="varchar(300)"/>
+            <column name="image" type="varchar(300)"/>
+            <column name="phone" type="varchar(15)"/>
+            <column name="email" type="varchar(150)"/>
+            <column name="facebook" type="varchar(150)"/>
+            <column name="instagram" type="varchar(150)"/>
+        </createTable>
+
+        <loadData tableName="member"
+                  separator=","
+                  file="db/data/members.csv">
+        </loadData>
+
+    </changeSet>
+
 
 
 </databaseChangeLog>

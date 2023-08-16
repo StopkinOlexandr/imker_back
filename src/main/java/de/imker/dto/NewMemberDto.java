@@ -12,7 +12,8 @@ public class NewMemberDto {
   private String position;
   private String description;
   private String image;
+  private String phone;
   private String email;
   private String facebook;
-  private String instagramm;
+  private String instagram;
 }

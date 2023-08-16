@@ -19,14 +19,15 @@ public class Member {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
   @Enumerated(value = EnumType.STRING)
   private State state;
   private String name;
   private String position;
   private String description;
   private String image;
+  private String phone;
   private String email;
   private String facebook;
-  private String instagramm;
+  private String instagram;
 }
