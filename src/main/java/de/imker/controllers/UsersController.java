@@ -10,6 +10,7 @@ import de.imker.dto.UserDto;
 import de.imker.dto.UsersDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import de.imker.services.UsersService;
 
@@ -21,21 +22,39 @@ public class UsersController implements UsersApi {
   private final UsersService usersService;
 
   @Override
-  public UserDto addUser(@RequestBody NewUserDto newUser) {
-    return usersService.addUser(newUser);
+  public ResponseEntity<UserDto> addUser(@RequestBody NewUserDto newUser) {
+
+    return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body(usersService.addUser(newUser));
   }
 
   @Override
-  public UsersDto getAllUsers() {
-    return usersService.getAllUsers();
+  public ResponseEntity<UsersDto> getAllUsers(Integer pageNumber,
+      String orderBy,
+      Boolean desc,
+      String filterBy,
+      String filterValue) {
+    return ResponseEntity
+        .ok(usersService.getAllUsers(pageNumber, orderBy, desc, filterBy, filterValue));
+  }
+
+
+  @Override
+  public ResponseEntity<UserDto> deleteUser(Long userId) {
+    return ResponseEntity
+        .ok(usersService.deleteUser(userId));
   }
 
   @Override
-  public UserDto deleteUser(Long userId) { return usersService.deleteUser(userId);}
-
-  @Override
-  public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
-    return usersService.updateUser(userId,updateUser);
+  public ResponseEntity<UserDto> updateUser(Long userId, UpdateUserDto updateUser) {
+    return ResponseEntity
+        .ok(usersService.updateUser(userId,updateUser));
   }
 
+  @Override
+  public ResponseEntity<UserDto> getUser(Long userId) {
+    return ResponseEntity
+        .ok(usersService.getUser(userId));
+  }
 }

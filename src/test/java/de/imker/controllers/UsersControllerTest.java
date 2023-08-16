@@ -55,8 +55,8 @@ class UsersControllerTest {
     class GetAllUsersTests {
         @Test
         void get_all_users() throws Exception {
-            usersRepository.saveUser(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
-            usersRepository.saveUser(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
             mockMvc.perform(get("/api/users"))
                     .andExpect(status().isOk())
@@ -74,7 +74,7 @@ class UsersControllerTest {
 
         @Test
         void delete_exists_user() throws Exception {
-            usersRepository.saveUser(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
             mockMvc.perform(delete("/api/users/1"))
                     .andExpect(status().isOk());
@@ -94,7 +94,7 @@ class UsersControllerTest {
     class UpdateUserTests {
         @Test
         void update_exist_user() throws Exception {
-            usersRepository.saveUser(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.ADMIN).build());
+            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.ADMIN).build());
 
             mockMvc.perform(put("/api/users/1")
                             .header("Content-Type", "application/json")
