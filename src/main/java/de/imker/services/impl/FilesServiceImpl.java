@@ -25,17 +25,17 @@ public class FilesServiceImpl {
   private String uploadPath;
 
   public FileUploadDto uploadFile(MultipartFile file) throws IOException {
-String originalName = file.getOriginalFilename();
-String storedName = UUID.randomUUID() + originalName;
+    String originalName = file.getOriginalFilename();
+    String storedName = UUID.randomUUID() + originalName;
 
-FileUpload fileUpload = FileUpload.builder()
-    .originalName(originalName)
-    .storedName(storedName)
-    .fileType(file.getContentType())
-    .size(file.getSize())
-    .build();
+    FileUpload fileUpload = FileUpload.builder()
+        .originalName(originalName)
+        .storedName(storedName)
+        .fileType(file.getContentType())
+        .size(file.getSize())
+        .build();
 
-    Files.write(Paths.get(uploadPath+storedName), file.getBytes());
+    Files.write(Paths.get(uploadPath + storedName), file.getBytes());
     filesRepository.save(fileUpload);
 
 
