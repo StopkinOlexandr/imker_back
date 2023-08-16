@@ -23,7 +23,6 @@
         </createTable>
     </changeSet>
 
-
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
             <column name="id_post" type="int" autoIncrement="true">
@@ -33,16 +32,30 @@
             <column name="creation_time_post" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+
             <column name="title_post" type="varchar(300)"/>
             <column name="link_to_img" type="varchar(300)"/>
             <column name="short_post_description" type="varchar(300)"/>
             <column name="text_of_post" type="TEXT"/>
             <column name="id_user" type="varchar(10)"/>
         </createTable>
-
-
-
-
-
     </changeSet>
+
+    <changeSet id="#3" author="vadim">
+        <createTable tableName="files">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="creation_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="original_name" type="varchar(100)"/>
+            <column name="stored_name" type="varchar(150)"/>
+            <column name="file_type" type="varchar(10)"/>
+            <column name="size" type="int"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
