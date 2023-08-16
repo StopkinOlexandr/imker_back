@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.File;
 import java.util.Date;
 
 @Data
@@ -21,6 +22,6 @@ public class FileUploadDto {
   private String storedName;
   private String fileType;
   private Long size;
-
+  private File file;
 
 }
