@@ -1,6 +1,7 @@
 package de.imker.controllers;
 
 import de.imker.dto.FileUploadDto;
+import de.imker.dto.FilesListDto;
 import de.imker.services.impl.FilesServiceImpl;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class FilesController {
     } else {
       return ResponseEntity.notFound().build();
     }
+  }
+
+  @GetMapping
+  public FilesListDto getAllFiles(){
+    return filesService.getAllFiles();
   }
 }

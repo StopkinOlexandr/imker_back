@@ -1,6 +1,9 @@
 package de.imker.services.impl;
 
 import de.imker.dto.FileUploadDto;
+import de.imker.dto.FilesListDto;
+import de.imker.dto.PostDto;
+import de.imker.dto.PostsDto;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.FileUpload;
 import de.imker.repositories.FilesRepository;
@@ -18,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -45,14 +49,7 @@ public class FilesServiceImpl {
     filesRepository.save(fileUpload);
 
 
-    return FileUploadDto.builder()
-        .id(fileUpload.getId())
-        .creationTime(fileUpload.getCreationTime())
-        .originalName(fileUpload.getOriginalName())
-        .storedName(fileUpload.getStoredName())
-        .fileType(fileUpload.getFileType())
-        .size(fileUpload.getSize())
-        .build();
+    return FileUploadDto.from(fileUpload);
   }
 
   public FileUploadDto getFile(Long fileId) {
@@ -60,15 +57,7 @@ public class FilesServiceImpl {
         () -> new NotFoundException("File with id <" + fileId + "> not found"));
     File file = new File(uploadPath, fileUpload.getStoredName());
 
-    return FileUploadDto.builder()
-        .id(fileUpload.getId())
-        .creationTime(fileUpload.getCreationTime())
-        .originalName(fileUpload.getOriginalName())
-        .storedName(fileUpload.getStoredName())
-        .fileType(fileUpload.getFileType())
-        .size(fileUpload.getSize())
-        .file(file)
-        .build();
+    return FileUploadDto.from(fileUpload, file);
   }
 
   public Resource getFileResource(Long fileId) {
@@ -86,4 +75,9 @@ public class FilesServiceImpl {
     return null;
   }
 
+  public FilesListDto getAllFiles() {
+    List<FileUpload> files = filesRepository.findAll();
+
+    return new FilesListDto(FileUploadDto.from(files),files.size());
+  }
 }
