@@ -60,9 +60,8 @@ public class EventDto {
     private Long idUser;
 
     public static EventDto from(Event event) {
-
         return EventDto.builder()
-                .idEvent(event.getId())
+                .idEvent(event.getEventId())
                 .title(event.getTitle())
                 .description(event.getDescription())
                 .address(event.getAddress())
@@ -76,6 +75,7 @@ public class EventDto {
                 .status(Event.Status.EXPECTED.toString())
 
                 .build();
+
     }
 
     public static List<EventDto> from(List<Event> events) {

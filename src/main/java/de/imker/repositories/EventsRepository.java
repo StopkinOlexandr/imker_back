@@ -11,8 +11,8 @@ import java.time.LocalDate;
 
 public interface EventsRepository extends JpaRepository<Event,Long> {
 
-    Page<Event> findAllByDate(String startDate, Pageable pageable);
- //   Page<Event> findAllByFinishDate(LocalDate finishDate, Pageable pageable);
+    Page<Event> findAllByStartTime(String startTime, Pageable pageable);
+   Page<Event> findAllByEndTime(String endTime, Pageable pageable);
 
 
 }

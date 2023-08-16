@@ -25,6 +25,7 @@ import static de.imker.dto.EventDto.from;
 @RequiredArgsConstructor
 @Service
 public class EventsServiceImpl implements EventsService {
+
     private final EventsRepository eventsRepository;
 
     @Value("${events.sort.fields}")//TODO sorting
@@ -51,10 +52,9 @@ public class EventsServiceImpl implements EventsService {
                 .endTime(newEvent.getEndTime())
                 .location(newEvent.getLocation())
                 .status(Event.Status.EXPECTED)
-                .id(newEvent.getIdUser())
                 .build();
         eventsRepository.save(event);
-        return EventDto.from(event);
+        return from(event);
     }
 
     @Override
@@ -96,19 +96,19 @@ public class EventsServiceImpl implements EventsService {
 
     private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
 
-        if (orderByField != null && !orderByField.equals("")) { // проверяем, задал ли клиент поле для сортировки?
+        if (orderByField != null && !orderByField.equals("")) {
 
-            checkField(sortFields, orderByField); // проверяем, доступно ли нам поле для сортировки
+            checkField(sortFields, orderByField);
 
-            Sort.Direction direction = Sort.Direction.ASC; // предполагаем, что сортировка будет в прямом порядке
+            Sort.Direction direction = Sort.Direction.ASC;
 
-            if (desc != null && desc) { // если клиент задал сортировку в обратном порядке
-                direction = Sort.Direction.DESC; // задаем обратный порядок сортировки
+            if (desc != null && desc) {
+                direction = Sort.Direction.DESC;
             }
 
-            Sort sort = Sort.by(direction, orderByField); // создаем объект для сортировки направление + поле
+            Sort sort = Sort.by(direction, orderByField);
 
-            return PageRequest.of(pageNumber, pageSize, sort); // создаем запрос на получение страницы пользователей с сортировкой
+            return PageRequest.of(pageNumber, pageSize, sort);
         } else {
             return getDefaultPageRequest(pageNumber);
         }
@@ -125,22 +125,21 @@ public class EventsServiceImpl implements EventsService {
     }
 
 
-    private Page<Event> getEventsPage(String filterBy, String filterValue, PageRequest pageRequest) { //TODO: fix This
+    private Page<Event> getEventsPage(String filterBy, String filterValue, PageRequest pageRequest) {
 
         Page<Event> page = Page.empty();
         if (filterBy == null || filterFields.equals("")) {
             page = eventsRepository.findAll(pageRequest);
         } else {
             checkField(filterFields, filterBy);
-            if (filterBy.equals("startDate")) {
-                LocalDate date = LocalDate.parse(filterValue);
-                //     System.out.println("Filtering by finishDate: " + date);
-                page = eventsRepository.findAllByDate(date.toString(), pageRequest);
+            if (filterBy.equals("startTime")) {
+               // String date = filterValue;
+                page = eventsRepository.findAllByStartTime(filterValue, pageRequest);
 
-           } //else if (filterBy.equals("finishDate")) {
-//                LocalDate date = LocalDate.parse(filterValue);
-//                page = eventsRepository.findAllByFinishDate(date, pageRequest);
-//            }
+            } else if (filterBy.equals("endTime")) {
+              //  LocalDate date = LocalDate.parse(filterValue);
+                page = eventsRepository.findAllByEndTime(filterValue, pageRequest);
+            }
 
         }
         return page;

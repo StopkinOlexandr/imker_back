@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @Schema(description = "Users events")
 public class EventsDto {
+
     @Schema(description = "List of events")
     private List<EventDto> events;
 

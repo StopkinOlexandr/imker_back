@@ -111,7 +111,7 @@ public interface EventsApi {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = EventDto.class))
                     })
     })
-    @GetMapping("/{user-id}/tasks")
+    @GetMapping("/{user-id}/events")
     ResponseEntity<EventsDto> getEventsOfUser(@Parameter(required = true, description = "Users ID", example = "2")
                                             @PathVariable("user-id") Long userId);
 
