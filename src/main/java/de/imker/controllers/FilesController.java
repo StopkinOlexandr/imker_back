@@ -32,7 +32,7 @@ public class FilesController {
   }
 
   @GetMapping(path = "/{file-id}", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
-  public ResponseEntity<Resource> getFile(@Parameter(required = true, description = "File ID", example = "1")
+  public ResponseEntity<Resource> getFileById(@Parameter(required = true, description = "File ID", example = "1")
                                           @PathVariable("file-id") Long fileId) {
 
     Resource resource = filesService.getFileResource(fileId);
@@ -49,5 +49,11 @@ public class FilesController {
   @GetMapping
   public FilesListDto getAllFiles(){
     return filesService.getAllFiles();
+  }
+
+  @DeleteMapping(path = "/delete/{file-id}")
+  public FileUploadDto deleteFileById(@Parameter(required = true, description = "File ID", example = "1")
+                                    @PathVariable("file-id") Long fileId){
+    return filesService.deleteFileById(fileId);
   }
 }
