@@ -33,7 +33,7 @@ GET localhost:8080/api/users?orderBy=id&desc=true&page=1&filterBy=state&filterVa
 
 ### Delete user
 
-DELETE localhost:8080/api/users/8
+DELETE localhost:8080/api/users/2
 
 ### Update user
 

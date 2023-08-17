@@ -1,13 +1,13 @@
 package de.imker.controllers.api;
 
 import de.imker.dto.ErrorDto;
-import de.imker.dto.EventDto;
-import de.imker.dto.EventsDto;
-import de.imker.dto.NewEventDto;
 import de.imker.dto.NewUserDto;
-import de.imker.dto.UpdateEventDto;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
+import de.imker.dto.UserIdDto;
+import de.imker.dto.UserRestorePwdDto;
+import de.imker.dto.UserSecretQuestionDto;
+import de.imker.dto.UserSigninDto;
 import de.imker.dto.UsersDto;
 import de.imker.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("api/users")
 public interface UsersApi {
 
-  @Operation(summary = "Creating User")
+  @Operation(summary = "Register User")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "201", description = "User created",
           content = {
@@ -53,6 +53,61 @@ public interface UsersApi {
   ResponseEntity<UserDto> addUser(
       @Parameter(required = true, description = "User") @RequestBody @Valid NewUserDto newUser);
 
+
+  @Operation(summary = "Login User")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "User is login",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail or password incorrect",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
+          })
+  })
+
+  @PostMapping("/login")
+  @ResponseStatus(HttpStatus.OK)
+  ResponseEntity<UserDto> loginUser(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserSigninDto loginUser);
+
+  //----TODO restore password
+  @Operation(summary = "Secret question")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Secret question is answered correctly",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "Wrong answer",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
+          })
+  })
+
+  @PostMapping("/question")
+  @ResponseStatus(HttpStatus.OK)
+  ResponseEntity<UserIdDto> secretQuestion(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserSecretQuestionDto secretQuestion);
+
+  @Operation(summary = "New password")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Password is changed, user is login",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail incorrect",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
+          })
+  })
+
+  @PostMapping("/restore")
+  @ResponseStatus(HttpStatus.OK)
+  ResponseEntity<UserDto> newPassword(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
+
+//-----TODO restore password
+
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Users list",
           content = {
@@ -63,6 +118,7 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
           })
   })
+
   @Operation(summary = "Get list of all users")
   @GetMapping
   ResponseEntity<UsersDto> getAllUsers(

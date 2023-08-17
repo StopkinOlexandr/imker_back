@@ -28,7 +28,8 @@ class UsersControllerTest {
 
     @BeforeEach
     public void setUp() {
-        usersRepository.clearUsers();
+
+//        usersRepository.clearUsers();
     }
 
     @Nested
@@ -37,16 +38,16 @@ class UsersControllerTest {
         @Test
         void add_user() throws Exception {
             mockMvc.perform(post("/api/users")
-                            .header("Content-Type", "application/json")
-                            .content("{\n"
-                                + "  \"email\": \"sidikov.marsel@gmail.com\",\n"
-                                + "  \"password\": \"qwerty007\"\n"
-                                + "}"))
-                    .andExpect(status().isCreated())
-                    .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.email", is("sidikov.marsel@gmail.com")))
-                    .andExpect(jsonPath("$.role", is("USER")))
-                    .andExpect(jsonPath("$.state", is("NOT_CONFIRMED")));
+                    .header("Content-Type", "application/json")
+                    .content("{\n"
+                        + "  \"email\": \"sidikov.marsel@gmail.com\",\n"
+                        + "  \"password\": \"qwerty007\"\n"
+                        + "}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.email", is("sidikov.marsel@gmail.com")))
+                .andExpect(jsonPath("$.role", is("USER")))
+                .andExpect(jsonPath("$.state", is("NOT_CONFIRMED")));
         }
     }
 
@@ -59,8 +60,8 @@ class UsersControllerTest {
             usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
             mockMvc.perform(get("/api/users"))
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.count", is(2)));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.count", is(2)));
         }
 
 
@@ -77,14 +78,14 @@ class UsersControllerTest {
             usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
             mockMvc.perform(delete("/api/users/1"))
-                    .andExpect(status().isOk());
+                .andExpect(status().isOk());
             //.andExpect(jsonPath("$.count", is(2)));
         }
 
         @Test
         void delete_not_exist_user() throws Exception {
             mockMvc.perform(delete("/api/users/1"))
-                    .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound());
         }
 
     }
@@ -97,42 +98,42 @@ class UsersControllerTest {
             usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.ADMIN).build());
 
             mockMvc.perform(put("/api/users/1")
-                            .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newName\" : \"Andrew\",\n" +
-                                    "  \"newPlz\" : \"23456\",\n" +
-                                    "  \"newPhone\" : \"0123456789\",\n" +
-                                    "  \"newImage\" : \"C:/1.png\",\n" +
-                                    "  \"newRole\" : \"USER\",\n" +
-                                    "  \"newState\" : \"CONFIRMED\"\n" +
-                                    "}\n"))
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.state", is("CONFIRMED")))
-                    .andExpect(jsonPath("$.role", is("USER")));
+                    .header("Content-Type", "application/json")
+                    .content("{\n" +
+                        "  \"newName\" : \"Andrew\",\n" +
+                        "  \"newPlz\" : \"23456\",\n" +
+                        "  \"newPhone\" : \"0123456789\",\n" +
+                        "  \"newImage\" : \"C:/1.png\",\n" +
+                        "  \"newRole\" : \"USER\",\n" +
+                        "  \"newState\" : \"CONFIRMED\"\n" +
+                        "}\n"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.state", is("CONFIRMED")))
+                .andExpect(jsonPath("$.role", is("USER")));
         }
 
         @Test
         void update_not_exist_user() throws Exception {
             mockMvc.perform(put("/api/users/1").header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newRole\" : \"USER\",\n" +
-                                    "  \"newState\" : \"BANNED\"\n" +
-                                    "}\n"))
-                    .andExpect(status().isNotFound());
+                    .content("{\n" +
+                        "  \"newRole\" : \"USER\",\n" +
+                        "  \"newState\" : \"BANNED\"\n" +
+                        "}\n"))
+                .andExpect(status().isNotFound());
 
         }
 
         @Test
         void update_user_as_admin() throws Exception {
-            usersRepository.saveUser(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
             mockMvc.perform(put("/api/users/1").header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newRole\" : \"ADMIN\",\n" +
-                                    "  \"newState\" : \"BANNED\"\n" +
-                                    "}\n"))
+                    .content("{\n" +
+                        "  \"newRole\" : \"ADMIN\",\n" +
+                        "  \"newState\" : \"BANNED\"\n" +
+                        "}\n"))
 //                    .andExpect(status().isForbidden())
-                    .andExpect(status().isOk());
+                .andExpect(status().isOk());
 
         }
     }
