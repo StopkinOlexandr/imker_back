@@ -84,7 +84,7 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserIdDto checkSecretQuestion(UserSecretQuestionDto secretQuestion) {
-    UserDto userDto = findByEmail(secretQuestion.getEmail());
+    UserDto userDto = findByEmail(secretQuestion.getEmail()); //can refactor this
     UserIdDto userIdDto = new UserIdDto();
     userIdDto.setId(userDto.getId());
     return userIdDto;
@@ -92,7 +92,10 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
-    return null;
+    User user = getUserFromRepository(restorePwd.getId());
+    user.setPassword(restorePwd.getNewPassword());
+    usersRepository.save(user);
+    return UserDto.from(user);
   }
 
   @Override
