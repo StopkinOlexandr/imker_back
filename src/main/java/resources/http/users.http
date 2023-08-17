@@ -1,0 +1,51 @@
+### Add user1
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "email": "user1@gmail.com",
+  "password": "qwerty007",
+  "name": "User1",
+  "plz": "01234",
+  "phone": "1234567890",
+  "secretQuestion": "Ford"
+}
+
+### Add user2
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "email": "user2@gmail.com",
+  "password": "qwerty007",
+  "name": "User2",
+  "plz": "12345",
+  "phone": "0123456789",
+  "secretQuestion": "Renault"
+}
+
+
+### Get all users
+
+GET localhost:8080/api/users?orderBy=id&desc=true&page=1&filterBy=state&filterValue=NOT_CONFIRMED
+
+### Delete user
+
+DELETE localhost:8080/api/users/2
+
+### Update user
+
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "newRole" : "ADMIN",
+  "newState" : "CONFIRMED"
+}
+
+
+### Get first user
+
+GET http://localhost:8080/api/users/1

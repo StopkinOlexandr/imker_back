@@ -9,13 +9,22 @@ import lombok.Data;
 @Schema(description = "Data for update")
 public class UpdateUserDto {
 
-  @Schema(description = "Users status - NOT_CONFIRMED, CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
 
+  @Schema(description = "User's name", example = "Alex Krause")
   private String newName;
-  private String newPlz;
-  private String newPhone;
-  private String newImage;
-  private String newState;
-  private String newRole;
 
+  @Schema(description = "User's PLZ", example = "01234")
+  private String newPlz;
+
+  @Schema(description = "User's phone", example = "0123456789")
+  private String newPhone;
+
+  @Schema(description = "User's image", example = "???") //TODO
+  private String newImage;
+
+  @Schema(description = "Users status - NOT_CONFIRMED, CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
+  private String newState;
+
+  @Schema(description = "User's role: ADMIN, USER", example = "USER")
+  private String newRole;
 }
