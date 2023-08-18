@@ -1,9 +1,11 @@
 package de.imker.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Data
@@ -23,7 +25,7 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long eventId;
     private String title;
     private String address;
     private String author;
@@ -36,6 +38,7 @@ public class Event {
     private String location;
     @Enumerated(value = EnumType.STRING)
     private Status status;
+    private String userId;
 
 //    @OneToMany(mappedBy = "user_ID")//TODO
 //    private List<Event> events;

@@ -20,21 +20,30 @@ public class UserDto {
 
   @Schema(description = "User's ID", example = "1")
   private Long id;
+
   @Schema(description = "User's e-main", example = "aaa@bbb.ccc")
   private String email;
+
   @Schema(description = "User's role: ADMIN, USER", example = "USER")
   private String role;
+
   @Schema(description = "User's state: CONFIRMED, NOT_CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
   private String state;
+
   @Schema(description = "User's name", example = "Alex Krause")
   private String name;
+
   @Schema(description = "User's PLZ", example = "01234")
   private String plz;
+
   @Schema(description = "User's phone", example = "0123456789")
   private String phone;
-  @Schema(description = "User's image", example = "???")
+
+  @Schema(description = "User's image", example = "???") //TODO
   private String image;
+
   //  private String secretQuestion;
+
   @Schema(description = "User's is signed in", example = "TRUE")
   private Boolean isLogin;
 

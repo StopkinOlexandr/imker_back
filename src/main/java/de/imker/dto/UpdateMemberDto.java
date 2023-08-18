@@ -4,9 +4,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(description = "New Team Member")
-public class NewMemberDto {
+public class UpdateMemberDto {
 
+  @Schema(description = "State of Member - SHOW, HIDDEN, DELETED", example = "HIDDEN")
+  private String newState;
   @Schema(description = "Members Name", example = "Mart Tven")
   private String name;
   private String position;

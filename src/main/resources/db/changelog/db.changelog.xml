@@ -23,6 +23,8 @@
         </createTable>
     </changeSet>
 
+
+
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
             <column name="id_post" type="int" autoIncrement="true">
@@ -41,21 +43,88 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="#3" author="vadim">
+  
+    <changeSet id="#6" author="vadim">
         <createTable tableName="files">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-
             <column name="creation_time" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-
             <column name="original_name" type="varchar(100)"/>
             <column name="stored_name" type="varchar(150)"/>
             <column name="file_type" type="varchar(10)"/>
             <column name="size" type="int"/>
         </createTable>
+    </changeSet>
+ 
+    <changeSet id="#3" author="alexandr">
+        <createTable tableName="account">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(300)"/>
+            <column name="name" type="varchar(300)"/>
+            <column name="password" type="varchar(300)"/>
+            <column name="secret_question" type="varchar(300)"/>
+            <column name="plz" type="varchar(5)"/>
+            <column name="phone" type="varchar(300)"/>
+            <column name="image" type="varchar"/>
+            <column name="role" type="varchar(30)"/>
+            <column name="state" type="varchar(30)"/>
+            <column name="is_login" type="bool"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="#4" author="andrii">
+        <createTable tableName="events">
+            <column name="event_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(250)"/>
+            <column name="author" type="varchar(50)"/>
+            <column name="description" type="text"/>
+            <column name="photo" type="varchar(250)"/>
+            <column name="date" type="varchar(50)"/>
+            <column name="start_time" type="varchar(50)"/>
+            <column name="end_time" type="varchar(50)"/>
+            <column name="location" type="varchar(50)"/>
+            <column name="status" type="varchar(50)"/>
+            <column name="quantity_of_members" type="varchar(50)"/>
+            <column name="user_id" type="varchar(50)"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="#5" author="Valentyna">
+        <createTable tableName="member">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="state" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar(100)"/>
+            <column name="description" type="varchar(300)"/>
+            <column name="image" type="varchar(300)"/>
+            <column name="phone" type="varchar(15)"/>
+            <column name="email" type="varchar(150)"/>
+            <column name="facebook" type="varchar(150)"/>
+            <column name="instagram" type="varchar(150)"/>
+        </createTable>
+
+        <loadData tableName="member"
+                  separator=","
+                  file="db/data/members.csv">
+        </loadData>
+
     </changeSet>
 
 </databaseChangeLog>

@@ -10,9 +10,11 @@ Content-Type: application/json
   "address": "Berlin, Winehof, 8",
   "author": "Andrii",
   "quantityOfMembers": "25",
+  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
   "photo": "C://Photos/added_photo.png",
+  "startTime": "12:00",
+  "endTime": "18:00",
   "date": "2023-02-02"
-
 }
 
 ### Add event №2
@@ -20,16 +22,22 @@ Content-Type: application/json
 POST http://localhost:8080/api/events
 Content-Type: application/json
 
-{
-  "name": "Circus",
-  "description": "Kids circus",
-  "author": "Andrii",
-  "place": "Bremen, CircusHof, 11",
-  "quantityOfMembers": "250",
-  "photo": "added photo #2",
-  "date": "01/09/2023"
 
+{
+  "title": "Circus",
+  "description": "Kids circus",
+  "address": "Bremen, CircusHof, 11",
+  "author": "Andrii",
+  "quantityOfMembers": "250",
+  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "photo": "C://Photos/added photo #2png",
+  "startTime": "09:00",
+  "endTime": "12:00",
+  "date": "2023-08-22"
 }
+
+
+
 
 ### Add event №3
 
@@ -37,15 +45,18 @@ POST http://localhost:8080/api/events
 Content-Type: application/json
 
 {
-  "name": "Karaoke",
+  "title": "Karaoke",
   "description": "Singing Song",
+  "address": "msterdam, Sing allee, 5",
   "author": "Joseph",
-  "place": "Amsterdam, Sing allee, 5",
   "quantityOfMembers": "12",
-  "photo": "added photo.png",
-  "date": "02/04/2022"
-
+  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "photo": "C://Photos/added_photo_сфкфщлу.png",
+  "startTime": "19:00",
+  "endTime": "23:00",
+  "date": "2023-06-06"
 }
+
 
 ### Add event №4
 
@@ -53,35 +64,76 @@ POST http://localhost:8080/api/events
 Content-Type: application/json
 
 {
-  "name": "Beach Party",
-  "description": "Dancing",
-  "author": "Barbara Roth",
-  "place": "Gdansk beach",
-  "quantityOfMembers": "120",
-  "photo": "added photo.png",
-  "date": "03/08/2023"
-
+"title": "Exciting Adventure Meetup",
+"description": "Join us for an exhilarating day of outdoor adventures and camaraderie!",
+"address": "123 Adventure Street, Summitville",
+"author": "Adventure Enthusiast Club",
+"quantityOfMembers": "25",
+"location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+"photo": "https://example.com/event-photo.jpg",
+"startTime": "10:00 AM",
+"endTime": "4:00 PM",
+"date": "2023-08-26"
 }
 
-### Get all events
+### Add event №5
 
-GET localhost:8080/api/events
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "title": "Gourmet Delights Cooking Class",
+  "description": "Embark on a culinary journey as our experienced chefs guide you through the art of gourmet cooking.",
+  "address": "456 Culinary Lane, Savoryville",
+  "author": "TasteBuds Culinary School",
+  "quantityOfMembers": "15",
+  "location": "https://goo.gl/maps/abcd1234",
+  "photo": "https://example.com/cooking-class.jpg",
+  "startTime": "6:30 PM",
+  "endTime": "9:00 PM",
+  "date": "2023-01-12"
+}
 
 
-### Delete Event
 
-DELETE localhost:8080/api/events/100
 
-### Update event №1
+### Get Event (sort)order by description - works
+GET localhost:8080/api/events?orderBy=description&desc=false&page=0
 
-PUT localhost:8080/api/events/1
+
+### Get Event (sort)order by description - works DESC
+GET localhost:8080/api/events?orderBy=description&desc=true&page=0
+
+
+### Get Event (sort)order by Title WORKS
+GET localhost:8080/api/events?orderBy=title&desc=false&page=1
+
+
+### Get Event (sort)order by startTime WORKS
+GET localhost:8080/api/events?orderBy=startTime&desc=false&page=1
+
+
+### Get Event (sort)order by endDate WORKS
+GET localhost:8080/api/events?orderBy=endTime&desc=false&page=0
+
+
+### Get Event (sort) by startTime And Filtred BY Finish date
+GET localhost:8080/api/events?orderBy=startTime&desc=true&page=0&filterBy=date&filterValue=2023-01-12
+
+
+
+
+
+### Delete Event WORKS
+
+DELETE localhost:8080/api/events/2
+
+### Update event WORKS
+
+PUT localhost:8080/api/events/3
 Content-Type: application/json
 
 {
   "newStatus" : "ENDED"
 }
 
-
-### Get paginated event
-
-GET localhost:8080/api/events/paginated?page=0&size=2

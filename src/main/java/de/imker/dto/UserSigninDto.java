@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Schema(description = "Information for signing in user")
 @Data
-public class UserSignIn {
+public class UserSigninDto {
     @Schema(description = "User's e-main", example = "aaa@bbb.ccc")
     private String email;
     @Schema(description = "User's password", example = "#123abcABC")

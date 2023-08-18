@@ -4,14 +4,15 @@ package de.imker.repositories;
 import de.imker.models.User;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersRepository {
-  void saveUser(User user);
+public interface UsersRepository extends JpaRepository<User, Long> {
 
-  List<User> findAllUsers();
+  Page<User> findAllByRole(User.Role role, Pageable pageable);
 
-  Optional<User> findById(Long id);
+  Page<User> findAllByState(User.State state, Pageable pageable);
 
-  void delete(User user);
-  void clearUsers();
+
 }

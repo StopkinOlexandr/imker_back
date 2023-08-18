@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class EventDto {
 
     @Schema(description = "Event's ID", example = "1")
-    private Long id;
+    private Long idEvent;
 
     @Schema(description = "Events title", example = "Some event's title...")
     private String title;
@@ -60,9 +60,8 @@ public class EventDto {
     private Long idUser;
 
     public static EventDto from(Event event) {
-
         return EventDto.builder()
-                .id(event.getId())
+                .idEvent(event.getEventId())
                 .title(event.getTitle())
                 .description(event.getDescription())
                 .address(event.getAddress())
@@ -71,9 +70,12 @@ public class EventDto {
                 .photo(event.getPhoto())
                 .date(event.getDate())
                 .startTime(event.getStartTime())
+                .quantityOfMembers(event.getQuantityOfMembers())
                 .endTime(event.getEndTime())
+                .status(Event.Status.EXPECTED.toString())
 
                 .build();
+
     }
 
     public static List<EventDto> from(List<Event> events) {
