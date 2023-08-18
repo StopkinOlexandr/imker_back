@@ -29,8 +29,6 @@ public class PostsController implements PostsApi {
 
   @Override
   public PostDto updatePost(Long idPost, PostDto postDto) {
-    System.out.println(idPost);
-    System.out.println(postDto);
     return postsService.updatePost(idPost ,postDto);
   }
 

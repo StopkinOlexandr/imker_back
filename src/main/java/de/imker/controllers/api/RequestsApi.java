@@ -23,14 +23,12 @@ public interface RequestsApi {
 
   @Operation(summary = "Create user request", description = "Accessible to all users")
   @PostMapping
-//  @CrossOrigin(origins = "http://localhost:5173")
   @ResponseStatus(HttpStatus.CREATED)
   RequestDto addRequest(@Parameter(required = true, description = "Request")
                         @RequestBody NewRequestDto newRequest);
 
   @Operation(summary = "Get all requests list", description = "Accessible to all users")
   @GetMapping
-//  @CrossOrigin(origins = "http://localhost:5173")
   @ResponseStatus(HttpStatus.OK)
   RequestsDto getAllRequests();
 
@@ -45,9 +43,7 @@ public interface RequestsApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = RequestDto.class))
           })
   })
-  @CrossOrigin(origins = "http://localhost:5173")
   @DeleteMapping("/{request-id}")
   RequestDto deleteRequest(@Parameter(required = true, description = "Request id", example = "2")
                            @PathVariable("request-id") Long idRequest);
-
 }

@@ -52,14 +52,12 @@ public interface PostsApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = PostDto.class))
           })
   })
-  @CrossOrigin(origins = "http://localhost:5173")
   @PutMapping("/update/{id-post}")
   PostDto updatePost(@Parameter(required = true, description = "Post id", example = "1")
                      @PathVariable("id-post") Long idPost,
                      @RequestBody PostDto postDto);
 
   @Operation(summary = "Get list of posts", description = "Accessible to all users")
-  @CrossOrigin(origins = "http://localhost:5173")
   @GetMapping
   PostsDto getAllPosts();
 }
