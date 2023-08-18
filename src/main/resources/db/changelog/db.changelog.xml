@@ -34,14 +34,31 @@
             <column name="creation_time_post" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+
             <column name="title_post" type="varchar(300)"/>
             <column name="link_to_img" type="varchar(300)"/>
             <column name="short_post_description" type="varchar(300)"/>
             <column name="text_of_post" type="TEXT"/>
             <column name="id_user" type="varchar(10)"/>
         </createTable>
-
     </changeSet>
+
+  
+    <changeSet id="#6" author="vadim">
+        <createTable tableName="files">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="original_name" type="varchar(100)"/>
+            <column name="stored_name" type="varchar(150)"/>
+            <column name="file_type" type="varchar(10)"/>
+            <column name="size" type="int"/>
+        </createTable>
+    </changeSet>
+ 
     <changeSet id="#3" author="alexandr">
         <createTable tableName="account">
             <column name="id" type="int" autoIncrement="true">
@@ -60,18 +77,14 @@
         </createTable>
     </changeSet>
 
-
-
     <changeSet id="#4" author="andrii">
         <createTable tableName="events">
             <column name="event_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-
             <column name="title" type="varchar(250)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="address" type="varchar(250)"/>
             <column name="author" type="varchar(50)"/>
             <column name="description" type="text"/>
@@ -113,7 +126,5 @@
         </loadData>
 
     </changeSet>
-
-
 
 </databaseChangeLog>
