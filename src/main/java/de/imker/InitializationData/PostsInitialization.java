@@ -20,7 +20,7 @@ public class PostsInitialization {
     if (postsDto.getPosts().size() == 0) {
       NewPostDto newPost = NewPostDto.builder()
           .titlePost("Zauber der Bienen: Einblick in die faszinierende Welt des Imkerns")
-          .linkToImg("https://www.imker-bayern.de/uploads/adressen/kopfbild_vereine_03.jpg")
+          .linkToImg("1")
           .shortPostDescription("Tauche ein in die lebhafte Welt der Bienen, erfahre, wie Imker ihr Handwerk pflegen und die Bedeutung der Bienen für unsere Umwelt.")
           .textOfPost("<p style=\"text-align: center;\"><strong>Die faszinierende Welt der Imkerei</strong></p>\n" +
               "<p>Die Imkerei ist weit mehr als nur Honigproduktion. Sie ist ein Zusammenspiel von Natur, Kunst und Engagement. Imker &ouml;ffnen uns das Tor zu einem faszinierenden Mikrokosmos, in dem Bienen emsig arbeiten.</p>\n" +
@@ -44,7 +44,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Bienen: Die kleinen Helden unserer Natur")
-          .linkToImg("https://mobiliard8.rokka.io/node_header_image__1440x470_/f74ae3fcfc584009a728184b3d98aee631a5f8a7/header-ratgeber-bienen.jpg?itok=rXhsQ453")
+          .linkToImg("2")
           .shortPostDescription("Eine Reise in die bemerkenswerte Welt der Bienen - ihre Rolle in der Natur, die Kunst des Imkerns und wie wir sie unterstützen können.")
           .textOfPost("<p style=\"text-align: center;\"><strong>Die flei&szlig;igen Best&auml;uber unserer Welt</strong></p>\n" +
               "<p>Bienen sind weit mehr als nur Honigproduzenten. Sie sind unerm&uuml;dliche Best&auml;uber, die unsere Lebensmittelvielfalt erm&ouml;glichen. Erfahre, wie ihre Arbeit unser t&auml;gliches Leben beeinflusst.</p>\n" +
@@ -68,7 +68,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Bienenzucht: Ein Blick in die faszinierende Welt der Imkerei")
-          .linkToImg("https://www.main-echo.de/storage/image/5/4/1/6/5376145_original2560_1zX9HW_qP3j6P.jpg")
+          .linkToImg("3")
           .shortPostDescription("Erfahre mehr über die faszinierende Kunst des Imkerns, die Bedeutung von Bienen für die Natur und Tipps für angehende Imker.")
           .textOfPost("<p>Bienen - kleine Wunder der Natur, die weit mehr tun als nur Honig zu produzieren. Imkern ist eine Kunst, die Generationen &uuml;berdauert hat und sich weiterentwickelt. Immer mehr Menschen entdecken die Freude und die Bedeutung, Bienen zu z&uuml;chten.</p>\n" +
               "<p>Die Arbeit eines Imkers ist voller &Uuml;berraschungen und Herausforderungen. Vom Aufbau und der Pflege der Bienenst&ouml;cke bis hin zur Honigernte erfordert es Hingabe und Wissen. Imkervereine bieten eine wertvolle Plattform f&uuml;r den Wissensaustausch und die Unterst&uuml;tzung unter Gleichgesinnten.</p>\n" +
@@ -81,7 +81,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Imkerei: Einblicke in das faszinierende Leben der Bienen")
-          .linkToImg("https://kraut-kopf.de/content/uploads/2019/07/honigbienen-01.jpg")
+          .linkToImg("4")
           .shortPostDescription("Erfahre mehr über die bemerkenswerte Welt der Bienen, ihre Rolle in der Natur und wie du selbst ein Imker werden kannst.")
           .textOfPost("<p>Summende Bienen sind mehr als nur Honigproduzenten. Sie sind unverzichtbare Best&auml;uber, die unsere &Ouml;kosysteme und unsere Ern&auml;hrung sichern. Imkern bietet einen tieferen Einblick in das Leben dieser faszinierenden Insekten.</p>\n" +
               "<p>Ein Bienenvolk ist eine lebendige Gemeinschaft mit klaren Aufgabenverteilungen. Die K&ouml;nigin regiert, die Arbeiterinnen sammeln Nektar und Pollen, w&auml;hrend die Drohnen sich um die Fortpflanzung k&uuml;mmern. Die Zusammenarbeit dieser Winzlinge ist bewundernswert.</p>\n" +
@@ -94,7 +94,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Die Goldene Köstlichkeit der Natur: Das fabelhafte Universum des Honigs")
-          .linkToImg("https://rp-online.de/imgs/32/2/9/3/9/5/1/0/9/tok_e1c9673492b35ba96d726163212404df/w940_h528_x470_y264_5736869295a8f6e7.jpg")
+          .linkToImg("5")
           .shortPostDescription("Erfahre mehr über die vielfältigen Facetten des Honigs - von den verschiedenen Sorten bis zu den gesundheitlichen Vorzügen und kulinarischen Anwendungen.")
           .textOfPost("<p>Honig ist nicht nur ein s&uuml;&szlig;es Vergn&uuml;gen f&uuml;r den Gaumen, sondern auch ein faszinierendes Produkt der Natur. Die Artenvielfalt von Honig variiert je nach Bienenstandort und Bl&uuml;tenquellen. Von aromatischem Lavendelhonig bis hin zu kr&auml;ftigem Waldhonig - jeder Tropfen erz&auml;hlt eine einzigartige Geschichte.</p>\n" +
               "<p>Abgesehen von seinem delikaten Geschmack bietet Honig auch zahlreiche gesundheitliche Vorteile. Er enth&auml;lt Antioxidantien und hat antimikrobielle Eigenschaften. Viele schw&ouml;ren auf Honig als nat&uuml;rliches Heilmittel bei Halsschmerzen und zur F&ouml;rderung des Wohlbefindens.</p>\n" +
@@ -107,7 +107,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Honigvielfalt: Entdecke die Reichhaltigkeit der Naturschätze")
-          .linkToImg("https://www.paul-schrader.de/genusswelt/wp-content/uploads/2018/02/Honigvielfalt.jpg")
+          .linkToImg("6")
           .shortPostDescription("Erfahre mehr über die faszinierende Vielfalt der Honigsorten - von blumigem Akazienhonig bis zum dunkelrobusten Kastanienhonig.")
           .textOfPost("<p>Die Welt des Honigs ist reich an Farben, Aromen und Texturen. Jede Honigsorte erz&auml;hlt eine einzigartige Geschichte, gepr&auml;gt von den Bl&uuml;ten und Pflanzen, von denen die Bienen ihre Nahrung sammeln.</p>\n" +
               "<p>Beginnen wir mit dem zartgoldenen Akazienhonig. Seine helle Farbe und subtile S&uuml;&szlig;e machen ihn zu einer beliebten Wahl. Bl&uuml;ten des Akazienbaums verleihen diesem Honig einen delikaten Geschmack, der sich perfekt f&uuml;r Tee und Joghurt eignet.</p>\n" +
@@ -121,7 +121,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Honig in der Deutschen Kultur: Süße Traditionen und Geschmacksfreuden")
-          .linkToImg("https://www.bzfe.de/fileadmin/resources/import/h/Honigglaeser_980_rdax_720x316_80.jpg")
+          .linkToImg("7")
           .shortPostDescription("Erfahre mehr über die vielfältigen kulturellen Bedeutungen des Honigs in Deutschland - von traditionellen Bräuchen bis hin zu modernen kulinarischen Kreationen.")
           .textOfPost("<p>In der deutschen Kultur spielt Honig eine bedeutende Rolle, die bis in alte Zeiten zur&uuml;ckreicht. Der goldene Sirup der Bienen ist nicht nur ein s&uuml;&szlig;er Genuss, sondern auch ein Symbol f&uuml;r Wohlstand und Gemeinschaft.</p>\n" +
               "<p>Traditionell wird Honig in Deutschland als Geschenk der Natur verehrt. Er findet sich in festlichen Gerichten wie dem \"Stollen\" - einem reichhaltigen Fr&uuml;chtebrot, das oft zur Weihnachtszeit genossen wird. Honig verleiht diesem traditionellen Geb&auml;ck eine nat&uuml;rliche S&uuml;&szlig;e und symbolisiert zugleich das s&uuml;&szlig;e Leben.</p>\n" +
@@ -134,7 +134,7 @@ public class PostsInitialization {
 
       newPost = NewPostDto.builder()
           .titlePost("Die Bienenflüsterer Deutschlands: Leidenschaftliche Pioniere der Imkerei")
-          .linkToImg("https://bilder.fernsehserien.de/gfx/bv/die-bienenfluesterer_401627.jpg")
+          .linkToImg("8")
           .shortPostDescription("Erfahre mehr über die engagierten deutschen Imker, ihre Hingabe zur Bienenzucht und ihre Beiträge zum Schutz der Bienenpopulation.")
           .textOfPost("<p>Deutschland ist die Heimat leidenschaftlicher Imker, die das Handwerk der Bienenzucht mit Begeisterung aus&uuml;ben. Diese Bienenfl&uuml;sterer sind nicht nur Honigproduzenten, sondern auch wichtige Akteure im Schutz der Umwelt.</p>\n" +
               "<p>Deutsche Imker sind bekannt f&uuml;r ihre Fachkenntnisse und ihre Bereitschaft, ihr Wissen zu teilen. Imkervereine und Schulungen bieten Plattformen f&uuml;r den Austausch von bew&auml;hrten Praktiken und neuesten Erkenntnissen. Ihre Expertise erstreckt sich &uuml;ber die Pflege von Bienenst&ouml;cken hinaus und umfasst die F&ouml;rderung der Artenvielfalt und den nachhaltigen Umgang mit Bienenpopulationen.</p>\n" +

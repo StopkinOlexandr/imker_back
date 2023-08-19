@@ -1,6 +1,7 @@
 package de.imker;
 
 import com.jpomykala.springhoc.cors.EnableCORS;
+import de.imker.InitializationData.FilesInitialization;
 import de.imker.InitializationData.PostsInitialization;
 import de.imker.InitializationData.RequestsInitialization;
 import org.jetbrains.annotations.NotNull;
@@ -33,10 +34,14 @@ public class ImkerApp {
 
   public static void main(String[] args) {
     ApplicationContext context = SpringApplication.run(ImkerApp.class, args);
+
     RequestsInitialization requestsInitialization = context.getBean(RequestsInitialization.class);
     PostsInitialization postsInitialization = context.getBean(PostsInitialization.class);
+    FilesInitialization filesInitialization = context.getBean(FilesInitialization.class);
+
     requestsInitialization.reqInit();
     postsInitialization.postInit();
+    filesInitialization.filesInit();
   }
 
 }
