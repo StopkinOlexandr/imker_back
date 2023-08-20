@@ -18,7 +18,7 @@ import java.util.Date;
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long idPost;
+  private Long id;
 
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)

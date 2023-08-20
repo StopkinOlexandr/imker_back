@@ -11,5 +11,5 @@ public interface PostsService {
 
   PostDto updatePost(Long idPost, PostDto postDto);
 
-  PostsDto getAllPosts();
+  PostsDto getAllPosts(Integer page, Integer items, String orderBy, Boolean desk);
 }

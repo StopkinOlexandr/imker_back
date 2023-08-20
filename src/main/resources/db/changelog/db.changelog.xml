@@ -27,7 +27,7 @@
 
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
-            <column name="id_post" type="int" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
 
@@ -43,22 +43,6 @@
         </createTable>
     </changeSet>
 
-  
-    <changeSet id="#6" author="vadim">
-        <createTable tableName="files">
-            <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="creation_time" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="original_name" type="varchar(100)"/>
-            <column name="stored_name" type="varchar(150)"/>
-            <column name="file_type" type="varchar(10)"/>
-            <column name="size" type="int"/>
-        </createTable>
-    </changeSet>
- 
     <changeSet id="#3" author="alexandr">
         <createTable tableName="account">
             <column name="id" type="int" autoIncrement="true">
@@ -125,6 +109,21 @@
                   file="db/data/members.csv">
         </loadData>
 
+    </changeSet>
+
+    <changeSet id="#6" author="vadim">
+        <createTable tableName="files">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="original_name" type="varchar(100)"/>
+            <column name="stored_name" type="varchar(150)"/>
+            <column name="file_type" type="varchar(10)"/>
+            <column name="size" type="int"/>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

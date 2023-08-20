@@ -33,8 +33,8 @@ public class PostsController implements PostsApi {
   }
 
   @Override
-  public PostsDto getAllPosts() {
-    return postsService.getAllPosts();
+  public PostsDto getAllPosts(Integer page, Integer items, String orderBy, Boolean desk) {
+    return postsService.getAllPosts(page, items, orderBy, desk);
   }
 
 }

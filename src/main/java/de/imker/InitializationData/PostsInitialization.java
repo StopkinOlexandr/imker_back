@@ -1,23 +1,28 @@
 package de.imker.InitializationData;
 
 import de.imker.dto.*;
+import de.imker.models.Post;
 import de.imker.repositories.PostsRepository;
 import de.imker.services.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class PostsInitialization {
   private final PostServiceImpl postService;
+  private final PostsRepository postsRepository;
 
   @Autowired
   public PostsInitialization(PostsRepository postsRepository) {
     this.postService = new PostServiceImpl(postsRepository);
+    this.postsRepository = postsRepository;
   }
 
   public void postInit() {
-    PostsDto postsDto = postService.getAllPosts();
-    if (postsDto.getPosts().size() == 0) {
+    List<Post> posts = postsRepository.findAll();
+    if (posts.size() == 0) {
       NewPostDto newPost = NewPostDto.builder()
           .titlePost("Zauber der Bienen: Einblick in die faszinierende Welt des Imkerns")
           .linkToImg("1")
@@ -101,7 +106,7 @@ public class PostsInitialization {
               "<p>In der kulinarischen Welt ist Honig ein vielseitiger Begleiter. Er verleiht nicht nur S&uuml;&szlig;e, sondern auch Tiefe und Aroma. Von der Verfeinerung von Desserts bis zur Zugabe in herzhaften Gerichten - die Verwendungsm&ouml;glichkeiten sind grenzenlos.</p>\n" +
               "<p>Wenn du dich f&uuml;r Honig interessierst, kannst du sogar dein eigenes kleines Bienenparadies schaffen. Bienenfreundliche Pflanzen und ein bl&uuml;hender Garten sind der Anfang. Die Imkerei kann nicht nur den wunderbaren Honig hervorbringen, den wir kennen, sondern auch eine tiefere Verbindung zur Natur schaffen.</p>\n" +
               "<p>Honig ist zweifellos eine der bezauberndsten Gaben der Natur. Er bereichert unsere Sinne, f&ouml;rdert unsere Gesundheit und er&ouml;ffnet eine Welt der kulinarischen Kreativit&auml;t. Ein L&ouml;ffel Honig ist nicht nur ein Genuss, sondern eine Hommage an die Wunder der Natur.</p>")
-          .authorName("(Henri Abelé")
+          .authorName("Henri Abelé")
           .build();
       postService.addPost(newPost);
 

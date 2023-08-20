@@ -35,7 +35,7 @@ public class PostDto {
 
   public static PostDto from(Post post){
     return PostDto.builder()
-        .idPost(post.getIdPost())
+        .idPost(post.getId())
         .creationTimePost(dateToString(post.getCreationTimePost()))
         .titlePost(post.getTitlePost())
         .linkToImg(post.getLinkToImg())
