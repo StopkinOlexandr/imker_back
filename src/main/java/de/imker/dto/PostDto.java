@@ -30,8 +30,8 @@ public class PostDto {
   private String shortPostDescription;
   @Schema(description = "new post text", example = "<p>HTML text</p>")
   private String textOfPost;
-  @Schema(description = "author Id", example = "1")
-  private String idUser;
+  @Schema(description = "author name", example = "Jack Daniel")
+  private String authorName;
 
   public static PostDto from(Post post){
     return PostDto.builder()
@@ -41,7 +41,7 @@ public class PostDto {
         .linkToImg(post.getLinkToImg())
         .shortPostDescription(post.getShortPostDescription())
         .textOfPost(post.getTextOfPost())
-        .idUser(post.getIdUser())
+        .authorName(post.getAuthorName())
         .build();
   }
 

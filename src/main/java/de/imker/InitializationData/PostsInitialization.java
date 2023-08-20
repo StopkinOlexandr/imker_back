@@ -38,7 +38,7 @@ public class PostsInitialization {
               "<p>In Imkervereinen teilen Enthusiasten ihre Erfahrungen, lernen voneinander und tragen zur Forschung bei. Hier treffen Anf&auml;nger auf erfahrene Imker, und jeder kann seinen Beitrag leisten.</p>\n" +
               "<p style=\"text-align: center;\"><strong>Fazit: Die s&uuml;&szlig;e Welt der Imkerei entdecken</strong></p>\n" +
               "<p>Die Imkerei &ouml;ffnet eine T&uuml;r zu einem erstaunlichen &Ouml;kosystem. Sie lehrt uns, die Natur zu sch&auml;tzen und zu sch&uuml;tzen. Wenn du den Zauber der Bienen erleben m&ouml;chtest, ist die Imkerei genau das Richtige f&uuml;r dich.</p>")
-          .idUser("1")
+          .authorName("Jack Daniel")
           .build();
       postService.addPost(newPost);
 
@@ -62,7 +62,7 @@ public class PostsInitialization {
               "<p>Auch in urbanen Umgebungen spielen Bienen eine wichtige Rolle. Erfahre, wie Stadtimker Bienen halten und welche innovativen Ans&auml;tze es gibt, wie Bienenhotels und vertikale Bienenst&ouml;cke.</p>\n" +
               "<p style=\"text-align: center;\"><strong>Fazit: Die unscheinbaren Helden unserer Natur</strong></p>\n" +
               "<p>Bienen sind winzige Helden, die eine gro&szlig;e Rolle in unserer Welt spielen. Ihre Bedeutung f&uuml;r die Umwelt und unsere Nahrungsmittelproduktion kann nicht &uuml;berbetont werden. Lasst uns gemeinsam daf&uuml;r sorgen, dass ihre Summger&auml;usche auch in Zukunft in unseren G&auml;rten zu h&ouml;ren sind.</p>")
-          .idUser("1")
+          .authorName("Johnnie Walker")
           .build();
       postService.addPost(newPost);
 
@@ -75,7 +75,7 @@ public class PostsInitialization {
               "<p>Bienen sind jedoch nicht nur Honiglieferanten. Ihre Best&auml;ubungsarbeit ist entscheidend f&uuml;r die Pflanzenwelt und unsere Nahrungsmittelproduktion. Ihr R&uuml;ckgang hat erhebliche Auswirkungen. Imkern kann helfen, diese wichtigen Insekten zu sch&uuml;tzen und zu unterst&uuml;tzen.</p>\n" +
               "<p>Wenn du in die Welt der Imkerei eintauchen m&ouml;chtest, gibt es viele Ressourcen und Schulungen, die dir den Einstieg erleichtern. Vom st&auml;dtischen Balkon bis zum l&auml;ndlichen Garten - Bienen finden &uuml;berall Platz. Die Bienenzucht ist nicht nur eine bereichernde Erfahrung, sondern auch ein Beitrag zum Umweltschutz.</p>\n" +
               "<p>Bienen sind die stillen Helden, die unsere Welt am Laufen halten. Ihre Pflege und Unterst&uuml;tzung sind von unsch&auml;tzbarem Wert. Also, worauf wartest du? Tauche ein in die faszinierende Welt der Imkerei und werde Teil dieser bienenflei&szlig;igen Gemeinschaft.</p>")
-          .idUser("1")
+          .authorName("Jim Beam")
           .build();
       postService.addPost(newPost);
 
@@ -88,7 +88,7 @@ public class PostsInitialization {
               "<p>Der Weg zum Imker beginnt mit Neugierde und Lernen. Imkervereine bieten Anleitung und Unterst&uuml;tzung f&uuml;r Anf&auml;nger. Von der Wahl des richtigen Bienenstandorts bis zur Pflege der V&ouml;lker lernst du die Grundlagen des Imkerns.</p>\n" +
               "<p>Imkern kann auch in st&auml;dtischen Gebieten praktiziert werden. Balkone und Gemeinschaftsg&auml;rten bieten Platz f&uuml;r Bienenst&ouml;cke. Du tr&auml;gst nicht nur zur Honigproduktion bei, sondern hilfst auch, die bedrohten Best&auml;uber zu sch&uuml;tzen.</p>\n" +
               "<p>Die Bienenzucht ist eine Gelegenheit, die Natur aus n&auml;chster N&auml;he zu erleben und einen wertvollen Beitrag zur Umwelt zu leisten. Werde Teil der Imkergemeinschaft und entdecke die Faszination, die hinter den summenden Helden steckt.</p>")
-          .idUser("1")
+          .authorName("Dom Pérignon")
           .build();
       postService.addPost(newPost);
 
@@ -101,7 +101,7 @@ public class PostsInitialization {
               "<p>In der kulinarischen Welt ist Honig ein vielseitiger Begleiter. Er verleiht nicht nur S&uuml;&szlig;e, sondern auch Tiefe und Aroma. Von der Verfeinerung von Desserts bis zur Zugabe in herzhaften Gerichten - die Verwendungsm&ouml;glichkeiten sind grenzenlos.</p>\n" +
               "<p>Wenn du dich f&uuml;r Honig interessierst, kannst du sogar dein eigenes kleines Bienenparadies schaffen. Bienenfreundliche Pflanzen und ein bl&uuml;hender Garten sind der Anfang. Die Imkerei kann nicht nur den wunderbaren Honig hervorbringen, den wir kennen, sondern auch eine tiefere Verbindung zur Natur schaffen.</p>\n" +
               "<p>Honig ist zweifellos eine der bezauberndsten Gaben der Natur. Er bereichert unsere Sinne, f&ouml;rdert unsere Gesundheit und er&ouml;ffnet eine Welt der kulinarischen Kreativit&auml;t. Ein L&ouml;ffel Honig ist nicht nur ein Genuss, sondern eine Hommage an die Wunder der Natur.</p>")
-          .idUser("1")
+          .authorName("(Henri Abelé")
           .build();
       postService.addPost(newPost);
 
@@ -115,7 +115,7 @@ public class PostsInitialization {
               "<p>Die Lavendelfelder tragen zum aromatischen Lavendelhonig bei, der mit seinem blumigen Aroma und leicht w&uuml;rzigen Geschmack begeistert. Er passt wunderbar zu frischem Brot und mildem K&auml;se.</p>\n" +
               "<p>Waldhonig, mit seinem tiefen Geschmack und einer Mischung aus Bl&uuml;tennektar und Honigtau, ist ein wahrhaft rustikaler Genuss. Er eignet sich hervorragend zum S&uuml;&szlig;en von herzhaften Gerichten und zur Zubereitung von Marinaden.</p>\n" +
               "<p>Die Welt des Honigs ist ein endloser Schatz, der darauf wartet, entdeckt zu werden. Jede Honigsorte hat ihre eigene Pers&ouml;nlichkeit, die durch die Vielfalt der Pflanzenwelt gepr&auml;gt wird. Tauche ein in diese Geschmacksreise und genie&szlig;e die nat&uuml;rliche Pracht, die der Honig zu bieten hat.</p>")
-          .idUser("1")
+          .authorName("Dominic Andrews")
           .build();
       postService.addPost(newPost);
 
@@ -128,7 +128,7 @@ public class PostsInitialization {
               "<p>Aber Honig ist nicht nur in alten Br&auml;uchen pr&auml;sent. Moderne K&ouml;che und B&auml;cker verwenden Honig, um zeitgen&ouml;ssische kulinarische Meisterwerke zu schaffen. Von Honigglasuren auf herzhaften Gerichten bis zu Honig-K&auml;sekuchen - die kulinarische Kreativit&auml;t kennt keine Grenzen.</p>\n" +
               "<p>Honigbasierte Produkte wie \"Met\", ein Honigwein, haben auch in der deutschen Getr&auml;nkekultur ihren Platz. Met wird oft mit geselligen Zusammenk&uuml;nften und besonderen Anl&auml;ssen in Verbindung gebracht.</p>\n" +
               "<p>Die Deutsche Kultur sch&auml;tzt Honig als Quelle von Genuss und Gemeinschaft. Seine S&uuml;&szlig;e bereichert nicht nur den Gaumen, sondern auch die kulturellen Traditionen. Ehren wir diese vielseitige Zutat, die Generationen &uuml;berdauert und sich weiterentwickelt hat.</p>")
-          .idUser("1")
+          .authorName("")
           .build();
       postService.addPost(newPost);
 
@@ -140,7 +140,7 @@ public class PostsInitialization {
               "<p>Deutsche Imker sind bekannt f&uuml;r ihre Fachkenntnisse und ihre Bereitschaft, ihr Wissen zu teilen. Imkervereine und Schulungen bieten Plattformen f&uuml;r den Austausch von bew&auml;hrten Praktiken und neuesten Erkenntnissen. Ihre Expertise erstreckt sich &uuml;ber die Pflege von Bienenst&ouml;cken hinaus und umfasst die F&ouml;rderung der Artenvielfalt und den nachhaltigen Umgang mit Bienenpopulationen.</p>\n" +
               "<p>Einige deutsche Imker haben innovative Ans&auml;tze entwickelt, um die Gesundheit der Bienen zu f&ouml;rdern. Von bienenfreundlichen G&auml;rten bis hin zu modernen Technologien, die die Bienen&uuml;berwachung erleichtern - diese Bienenfl&uuml;sterer setzen sich aktiv f&uuml;r den Erhalt der Bienen ein.</p>\n" +
               "<p>Die Leidenschaft der deutschen Imker geht &uuml;ber die Honigproduktion hinaus. Sie erkennen die Bedeutung der Bienen f&uuml;r unsere Umwelt und arbeiten daran, diese winzigen Best&auml;uber zu sch&uuml;tzen und zu unterst&uuml;tzen. Ihre Arbeit hinter den Kulissen tr&auml;gt dazu bei, das Gleichgewicht in der Natur aufrechtzuerhalten und die Grundlagen unserer Nahrungsmittelproduktion zu sichern.</p>")
-          .idUser("1")
+          .authorName("")
           .build();
       postService.addPost(newPost);
 

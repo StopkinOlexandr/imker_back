@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostsService {
         .linkToImg(newPostDto.getLinkToImg())
         .shortPostDescription(newPostDto.getShortPostDescription())
         .textOfPost(newPostDto.getTextOfPost())
-        .idUser(newPostDto.getIdUser())
+        .authorName(newPostDto.getAuthorName())
         .build();
 
     postsRepository.save(post);
@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostsService {
         .linkToImg(post.getLinkToImg())
         .shortPostDescription(post.getShortPostDescription())
         .textOfPost(post.getTextOfPost())
-        .idUser(post.getIdUser())
+        .authorName(post.getAuthorName())
         .build();
   }
 
@@ -57,7 +57,7 @@ public class PostServiceImpl implements PostsService {
     post.setLinkToImg(postDto.getLinkToImg());
     post.setShortPostDescription(postDto.getShortPostDescription());
     post.setTextOfPost(postDto.getTextOfPost());
-    post.setIdUser(postDto.getIdUser());
+    post.setAuthorName(postDto.getAuthorName());
 
     postsRepository.save(post);
 

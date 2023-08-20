@@ -20,6 +20,6 @@ public class NewPostDto {
   private String shortPostDescription;
   @Schema(description = "new post text", example = "<p>HTML text</p>")
   private String textOfPost;
-  @Schema(description = "author Id", example = "1")
-  private String idUser;
+  @Schema(description = "author name", example = "Jack Daniel")
+  private String authorName;
 }

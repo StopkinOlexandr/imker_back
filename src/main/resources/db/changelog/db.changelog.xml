@@ -39,7 +39,7 @@
             <column name="link_to_img" type="varchar(300)"/>
             <column name="short_post_description" type="varchar(300)"/>
             <column name="text_of_post" type="TEXT"/>
-            <column name="id_user" type="varchar(10)"/>
+            <column name="author_name" type="varchar(100)"/>
         </createTable>
     </changeSet>
 
