@@ -40,7 +40,8 @@ public class MembersController implements MembersApi {
     return membersService.updateMember(memberId, updateMemberDto);
   }
 
-  //TODO
-  // getMemberByState
-
+  @Override
+  public MemberDto deleteMember(Integer memberId) {
+    return membersService.deleteMemberById(memberId);
+  }
 }

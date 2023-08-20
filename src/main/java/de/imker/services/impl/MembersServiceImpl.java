@@ -54,7 +54,7 @@ public class MembersServiceImpl implements MembersService {
 
   @Override
   public MemberDto getMemberById(Integer memberId) {
-    Member member = memberRepository.getMemberById(memberId);
+    Member member = getMemberOrThrow(memberId);
 
     return MemberDto.builder()
         .state(member.getState().name())
@@ -72,10 +72,7 @@ public class MembersServiceImpl implements MembersService {
   @Override
   public MemberDto updateMember(Integer memberId, UpdateMemberDto updateMemberDto) {
 
-    Member updMember = memberRepository.getMemberById(memberId);
-
-    newState = updateMemberDto.getNewState();
-    System.out.println("newState  =" + newState);
+    Member updMember = getMemberOrThrow(memberId);
 
     updMember.setState(Member.State.valueOf(updateMemberDto.getNewState()));
     updMember.setName(updateMemberDto.getName());
@@ -92,9 +89,16 @@ public class MembersServiceImpl implements MembersService {
     return transformMemberToMemberDto(updMember);
   }
 
-//  private Member getMemberOrThrow(Integer memberId) {
-//    return memberRepository.findById(memberId);
-//        .orElseThrow(
-//        () -> new NotFoundException("Member not found. Id: ", ""));
-//  }
+  @Override
+  public MemberDto deleteMemberById(Integer memberId) {
+    Member delMmember = getMemberOrThrow(memberId);
+    memberRepository.delete(delMmember);
+
+    return transformMemberToMemberDto(delMmember);
+  }
+
+  private Member getMemberOrThrow(Integer memberId) {
+    return memberRepository.findById(memberId).orElseThrow(
+        () -> new NotFoundException("Member with id " + memberId + "not found."));
+  }
 }

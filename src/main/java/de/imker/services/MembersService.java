@@ -15,6 +15,6 @@ public interface MembersService {
 
   MemberDto updateMember(Integer memberId, UpdateMemberDto updateMemberDto);
 
-  //TODO
-  // getMemberByState
+  MemberDto deleteMemberById(Integer memberId);
+
 }
