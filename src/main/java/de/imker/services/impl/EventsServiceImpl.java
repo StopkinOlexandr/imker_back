@@ -94,6 +94,24 @@ public class EventsServiceImpl implements EventsService {
         return null;
     }
 
+    @Override
+    public EventDto getEventById(Long eventId) {
+        Event event = getEventOrThrow(eventId);
+        return EventDto.builder()
+                .idEvent(event.getEventId())
+                .title(event.getTitle())
+                .description(event.getDescription())
+                .status(event.getStatus().toString())
+                .address(event.getAddress())
+                .startTime(event.getStartTime())
+                .endTime(event.getEndTime())
+                .author(event.getAuthor())
+                .date(event.getDate())
+                .location(event.getLocation())
+                .photo(event.getPhoto())
+                .build();
+    }
+
     private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
 
         if (orderByField != null && !orderByField.equals("")) {
@@ -133,11 +151,11 @@ public class EventsServiceImpl implements EventsService {
         } else {
             checkField(filterFields, filterBy);
             if (filterBy.equals("startTime")) {
-               // String date = filterValue;
+                // String date = filterValue;
                 page = eventsRepository.findAllByStartTime(filterValue, pageRequest);
 
             } else if (filterBy.equals("endTime")) {
-              //  LocalDate date = LocalDate.parse(filterValue);
+                //  LocalDate date = LocalDate.parse(filterValue);
                 page = eventsRepository.findAllByEndTime(filterValue, pageRequest);
             }
 

@@ -120,7 +120,9 @@ GET localhost:8080/api/events?orderBy=endTime&desc=false&page=0
 ### Get Event (sort) by startTime And Filtred BY Finish date
 GET localhost:8080/api/events?orderBy=startTime&desc=true&page=0&filterBy=date&filterValue=2023-01-12
 
+### GET Event
 
+GET localhost:8080/api/events/4
 
 
 

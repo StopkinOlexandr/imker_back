@@ -115,7 +115,20 @@ public interface EventsApi {
     ResponseEntity<EventsDto> getEventsOfUser(@Parameter(required = true, description = "Users ID", example = "2")
                                             @PathVariable("user-id") Long userId);
 
-
+    @Operation(summary = "Get event by ID", description = "Full access")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Event not found",
+                    content = {
+                            @Content()
+                    }),
+            @ApiResponse(responseCode = "200", description = "Event found ",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = EventDto.class))
+                    })
+    })
+    @GetMapping("/{id-event}")
+    ResponseEntity<EventDto> getEventById(@Parameter(required = true, description = "Event ID", example = "1")
+                        @PathVariable("id-event") Long eventId);
 
 
 
