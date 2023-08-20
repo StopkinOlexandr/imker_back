@@ -17,4 +17,6 @@ public interface EventsService {
     EventDto updateEvent(Long eventId, UpdateEventDto updateEvent);
 
     EventsDto getEventsOfUser(Long userId);
+
+    EventDto getEventById(Long eventId);
 }

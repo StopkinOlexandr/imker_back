@@ -50,5 +50,11 @@ public class EventsController implements EventsApi {
                 .ok(eventsService.getEventsOfUser(userId));
     }
 
+    @Override
+    public ResponseEntity<EventDto> getEventById(Long eventId) {
+        return ResponseEntity
+                .ok(eventsService.getEventById(eventId));
+    }
+
 
 }
