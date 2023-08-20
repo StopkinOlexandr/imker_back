@@ -1,8 +1,10 @@
 package de.imker.controllers;
 
 import de.imker.controllers.api.MembersApi;
-import de.imker.dto.*;
-import de.imker.models.Member;
+import de.imker.dto.MemberDto;
+import de.imker.dto.MembersDto;
+import de.imker.dto.NewMemberDto;
+import de.imker.dto.UpdateMemberDto;
 import de.imker.services.MembersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,11 +43,5 @@ public class MembersController implements MembersApi {
   @Override
   public MemberDto deleteMember(Integer memberId) {
     return membersService.deleteMemberById(memberId);
-  }
-
-
-  @Override
-  public MembersDto getMembersByState(String state) {
-    return membersService.findAllByState(state);
   }
 }

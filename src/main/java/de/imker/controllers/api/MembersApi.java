@@ -1,9 +1,6 @@
 package de.imker.controllers.api;
 
-import de.imker.dto.MemberDto;
-import de.imker.dto.MembersDto;
-import de.imker.dto.NewMemberDto;
-import de.imker.dto.UpdateMemberDto;
+import de.imker.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,11 +21,11 @@ public interface MembersApi {
 
   @Operation(summary = "Create Member", description = "Avialable Only For Admin")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "201", description = "Add Member",
+      @ApiResponse(responseCode = "200", description = "Add Member",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation =
                   MemberDto.class))
-          })
+          }),
   })
 
   @PostMapping
@@ -55,7 +52,7 @@ public interface MembersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation =
                   MembersDto.class))
           }),
-      @ApiResponse(responseCode = "404", description = "Member by Id Not Found",
+      @ApiResponse(responseCode = "404", description = "Member with Id Not Found",
           content = {
               @Content()
           })
@@ -74,6 +71,10 @@ public interface MembersApi {
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation =
                   MembersDto.class))
+          }),
+      @ApiResponse(responseCode = "404", description = "Member not changed or not found.",
+          content = {
+              @Content()
           })
   })
 
@@ -84,7 +85,19 @@ public interface MembersApi {
       @PathVariable("memberId") Integer memberId,
       @RequestBody UpdateMemberDto updateMemberDto);
 
-  // TODO
-  //  getMemberByState
 
+  @Operation(summary = "Delete Member", description = "Avialable Only For Admin")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "404", description = "Can't find Member", content = {
+          @Content()
+      }),
+      @ApiResponse(responseCode = "200", description = "Deleted Member",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = MemberDto.class))
+          })
+  })
+
+  @DeleteMapping("/{member-Id}")
+  MemberDto deleteMember(@Parameter(required = true, description = "ID Member to delete",
+      example = "2") @PathVariable("member-Id") Integer memberId);
 }
