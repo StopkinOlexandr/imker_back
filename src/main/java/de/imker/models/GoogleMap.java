@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "GoogleMap")
+@Table(name = "googleMap")
 public class GoogleMap {
 
   @Id

@@ -17,6 +17,6 @@ public class GoogleMapDto {
   private Long id;
 
   @Schema(description = "HTML <iframe> with google maps link",
-      example = "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9710.93895466906!2d13.392481562341327!3d52.52013943017145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sde!4v1692571824083!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
+      example = "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2416.3096482125134!2d9.61041657185848!3d52.72660458996256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b05c9680b0b6d1%3A0x56f0e67cfd5ecb98!2sWalsroder%20Str.%203%2C%2029693%20Eickeloh!5e0!3m2!1sru!2sde!4v1690814421367!5m2!1sru!2sde\" className={styles.map} loading=\"lazy\" referrerPolicy=\"no-referrer-when-downgrade\" ></iframe>")
   private String googleMapLink;
 }

@@ -24,9 +24,9 @@ public class FilesInitialization {
     if (filesList.size() == 0) {
       for (int i = 0; i < 50; i++) {
         FileUpload fileUpload = FileUpload.builder()
-            .originalName("- empty -")
-            .storedName("- empty -")
-            .fileType("- empty -")
+            .originalName("empty -")
+            .storedName("empty -")
+            .fileType("empty -")
             .size((long) 10)
             .build();
         filesRepository.save(fileUpload);
