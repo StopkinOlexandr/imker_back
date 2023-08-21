@@ -1,6 +1,5 @@
 package de.imker.models;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +18,7 @@ import java.util.Date;
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long idPost;
+  private Long id;
 
   @CreationTimestamp
   @Temporal(TemporalType.TIMESTAMP)
@@ -30,5 +29,5 @@ public class Post {
   private String linkToImg;
   private String shortPostDescription;
   private String textOfPost;
-  private String idUser;
+  private String authorName;
 }

@@ -8,10 +8,11 @@ import de.imker.models.Post;
 import de.imker.repositories.PostsRepository;
 import de.imker.services.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
@@ -26,7 +27,7 @@ public class PostServiceImpl implements PostsService {
         .linkToImg(newPostDto.getLinkToImg())
         .shortPostDescription(newPostDto.getShortPostDescription())
         .textOfPost(newPostDto.getTextOfPost())
-        .idUser(newPostDto.getIdUser())
+        .authorName(newPostDto.getAuthorName())
         .build();
 
     postsRepository.save(post);
@@ -39,13 +40,13 @@ public class PostServiceImpl implements PostsService {
     Post post = getPostOrThrow(idPost);
 
     return PostDto.builder()
-        .idPost(post.getIdPost())
+        .idPost(post.getId())
         .creationTimePost(post.getCreationTimePost().toString())
         .titlePost(post.getTitlePost())
         .linkToImg(post.getLinkToImg())
         .shortPostDescription(post.getShortPostDescription())
         .textOfPost(post.getTextOfPost())
-        .idUser(post.getIdUser())
+        .authorName(post.getAuthorName())
         .build();
   }
 
@@ -57,7 +58,7 @@ public class PostServiceImpl implements PostsService {
     post.setLinkToImg(postDto.getLinkToImg());
     post.setShortPostDescription(postDto.getShortPostDescription());
     post.setTextOfPost(postDto.getTextOfPost());
-    post.setIdUser(postDto.getIdUser());
+    post.setAuthorName(postDto.getAuthorName());
 
     postsRepository.save(post);
 
@@ -65,13 +66,35 @@ public class PostServiceImpl implements PostsService {
   }
 
   @Override
-  public PostsDto getAllPosts() {
-    List<Post> posts = postsRepository.findAllOrderByCreationTimePost();
-    return new PostsDto(PostDto.from(posts),posts.size());
+  public PostsDto getAllPosts(Integer page, Integer items, String orderBy, Boolean desk) {
+
+    PageRequest pageRequest;
+    Page<Post> pageOfPosts;
+
+    if (orderBy != null && !orderBy.equals("")) {
+      Sort.Direction direction = Sort.Direction.ASC;
+
+      if (desk != null && desk) {
+        direction = Sort.Direction.DESC;
+      }
+
+      Sort sort = Sort.by(direction, orderBy);
+      pageRequest = PageRequest.of(page, items, sort);
+    } else {
+      pageRequest = PageRequest.of(page, items, Sort.by(Sort.Direction.ASC, "id"));
+    }
+
+    pageOfPosts = postsRepository.findAll(pageRequest);
+
+    return PostsDto.builder()
+        .posts(PostDto.from(pageOfPosts.getContent()))
+        .count((int) pageOfPosts.getTotalElements())
+        .pages(pageOfPosts.getTotalPages())
+        .build();
   }
 
   private Post getPostOrThrow(Long idPost) {
-    return postsRepository.getPostByIdPost(idPost).orElseThrow(
+    return postsRepository.getPostById(idPost).orElseThrow(
         () -> new NotFoundException("User with id <" + idPost + "> not found"));
   }
 }

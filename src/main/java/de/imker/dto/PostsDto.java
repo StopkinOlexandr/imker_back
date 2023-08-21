@@ -20,5 +20,6 @@ public class PostsDto {
   @Schema(description = "Total amount of posts", example = "1")
   private Integer count;
 
-
+  @Schema(description = "Number of pages", example = "1")
+  private Integer pages;
 }

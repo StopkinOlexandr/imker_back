@@ -58,6 +58,22 @@ public interface PostsApi {
                      @RequestBody PostDto postDto);
 
   @Operation(summary = "Get list of posts", description = "Accessible to all users")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "List of posts",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = PostsDto.class))
+          })})
   @GetMapping
-  PostsDto getAllPosts();
+  PostsDto getAllPosts(@Parameter(required = true, description = "Page number", example = "0")
+                       @RequestParam(value = "page") Integer page,
+                       @Parameter(required = true, description = "Number of items per page", example = "3")
+                       @RequestParam(value = "items") Integer items,
+                       @Parameter(required = true,
+                           description = "Sorting field: id, creationTimePost, titlePost, shortPostDescription, authorName",
+                           example = "creationTimePost")
+                       @RequestParam(value = "orderBy") String orderBy,
+                       @Parameter(required = true,
+                           description = "Sorting direction (true = DESK, false = ASK)",
+                           example = "true")
+                       @RequestParam(value = "desk") Boolean desk);
 }

@@ -30,6 +30,4 @@ public class FileUpload {
   private String storedName;
   private String fileType;
   private Long size;
-
-
 }
