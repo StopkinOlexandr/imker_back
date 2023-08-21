@@ -91,9 +91,6 @@ public class PostServiceImpl implements PostsService {
         .count((int) pageOfPosts.getTotalElements())
         .pages(pageOfPosts.getTotalPages())
         .build();
-
-//    List<Post> posts = postsRepository.findAllOrderByCreationTimePost();
-//    return new PostsDto(PostDto.from(posts),posts.size());
   }
 
   private Post getPostOrThrow(Long idPost) {
