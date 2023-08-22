@@ -19,4 +19,7 @@ public class FilesListDto {
 
   @Schema(description = "Total amount of files", example = "1")
   private Integer count;
+
+  @Schema(description = "Number of pages", example = "1")
+  private Integer pages;
 }
