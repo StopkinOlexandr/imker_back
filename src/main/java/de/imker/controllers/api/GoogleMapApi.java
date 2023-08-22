@@ -8,9 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Tags(value = {
     @Tag(name = "Google Map")
@@ -32,4 +30,18 @@ public interface GoogleMapApi {
   })
   @GetMapping
   GoogleMapDto getGoogleMapLink();
+
+  @Operation(summary = "Update Google Map link", description = "Accessible to all users")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "404", description = "Link not found",
+          content = {
+              @Content()
+          }),
+      @ApiResponse(responseCode = "200", description = "Updated link",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = GoogleMapDto.class))
+          })
+  })
+  @PutMapping
+  GoogleMapDto updateGoogleMapLink(@RequestBody GoogleMapDto newLink);
 }

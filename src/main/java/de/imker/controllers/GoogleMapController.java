@@ -15,4 +15,9 @@ public class GoogleMapController implements GoogleMapApi {
   public GoogleMapDto getGoogleMapLink() {
     return googleMapService.getGoogleMapLink();
   }
+
+  @Override
+  public GoogleMapDto updateGoogleMapLink(GoogleMapDto newLink) {
+    return googleMapService.updateGoogleMapLink(newLink);
+  }
 }

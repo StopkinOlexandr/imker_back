@@ -19,10 +19,16 @@ public class GoogleMapServiceImpl implements GoogleMapService {
   public GoogleMapDto getGoogleMapLink() {
     GoogleMap link = getLinkOrThrow();
 
-    return GoogleMapDto.builder()
-        .id(link.getId())
-        .googleMapLink(link.getGoogleMapLink())
-        .build();
+    return GoogleMapDto.from(link);
+  }
+
+  @Override
+  public GoogleMapDto updateGoogleMapLink(GoogleMapDto newLink) {
+    GoogleMap link = getLinkOrThrow();
+    link.setGoogleMapLink(newLink.getGoogleMapLink());
+    googleMapRepository.save(link);
+
+    return GoogleMapDto.from(link);
   }
 
   private GoogleMap getLinkOrThrow() {
@@ -30,4 +36,3 @@ public class GoogleMapServiceImpl implements GoogleMapService {
         () -> new NotFoundException("Link not found"));
   }
 }
-
