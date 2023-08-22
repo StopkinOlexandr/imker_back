@@ -6,11 +6,16 @@ import de.imker.exeptions.NotFoundException;
 import de.imker.models.FileUpload;
 import de.imker.repositories.FilesRepository;
 import de.imker.services.FilesService;
+import de.imker.utils.FileUploadSpecifications;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +25,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -108,10 +112,23 @@ public class FilesServiceImpl implements FilesService {
   }
 
   @Override
-  public FilesListDto getAllFiles() {
-    List<FileUpload> files = filesRepository.findAll();
+  public FilesListDto getAllFiles(Integer page, Integer items) {
 
-    return new FilesListDto(FileUploadDto.from(files), files.size());
+    PageRequest pageRequest;
+    Page<FileUpload> pageOfFiles;
+
+    pageRequest = PageRequest.of(page, items, Sort.by(Sort.Direction.DESC, "id"));
+
+    Specification<FileUpload> spec = Specification
+        .where(FileUploadSpecifications.fileTypeIsNotEmpty());
+
+    pageOfFiles = filesRepository.findAll(spec, pageRequest);
+
+    return FilesListDto.builder()
+        .files(FileUploadDto.from(pageOfFiles.getContent()))
+        .count((int) pageOfFiles.getTotalElements())
+        .pages(pageOfFiles.getTotalPages())
+        .build();
   }
 
   @Override
