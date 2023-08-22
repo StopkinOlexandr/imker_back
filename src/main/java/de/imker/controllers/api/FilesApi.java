@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+@Tags(value = {
+    @Tag(name = "Files")
+})
 @RequestMapping("/files")
+@CrossOrigin(origins = "http://localhost:5173")
 public interface FilesApi {
   @Operation(summary = "Send file to the server", description = "Accessible to all users")
   @ResponseStatus(HttpStatus.CREATED)
