@@ -9,18 +9,28 @@ import de.imker.dto.UserRestorePwdDto;
 import de.imker.dto.UserSecretQuestionDto;
 import de.imker.dto.UserSigninDto;
 import de.imker.dto.UsersDto;
+import de.imker.security.details.AuthenticatedUser;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import de.imker.services.UsersService;
 
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @RestController
 
 public class UsersController implements UsersApi {
 
-  private final UsersService usersService;
+  UsersService usersService;
+
+  @Override
+  public ResponseEntity<UserDto> getMyProfile(AuthenticatedUser currentUser) {
+    Long userId = currentUser.id();
+    return ResponseEntity.ok(usersService.getUser(userId));
+  }
 
   @Override
   public ResponseEntity<UserIdDto> secretQuestion(UserSecretQuestionDto secretQuestion) {
@@ -51,7 +61,6 @@ public class UsersController implements UsersApi {
         .body(usersService.loginUser(loginUser));
 //    return null;
   }
-
 
   @Override
   public ResponseEntity<UsersDto> getAllUsers(Integer pageNumber,

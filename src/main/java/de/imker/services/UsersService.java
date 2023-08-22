@@ -11,9 +11,9 @@ import de.imker.dto.UsersDto;
 
 public interface UsersService {
 
-  UserDto addUser(NewUserDto newUser);
+//  UserDto addUser(NewUserDto newUser);
 
-  UsersDto getAllUsers(Integer pageNumber, String orderByField, Boolean desc, String filterBy, String filterValue);
+//  UsersDto getAllUsers(Integer pageNumber, String orderByField, Boolean desc, String filterBy, String filterValue);
 
   UserDto deleteUser(Long userId);
 
@@ -21,10 +21,10 @@ public interface UsersService {
 
   UserDto getUser(Long userId);
 
-  UserDto loginUser(UserSigninDto loginUser);
+//  UserDto loginUser(UserSigninDto loginUser);
 
 
-  UserIdDto checkSecretQuestion(UserSecretQuestionDto secretQuestion);
+//  UserIdDto checkSecretQuestion(UserSecretQuestionDto secretQuestion);
 
-  UserDto setNewPassword(UserRestorePwdDto restorePwd);
+//  UserDto setNewPassword(UserRestorePwdDto restorePwd);
 }

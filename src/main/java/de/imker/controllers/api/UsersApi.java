@@ -2,6 +2,7 @@ package de.imker.controllers.api;
 
 import de.imker.dto.ErrorDto;
 import de.imker.dto.NewUserDto;
+import de.imker.dto.StandardResponseDto;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
 import de.imker.dto.UserIdDto;
@@ -9,6 +10,7 @@ import de.imker.dto.UserRestorePwdDto;
 import de.imker.dto.UserSecretQuestionDto;
 import de.imker.dto.UserSigninDto;
 import de.imker.dto.UsersDto;
+import de.imker.security.details.AuthenticatedUser;
 import de.imker.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,6 +23,8 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,6 +74,21 @@ public interface UsersApi {
   @ResponseStatus(HttpStatus.OK)
   ResponseEntity<UserDto> loginUser(
       @Parameter(required = true, description = "User") @RequestBody @Valid UserSigninDto loginUser);
+
+
+  @Operation(summary = "Get User's profile", description = "Allowed to authenticated user. Get current user")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Users profile",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "User not authenticated",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
+          })
+  })
+  @GetMapping("/me")
+  ResponseEntity<UserDto> getMyProfile(@Parameter(hidden = true) @AuthenticationPrincipal AuthenticatedUser currentUser);
 
   //----TODO restore password
   @Operation(summary = "Secret question")
@@ -143,6 +162,8 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
+
+  @PreAuthorize("hasAuthority('ADMIN')")
   @DeleteMapping("/{user-id}")
   ResponseEntity<UserDto> deleteUser(
       @Parameter(required = true,
