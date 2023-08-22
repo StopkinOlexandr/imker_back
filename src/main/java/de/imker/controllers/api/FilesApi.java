@@ -76,7 +76,10 @@ public interface FilesApi {
   })
   @ResponseStatus(HttpStatus.OK)
   @GetMapping
-  FilesListDto getAllFiles();
+  FilesListDto getAllFiles(@Parameter(required = true, description = "Page number", example = "0")
+                           @RequestParam(value = "page") Integer page,
+                           @Parameter(required = true, description = "Number of items per page", example = "3")
+                           @RequestParam(value = "items") Integer items);
 
   @Operation(summary = "Delete file by ID", description = "Accessible to all users")
   @ApiResponses(value = {
