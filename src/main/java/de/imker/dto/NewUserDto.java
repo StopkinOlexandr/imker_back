@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -21,8 +22,8 @@ public class NewUserDto {
 
   @Schema(description = "User's password", example = "#123abcABC")
   @NotBlank
-  @Size(min = 7, max = 50)
-  @NotWeakPassword
+  @Size(min = 7, max = 100)
+  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", message = "Weak password")
   private String password;
 
   @Schema(description = "User's name", example = "Alex Krause")
@@ -34,10 +35,12 @@ public class NewUserDto {
   @Schema(description = "User's phone", example = "0123456789")
   private String phone;
 
-  @Schema(description = "User's answer for secret question ", example = "My first car? - Ford")
+  @Schema(description = "User's secret question ", example = "My first car?")
   private String secretQuestion;
 
-//  private String image;
-//  private Boolean isLogin;
+  @Schema(description = "User's answer for secret question ", example = "My first car? - Ford")
+  private String answerSecretQuestion;
+
+
 }
 
