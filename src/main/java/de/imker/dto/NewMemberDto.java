@@ -7,6 +7,7 @@ import lombok.Data;
 @Schema(description = "New Team Member")
 public class NewMemberDto {
 
+  private String state;
   @Schema(description = "Members Name", example = "Mart Tven")
   private String name;
   private String position;

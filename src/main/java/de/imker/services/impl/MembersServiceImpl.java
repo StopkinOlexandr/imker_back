@@ -27,7 +27,7 @@ public class MembersServiceImpl implements MembersService {
   public MemberDto addMember(NewMemberDto newMember) {
 
     Member member = Member.builder()
-        .state(Member.State.SHOW)
+        .state(Member.State.valueOf(newMember.getState()))
         .name(newMember.getName())
         .position(newMember.getPosition())
         .description(newMember.getDescription())
