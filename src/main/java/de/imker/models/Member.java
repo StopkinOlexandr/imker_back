@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Member {
 
   public enum State {
-    SHOW, HIDDEN, DELETED
+    SHOW, HIDDEN
   }
 
   @Id
