@@ -17,8 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import static de.imker.dto.EventDto.from;
 
@@ -28,7 +28,7 @@ public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
 
-    @Value("${events.sort.fields}")//TODO sorting
+    @Value("${events.sort.fields}")
     private List<String> sortFields;
 
     @Value("${events.filter.fields}")
@@ -39,7 +39,6 @@ public class EventsServiceImpl implements EventsService {
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
-        //User user=usersRepository.findById(newEvent.get)
         Event event = Event.builder()
                 .title(newEvent.getTitle())
                 .description(newEvent.getDescription())
@@ -47,7 +46,8 @@ public class EventsServiceImpl implements EventsService {
                 .author(newEvent.getAuthor())
                 .quantityOfMembers(newEvent.getQuantityOfMembers())
                 .photo(newEvent.getPhoto())
-                .date(newEvent.getDate())
+                .dateStart(newEvent.getDateStart())
+                .dateEnd(newEvent.getDateEnd())
                 .startTime(newEvent.getStartTime())
                 .endTime(newEvent.getEndTime())
                 .location(newEvent.getLocation())
@@ -76,11 +76,56 @@ public class EventsServiceImpl implements EventsService {
     }
 
     @Override
-    public EventDto updateEvent(Long eventId, UpdateEventDto updateEvent) {
-        Event event = getEventOrThrow(eventId);
-        event.setStatus(Event.Status.valueOf(updateEvent.getNewStatus()));
-        eventsRepository.save(event);
-        return from(event);
+    public EventDto updateEvent(Long eventId, UpdateEventDto eventWithUpdatedData) {
+        Event eventToUpdate = getEventOrThrow(eventId);
+
+        if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getNewTitle()) &&
+                !(eventWithUpdatedData.getNewTitle().isEmpty() && eventWithUpdatedData.getNewTitle().isBlank()))
+            eventToUpdate.setTitle(eventWithUpdatedData.getNewTitle());
+
+        if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getNewDescription()) &&
+                !(eventWithUpdatedData.getNewDescription().isBlank() && eventWithUpdatedData.getNewDescription().isEmpty()))
+            eventToUpdate.setDescription(eventWithUpdatedData.getNewDescription());
+
+        if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getNewAddress()) &&
+                !(eventWithUpdatedData.getNewAddress().isBlank() && eventWithUpdatedData.getNewAddress().isEmpty()))
+            eventToUpdate.setAddress(eventWithUpdatedData.getNewAddress());
+
+
+        if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getNewAuthor()) &&
+                !(eventWithUpdatedData.getNewAuthor().isEmpty() && eventWithUpdatedData.getNewAuthor().isBlank()))
+            eventToUpdate.setAuthor(eventWithUpdatedData.getNewAuthor());
+
+        if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getNewLocation()) &&
+                !(eventWithUpdatedData.getNewLocation().isBlank() && eventWithUpdatedData.getNewLocation().isEmpty()))
+            eventToUpdate.setLocation(eventWithUpdatedData.getNewLocation());
+
+        if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getNewPhoto()) &&
+                !(eventWithUpdatedData.getNewPhoto().isEmpty() && eventWithUpdatedData.getNewPhoto().isBlank()))
+            eventToUpdate.setPhoto(eventWithUpdatedData.getNewPhoto());
+
+        if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getNewDateStart()) &&
+                !(eventWithUpdatedData.getNewDateStart().isEmpty() && eventWithUpdatedData.getNewDateStart().isBlank()))
+            eventToUpdate.setDateStart(eventWithUpdatedData.getNewDateStart());
+
+        if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getNewDateEnd()) &&
+                !(eventWithUpdatedData.getNewDateEnd().isEmpty() && eventWithUpdatedData.getNewDateEnd().isBlank()))
+            eventToUpdate.setDateEnd(eventWithUpdatedData.getNewDateEnd());
+
+        if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getNewStartTime()) &&
+                !(eventWithUpdatedData.getNewStartTime().isEmpty() && eventWithUpdatedData.getNewStartTime().isBlank()))
+            eventToUpdate.setStartTime(eventWithUpdatedData.getNewStartTime());
+
+        if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getNewEndTime()) &&
+                !(eventWithUpdatedData.getNewEndTime().isBlank() && eventWithUpdatedData.getNewEndTime().isEmpty()))
+            eventToUpdate.setEndTime(eventWithUpdatedData.getNewEndTime());
+
+        if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getNewStatus()) &&
+                !(eventWithUpdatedData.getNewStatus().isBlank() && eventWithUpdatedData.getNewStatus().isEmpty()))
+            eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getNewStatus()));
+
+        eventsRepository.save(eventToUpdate);
+        return from(eventToUpdate);
     }
 
     @Override
@@ -106,7 +151,8 @@ public class EventsServiceImpl implements EventsService {
                 .startTime(event.getStartTime())
                 .endTime(event.getEndTime())
                 .author(event.getAuthor())
-                .date(event.getDate())
+                .dateStart(event.getDateStart())
+                .dateEnd(event.getDateEnd())
                 .location(event.getLocation())
                 .photo(event.getPhoto())
                 .build();
@@ -157,6 +203,9 @@ public class EventsServiceImpl implements EventsService {
             } else if (filterBy.equals("endTime")) {
                 //  LocalDate date = LocalDate.parse(filterValue);
                 page = eventsRepository.findAllByEndTime(filterValue, pageRequest);
+            } else if (filterBy.equals("dateStart")) {
+
+                page = eventsRepository.findAllByDateStart(filterValue, pageRequest);
             }
 
         }
@@ -165,6 +214,6 @@ public class EventsServiceImpl implements EventsService {
 
     private Event getEventOrThrow(Long eventId) {
         return eventsRepository.findById(eventId).orElseThrow(
-                () -> new NotFoundException("Event with: " + eventId + " not found -delete this kostill"));//TODO Убрать костыль
+                () -> new NotFoundException("Event with: " + eventId + " not found "));
     }
 }
