@@ -1,6 +1,7 @@
 package de.imker.repositories;
 
 
+import de.imker.dto.UserDto;
 import de.imker.dto.UsersDto;
 import de.imker.models.User;
 import java.util.List;
@@ -15,15 +16,5 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 
 
   Optional<User> findByEmail(String email);
-
-//  @Query("select user from User user where user.role = 'STUDENT' and :course not member of user.courses")
-//    List<User> findStudentsNotInCourse(@Param("course") Course course);
-
-  boolean existsByRole(User.Role role);
-
-//  Page<User> findAllByRole(User.Role role, Pageable pageable);
-//
-//  Page<User> findAllByState(User.State state, Pageable pageable);
-
-
+  List<User> findAll();
 }

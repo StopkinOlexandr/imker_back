@@ -1,14 +1,12 @@
 package de.imker.controllers.api;
 
 import de.imker.dto.ErrorDto;
-import de.imker.dto.NewUserDto;
 import de.imker.dto.StandardResponseDto;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
+import de.imker.dto.UserEmailDto;
 import de.imker.dto.UserIdDto;
-import de.imker.dto.UserRestorePwdDto;
-import de.imker.dto.UserSecretQuestionDto;
-import de.imker.dto.UserSigninDto;
+import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.security.details.AuthenticatedUser;
 import de.imker.validation.dto.ValidationErrorsDto;
@@ -32,7 +30,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Tags(value = {
@@ -40,41 +37,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 })
 @RequestMapping("api/users")
 public interface UsersApi {
-
-  @Operation(summary = "Register User")
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "201", description = "User created",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
-          }),
-      @ApiResponse(responseCode = "400", description = "Validation error",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
-          })
-  })
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  ResponseEntity<UserDto> addUser(
-      @Parameter(required = true, description = "User") @RequestBody @Valid NewUserDto newUser);
-
-
-  @Operation(summary = "Login User")
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "User is login",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
-          }),
-      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail or password incorrect",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
-          })
-  })
-
-  @PostMapping("/login")
-  @ResponseStatus(HttpStatus.OK)
-  ResponseEntity<UserDto> loginUser(
-      @Parameter(required = true, description = "User") @RequestBody @Valid UserSigninDto loginUser);
-
 
   @Operation(summary = "Get User's profile", description = "Allowed to authenticated user. Get current user")
   @ApiResponses(value = {
@@ -91,39 +53,39 @@ public interface UsersApi {
   ResponseEntity<UserDto> getMyProfile(@Parameter(hidden = true) @AuthenticationPrincipal AuthenticatedUser currentUser);
 
   //----TODO restore password
-  @Operation(summary = "Secret question")
+  @Operation(summary = "Secret questions")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Secret question is answered correctly",
+      @ApiResponse(responseCode = "200", description = "Get list of secret questions - one according email",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           }),
-      @ApiResponse(responseCode = "401", description = "Wrong answer",
+      @ApiResponse(responseCode = "401", description = "Wrong email",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
           })
   })
 
-  @PostMapping("/question")
+  @PostMapping("/questions")
   @ResponseStatus(HttpStatus.OK)
-  ResponseEntity<UserIdDto> secretQuestion(
-      @Parameter(required = true, description = "User") @RequestBody @Valid UserSecretQuestionDto secretQuestion);
+  ResponseEntity<UserSecretQuestionsDto> secretQuestions(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserEmailDto userEmail);
 
-  @Operation(summary = "New password")
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Password is changed, user is login",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
-          }),
-      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail incorrect",
-          content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
-          })
-  })
-
-  @PostMapping("/restore")
-  @ResponseStatus(HttpStatus.OK)
-  ResponseEntity<UserDto> newPassword(
-      @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
+//  @Operation(summary = "New password")
+//  @ApiResponses(value = {
+//      @ApiResponse(responseCode = "200", description = "Password is changed, user is login",
+//          content = {
+//              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+//          }),
+//      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail incorrect",
+//          content = {
+//              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
+//          })
+//  })
+//
+//  @PostMapping("/restore")
+//  @ResponseStatus(HttpStatus.OK)
+//  ResponseEntity<UserDto> newPassword(
+//      @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
 
 //-----TODO restore password
 
@@ -140,18 +102,11 @@ public interface UsersApi {
 
   @Operation(summary = "Get list of all users")
   @GetMapping
-  ResponseEntity<UsersDto> getAllUsers(
-      @Parameter(description = "Page number", example = "1")
-      @RequestParam(value = "page") Integer page,
-      @Parameter(description = "Sort by field. allowed: name, plz, role, state, id")
-      @RequestParam(value = "orderBy", required = false) String orderBy,
-      @Parameter(description = "set 'true', when revers sort needed")
-      @RequestParam(value = "desc", required = false) Boolean desc,
-      @RequestParam(value = "filterBy", required = false) String filterBy,
-      @RequestParam(value = "filterValue", required = false) String filterValue);
+  ResponseEntity<UsersDto> getAllUsers();
 
 
-  @Operation(summary = "Delete User", description = "Only for admin")
+
+      @Operation(summary = "Delete User", description = "Only for admin")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "Can't find user",
           content = {

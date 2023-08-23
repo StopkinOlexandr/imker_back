@@ -21,4 +21,21 @@ public class RegisterDto {
   @Size(min = 7, max = 1000)
   @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", message = "Weak password")
   private String password;
+
+  @Schema(description = "User's name", example = "Alex Krause")
+  private String name;
+
+  @Schema(description = "User's PLZ", example = "01234")
+  private String plz;
+
+  @Schema(description = "User's phone", example = "0123456789")
+  private String phone;
+
+  @NotBlank
+  @Schema(description = "User's secret question ", example = "My first car?")
+  private String secretQuestion;
+
+  @NotBlank
+  @Schema(description = "User's answer for secret question ", example = "My first car? - Ford")
+  private String answerSecretQuestion;
 }

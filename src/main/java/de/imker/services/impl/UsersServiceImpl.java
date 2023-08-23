@@ -2,32 +2,22 @@ package de.imker.services.impl;
 
 import static de.imker.dto.UserDto.from;
 
-import de.imker.dto.NewUserDto;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
-import de.imker.dto.UserIdDto;
-import de.imker.dto.UserRestorePwdDto;
-import de.imker.dto.UserSecretQuestionDto;
-import de.imker.dto.UserSigninDto;
+import de.imker.dto.UserEmailDto;
+import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
-import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
 import de.imker.exeptions.RestException;
-import de.imker.exeptions.UserNotFoundException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
-import java.lang.module.ResolutionException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -38,61 +28,33 @@ public class UsersServiceImpl implements UsersService {
 
   UsersRepository usersRepository;
 
-//  @Value("${users.sort.fields}")
-//  private List<String> sortFields;
-//
-//  @Value("${users.filter.fields}")
-//  private List<String> filterFields;
-//
-//  @Value("${users.page.size}")
-//  private Integer pageSize;
 
-//  @Override
-//  public UserDto addUser(NewUserDto newUser) {
-//    User user = User.builder()
-//        .email(newUser.getEmail())
-//        .hashPassword(newUser.getPassword())
-////        .hashPassword(passwordEncoder.encode(newUser.getPassword()))
-//        .name(newUser.getName())
-//        .plz(newUser.getPlz())
-//        .phone(newUser.getPhone())
-//        .secretQuestion(newUser.getSecretQuestion())
-//        .role(User.Role.USER)
-//        .state(User.State.NOT_CONFIRMED).build();
-//
-//    usersRepository.save(user);
-//
-//    return from(user);
-//  }
+  private UserDto findByEmail(String email) {
+    UsersDto list = getAllUsers();
+    return list.getUsers()
+        .stream()
+        .filter(p -> p.getEmail().equals(email))
+        .findFirst()
+        .orElse(null);
+  }
 
-//  @Override
-//  public UserDto loginUser(UserSigninDto loginUser) {
-//    UserDto userDto = findByEmail(loginUser.getEmail());
-//    Long userId = userDto.getId();
-//    if (getUserOrThrow(userId).getHashPassword().equals(loginUser.getPassword())) {
-//      //check password here, then must change
-//      return userDto;
-//    } else {
-//      return null;
-//    }
-//  }
-
-//  private UserDto findByEmail(String email) {
-//    UsersDto list = getAllUsers(1, "", true, "", "");
-//    return list.getUsers()
-//        .stream()
-//        .filter(p -> p.getEmail().equals(email))
-//        .findFirst()
-//        .orElse(null);
-//  }
-
-//  @Override
-//  public UserIdDto checkSecretQuestion(UserSecretQuestionDto secretQuestion) {
-//    UserDto userDto = findByEmail(secretQuestion.getEmail()); //can refactor this
-//    UserIdDto userIdDto = new UserIdDto();
-//    userIdDto.setId(userDto.getId());
-//    return userIdDto;
-//  }
+  @Override
+  public UserSecretQuestionsDto getSecretQuestions(UserEmailDto userEmail) {
+    UserDto userDto = findByEmail(userEmail.getEmail()); //can refactor this
+    UserSecretQuestionsDto userSecretQuestions = new UserSecretQuestionsDto();
+    User user = usersRepository.findById(userDto.getId()).orElseThrow(
+        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));;
+    List<String> list = new ArrayList<>();
+    list.add(user.getSecretQuestion());
+    list.add("Wie hieß Ihre erstes Tier?");
+    list.add("Wie heißt Ihre erste Schule?");
+    list.add("Wie hieß Ihr erster Lehrer/Lehrerin?");
+    list.add("Was ist Ihre Lieblingsblume?");
+    return UserSecretQuestionsDto.builder()
+        .email(user.getEmail())
+        .secretQuestions(list)
+        .build();
+  }
 
 //  @Override
 //  public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
@@ -102,47 +64,13 @@ public class UsersServiceImpl implements UsersService {
 //    return UserDto.from(user);
 //  }
 
-//  @Override
-//  public UsersDto getAllUsers(Integer pageNumber,
-//      String orderByField,
-//      Boolean desc,
-//      String filterBy,
-//      String filterValue) {
-//
-//    return UsersDto.builder()
-//        .users(from(usersRepository.findAll))
-//        .count(page.getTotalElements())
-//        .pagesCount(page.getTotalPages())
-//        .build();
+  @Override
+  public UsersDto getAllUsers() {
 
-//    PageRequest pageRequest = getPageRequest(pageNumber, orderByField, desc);
-//
-//    Page<User> page = getUsersPage(filterBy, filterValue, pageRequest);
-//
-//    return UsersDto.builder()
-//        .users(from(page.getContent()))
-//        .count(page.getTotalElements())
-//        .pagesCount(page.getTotalPages())
-//        .build();
-
-//  }
-
-//  private Page<User> getUsersPage(String filterBy, String filterValue, PageRequest pageRequest) {
-//    Page<User> page = Page.empty();
-//    if (filterBy == null || filterBy.equals("")) {
-//      page = usersRepository.findAll(pageRequest);
-//    } else {
-//      checkField(filterFields, filterBy);
-//      if (filterBy.equals("role")) {
-//        User.Role role = User.Role.valueOf(filterValue);
-//        page = usersRepository.findAllByRole(role, pageRequest);
-//      } else if (filterBy.equals("state")) {
-//        User.State state = User.State.valueOf(filterValue);
-//        page = usersRepository.findAllByState(state, pageRequest);
-//      }
-//    }
-//    return page;
-//  }
+    return UsersDto.builder()
+        .users(from(usersRepository.findAll()))
+        .build();
+  }
 
   @Override
   public UserDto deleteUser(Long userId) {
@@ -175,32 +103,6 @@ public class UsersServiceImpl implements UsersService {
   private User getUserFromRepository(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
         () -> new NotFoundException("User with id <" + userId + "> not found"));
-  }
-
-//  private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
-//
-//    if (orderByField != null && !orderByField.equals("")) {
-//
-//      checkField(sortFields, orderByField);
-//
-//      Sort.Direction direction = Sort.Direction.ASC;
-//
-//      if (desc != null && desc) {
-//        direction = Sort.Direction.DESC;
-//      }
-//
-//      Sort sort = Sort.by(direction, orderByField);
-//
-//      return PageRequest.of(pageNumber, pageSize, sort);
-//    } else {
-//      return PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-//    }
-//  }
-
-  private void checkField(List<String> allowedFields, String field) {
-    if (!allowedFields.contains(field)) {
-      throw new ForbiddenFieldException(field);
-    }
   }
 
   private User getUserOrThrow(Long userId) {
