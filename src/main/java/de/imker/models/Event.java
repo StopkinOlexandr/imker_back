@@ -32,13 +32,14 @@ public class Event {
     private String description;
     private String quantityOfMembers;
     private String photo;
-    private String date;
+    private String dateStart;
+    private String dateEnd;
     private String startTime;
     private String endTime;
     private String location;
     @Enumerated(value = EnumType.STRING)
     private Status status;
-    private String userId;
+
 
 //    @OneToMany(mappedBy = "user_ID")//TODO
 //    private List<Event> events;

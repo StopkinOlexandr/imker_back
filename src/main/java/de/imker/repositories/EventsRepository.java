@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public interface EventsRepository extends JpaRepository<Event,Long> {
 
     Page<Event> findAllByStartTime(String startTime, Pageable pageable);
+    Page<Event> findAllByDateStart(String dateStart, Pageable pageable);
    Page<Event> findAllByEndTime(String endTime, Pageable pageable);
 
 

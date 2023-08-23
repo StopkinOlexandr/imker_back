@@ -21,4 +21,10 @@ users:
   page:
     size: 3
 
-
+events:
+  sort:
+    fields: dateStart
+  filter:
+    fields: dateStart
+  page:
+    size: 3

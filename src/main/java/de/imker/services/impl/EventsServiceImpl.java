@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static de.imker.dto.EventDto.from;
@@ -28,7 +27,7 @@ public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
 
-    @Value("${events.sort.fields}")//TODO sorting
+    @Value("${events.sort.fields}")
     private List<String> sortFields;
 
     @Value("${events.filter.fields}")
@@ -39,7 +38,6 @@ public class EventsServiceImpl implements EventsService {
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
-        //User user=usersRepository.findById(newEvent.get)
         Event event = Event.builder()
                 .title(newEvent.getTitle())
                 .description(newEvent.getDescription())
@@ -47,7 +45,8 @@ public class EventsServiceImpl implements EventsService {
                 .author(newEvent.getAuthor())
                 .quantityOfMembers(newEvent.getQuantityOfMembers())
                 .photo(newEvent.getPhoto())
-                .date(newEvent.getDate())
+                .dateStart(newEvent.getDateStart())
+                .dateEnd(newEvent.getDateEnd())
                 .startTime(newEvent.getStartTime())
                 .endTime(newEvent.getEndTime())
                 .location(newEvent.getLocation())
@@ -106,7 +105,8 @@ public class EventsServiceImpl implements EventsService {
                 .startTime(event.getStartTime())
                 .endTime(event.getEndTime())
                 .author(event.getAuthor())
-                .date(event.getDate())
+                .dateStart(event.getDateStart())
+                .dateEnd(event.getDateEnd())
                 .location(event.getLocation())
                 .photo(event.getPhoto())
                 .build();
@@ -157,6 +157,9 @@ public class EventsServiceImpl implements EventsService {
             } else if (filterBy.equals("endTime")) {
                 //  LocalDate date = LocalDate.parse(filterValue);
                 page = eventsRepository.findAllByEndTime(filterValue, pageRequest);
+            } else if (filterBy.equals("dateStart")) {
+
+                page = eventsRepository.findAllByDateStart(filterValue, pageRequest);
             }
 
         }
@@ -165,6 +168,6 @@ public class EventsServiceImpl implements EventsService {
 
     private Event getEventOrThrow(Long eventId) {
         return eventsRepository.findById(eventId).orElseThrow(
-                () -> new NotFoundException("Event with: " + eventId + " not found -delete this kostill"));//TODO Убрать костыль
+                () -> new NotFoundException("Event with: " + eventId + " not found "));
     }
 }
