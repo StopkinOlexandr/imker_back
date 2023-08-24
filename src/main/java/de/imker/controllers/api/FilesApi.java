@@ -22,7 +22,7 @@ import java.io.IOException;
 @Tags(value = {
     @Tag(name = "Files")
 })
-@RequestMapping("/files")
+@RequestMapping("/api/files")
 @CrossOrigin(origins = "http://localhost:5173")
 public interface FilesApi {
   @Operation(summary = "Send file to the server", description = "Accessible to all users")
