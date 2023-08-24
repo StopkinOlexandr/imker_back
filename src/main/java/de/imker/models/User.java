@@ -1,6 +1,7 @@
 package de.imker.models;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,14 +40,19 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(nullable = false, unique = true)
   private String email;
 
   private String name;
 
-//  private String hashPassword;
-  private String password;
+  @Column(nullable = false)
+  private String hashPassword;
+//  private String password;
 
+  @Column(nullable = false)
   private String secretQuestion;
+
+  private String answerSecretQuestion;
 
   private String plz;
 
@@ -54,9 +60,11 @@ public class User {
 
   private String image;
 
+  @Column(nullable = false)
   @Enumerated(value = EnumType.STRING)
   private Role role;
 
+  @Column(nullable = false)
   @Enumerated(value = EnumType.STRING)
   private State state;
 

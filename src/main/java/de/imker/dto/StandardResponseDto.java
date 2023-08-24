@@ -1,7 +1,6 @@
 package de.imker.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Users list")
-public class UsersDto {
+@Schema(description = "Message from server. Errors and states")
+public class StandardResponseDto {
 
-  @Schema(description = "Website users")
-  private List<UserDto> users;
-
+  @Schema(description = "Message text")
+  private String message;
 }

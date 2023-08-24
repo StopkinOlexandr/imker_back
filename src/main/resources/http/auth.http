@@ -1,0 +1,17 @@
+### Registering of User#1
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "email": "user1@mail.com",
+  "password": "$1Aabcdef"
+}
+
+### Registering of User#2
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "email": "user2@mail.com",
+  "password": "$2Aabcdef"
+}
