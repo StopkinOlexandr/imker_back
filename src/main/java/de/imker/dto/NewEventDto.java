@@ -13,8 +13,8 @@ import javax.validation.constraints.Size;
 @Data
 
 public class NewEventDto {
-    @NotNull
-    @NotBlank
+//@NotNull
+   // @NotBlank
     @Size(min=3,max=1200)
     @Schema(description = "Even's title", example = "Title about event...")
     private String title;
@@ -23,6 +23,11 @@ public class NewEventDto {
     @NotBlank
     @Schema(description = "Description of event", example = "Ex. dress-code, or food")
     private String description;
+
+    @NotNull
+    @NotBlank
+    @Schema(description = "Short description of event", example = "Ex. dress-code, or food")
+    private String shortDescription;
 
 
     @Schema(description = "Event's place", example = "Berlin, Kirchweg str., 13")

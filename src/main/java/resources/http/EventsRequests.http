@@ -7,6 +7,7 @@ Content-Type: application/json
 {
   "title": "Wine festival",
   "description": "Many local winemakers",
+  "shortDescription": "Wine with love",
   "address": "Berlin, Winehof, 8",
   "author": "Andrii",
   "quantityOfMembers": "25",
@@ -27,6 +28,7 @@ Content-Type: application/json
 {
   "title": "Circus",
   "description": "Kids circus",
+  "shortDescription": "Kids with tigers",
   "address": "Bremen, CircusHof, 11",
   "author": "Andrii",
   "quantityOfMembers": "250",
@@ -49,6 +51,7 @@ Content-Type: application/json
 {
   "title": "Karaoke",
   "description": "Singing Song",
+  "shortDescription": "Main guest - Sting",
   "address": "msterdam, Sing allee, 5",
   "author": "Joseph",
   "quantityOfMembers": "12",
@@ -69,6 +72,7 @@ Content-Type: application/json
 {
   "title": "Exciting Adventure Meetup",
   "description": "Join us for an exhilarating day of outdoor adventures and camaraderie!",
+  "shortDescription": "You can try new sorts of Honig",
   "address": "123 Adventure Street, Summitville",
   "author": "Adventure Enthusiast Club",
   "quantityOfMembers": "25",
@@ -88,6 +92,7 @@ Content-Type: application/json
 {
   "title": "Gourmet Delights Cooking Class",
   "description": "Embark on a culinary journey as our experienced chefs guide you through the art of gourmet cooking.",
+  "shortDescription": "Baking with honig",
   "address": "456 Culinary Lane, Savoryville",
   "author": "TasteBuds Culinary School",
   "quantityOfMembers": "15",
@@ -99,6 +104,9 @@ Content-Type: application/json
   "dateEnd": "2023-09-03"
 }
 
+
+### Get all events
+GET localhost:8080/api/events
 
 
 

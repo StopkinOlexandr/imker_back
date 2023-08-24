@@ -42,6 +42,7 @@ public class EventsServiceImpl implements EventsService {
         Event event = Event.builder()
                 .title(newEvent.getTitle())
                 .description(newEvent.getDescription())
+                .shortDescription(newEvent.getShortDescription())
                 .address(newEvent.getAddress())
                 .author(newEvent.getAuthor())
                 .quantityOfMembers(newEvent.getQuantityOfMembers())
@@ -86,6 +87,11 @@ public class EventsServiceImpl implements EventsService {
         if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getNewDescription()) &&
                 !(eventWithUpdatedData.getNewDescription().isBlank() && eventWithUpdatedData.getNewDescription().isEmpty()))
             eventToUpdate.setDescription(eventWithUpdatedData.getNewDescription());
+
+        if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getNewShortDescription()) &&
+                !(eventWithUpdatedData.getNewShortDescription().isBlank() && eventWithUpdatedData.getNewShortDescription().isEmpty()))
+            eventToUpdate.setShortDescription(eventWithUpdatedData.getNewShortDescription());
+
 
         if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getNewAddress()) &&
                 !(eventWithUpdatedData.getNewAddress().isBlank() && eventWithUpdatedData.getNewAddress().isEmpty()))
@@ -146,6 +152,7 @@ public class EventsServiceImpl implements EventsService {
                 .idEvent(event.getEventId())
                 .title(event.getTitle())
                 .description(event.getDescription())
+                .shortDescription(event.getShortDescription())
                 .status(event.getStatus().toString())
                 .address(event.getAddress())
                 .startTime(event.getStartTime())
