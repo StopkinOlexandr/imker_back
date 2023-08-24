@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
     @Tag(name = "Posts")
 })
 @RequestMapping("/api/posts")
+@CrossOrigin(origins = "http://localhost:5173")
 public interface PostsApi {
 
   @Operation(summary = "Create new post", description = "Accessible to all users")

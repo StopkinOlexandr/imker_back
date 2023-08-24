@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@RequestMapping("/files")
+@Tags(value = {
+    @Tag(name = "Files")
+})
+@RequestMapping("/api/files")
+@CrossOrigin(origins = "http://localhost:5173")
 public interface FilesApi {
   @Operation(summary = "Send file to the server", description = "Accessible to all users")
   @ResponseStatus(HttpStatus.CREATED)
@@ -70,7 +76,10 @@ public interface FilesApi {
   })
   @ResponseStatus(HttpStatus.OK)
   @GetMapping
-  FilesListDto getAllFiles();
+  FilesListDto getAllFiles(@Parameter(required = true, description = "Page number", example = "0")
+                           @RequestParam(value = "page") Integer page,
+                           @Parameter(required = true, description = "Number of items per page", example = "3")
+                           @RequestParam(value = "items") Integer items);
 
   @Operation(summary = "Delete file by ID", description = "Accessible to all users")
   @ApiResponses(value = {

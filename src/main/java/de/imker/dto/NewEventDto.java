@@ -37,8 +37,11 @@ public class NewEventDto {
     @Schema(description = "Address of photo", example = "./src/photo/photo12.png")
     private String photo;
 
-    @Schema(description = "Publishing date in format YYYY-MM-DD", example = "2022-02-02")
-    private String date;
+    @Schema(description = "Publishing start date in format YYYY-MM-DD", example = "2022-02-02")
+    private String dateStart;
+
+    @Schema(description = "Publishing end date in format YYYY-MM-DD", example = "2022-02-02")
+    private String dateEnd;
 
     @Schema(description = "Location of event", example = "https://gpp/gl/maps/...")
     private String location;
@@ -49,7 +52,5 @@ public class NewEventDto {
     @Schema(description = "End time of event", example = "18:00")
     private String endTime;
 
-    @Schema(description = "author Id", example = "1")
-    private Long idUser;
 
 }

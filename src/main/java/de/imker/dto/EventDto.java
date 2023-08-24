@@ -47,8 +47,11 @@ public class EventDto {
     private String photo;
 
 
-    @Schema(description = "Publishing date in format YYYY-MM-DD", example = "2022-02-02")
-    private String date;
+    @Schema(description = "Publishing start date in format YYYY-MM-DD", example = "2022-02-02")
+    private String dateStart;
+
+    @Schema(description = "Publishing End date in format YYYY-MM-DD", example = "2022-02-02")
+    private String dateEnd;
 
     @Schema(description = "Start time of event", example = "16:00")
     private String startTime;
@@ -56,8 +59,7 @@ public class EventDto {
     @Schema(description = "End time of event", example = "18:00")
     private String endTime;
 
-    @Schema(description = "author Id", example = "1")
-    private Long idUser;
+
 
     public static EventDto from(Event event) {
         return EventDto.builder()
@@ -68,7 +70,8 @@ public class EventDto {
                 .author(event.getAuthor())
                 .location(event.getLocation())
                 .photo(event.getPhoto())
-                .date(event.getDate())
+                .dateStart(event.getDateStart())
+                .dateEnd(event.getDateEnd())
                 .startTime(event.getStartTime())
                 .quantityOfMembers(event.getQuantityOfMembers())
                 .endTime(event.getEndTime())

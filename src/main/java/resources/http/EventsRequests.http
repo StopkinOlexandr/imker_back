@@ -14,7 +14,8 @@ Content-Type: application/json
   "photo": "C://Photos/added_photo.png",
   "startTime": "12:00",
   "endTime": "18:00",
-  "date": "2023-02-02"
+  "dateStart": "2023-10-01",
+  "dateEnd": "2023-10-03"
 }
 
 ### Add event №2
@@ -33,7 +34,8 @@ Content-Type: application/json
   "photo": "C://Photos/added photo #2png",
   "startTime": "09:00",
   "endTime": "12:00",
-  "date": "2023-08-22"
+  "dateStart": "2023-10-02",
+  "dateEnd": "2023-10-04"
 }
 
 
@@ -54,7 +56,8 @@ Content-Type: application/json
   "photo": "C://Photos/added_photo_сфкфщлу.png",
   "startTime": "19:00",
   "endTime": "23:00",
-  "date": "2023-06-06"
+  "dateStart": "2023-11-01",
+  "dateEnd": "2023-11-03"
 }
 
 
@@ -64,16 +67,17 @@ POST http://localhost:8080/api/events
 Content-Type: application/json
 
 {
-"title": "Exciting Adventure Meetup",
-"description": "Join us for an exhilarating day of outdoor adventures and camaraderie!",
-"address": "123 Adventure Street, Summitville",
-"author": "Adventure Enthusiast Club",
-"quantityOfMembers": "25",
-"location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
-"photo": "https://example.com/event-photo.jpg",
-"startTime": "10:00 AM",
-"endTime": "4:00 PM",
-"date": "2023-08-26"
+  "title": "Exciting Adventure Meetup",
+  "description": "Join us for an exhilarating day of outdoor adventures and camaraderie!",
+  "address": "123 Adventure Street, Summitville",
+  "author": "Adventure Enthusiast Club",
+  "quantityOfMembers": "25",
+  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "photo": "https://example.com/event-photo.jpg",
+  "startTime": "10:00",
+  "endTime": "4:00 ",
+  "dateStart": "2023-12-01",
+  "dateEnd": "2023-12-03"
 }
 
 ### Add event №5
@@ -89,9 +93,10 @@ Content-Type: application/json
   "quantityOfMembers": "15",
   "location": "https://goo.gl/maps/abcd1234",
   "photo": "https://example.com/cooking-class.jpg",
-  "startTime": "6:30 PM",
-  "endTime": "9:00 PM",
-  "date": "2023-01-12"
+  "startTime": "6:30",
+  "endTime": "9:00",
+  "dateStart": "2023-09-01",
+  "dateEnd": "2023-09-03"
 }
 
 
@@ -110,7 +115,7 @@ GET localhost:8080/api/events?orderBy=title&desc=false&page=1
 
 
 ### Get Event (sort)order by startTime WORKS
-GET localhost:8080/api/events?orderBy=startTime&desc=false&page=1
+GET localhost:8080/api/events?orderBy=startTime&desc=false&page=0
 
 
 ### Get Event (sort)order by endDate WORKS
@@ -130,12 +135,30 @@ GET localhost:8080/api/events/4
 
 DELETE localhost:8080/api/events/2
 
-### Update event WORKS
+### Update event
 
-PUT localhost:8080/api/events/3
+PUT localhost:8080/api/events/1
 Content-Type: application/json
 
 {
-  "newStatus" : "ENDED"
+  "newTitle" : "Second",
+  "newStatus" : "ENDED",
+  "newAddress" : "",
+  "newAuthor" : "updatedNewAuthor",
+  "newDescription" : "updatedNewDescription",
+  "newLocation" : "updatedNewLocation",
+  "newPhoto" : "updatedNewPhotoAddress",
+  "newDateStart" : "2024-04-04",
+  "newDateEnd" : "2024-04-05",
+  "newStartTime" : "12:12",
+  "newEndTime" : "13:13"
+
 }
+
+
+### Get Event (sort)order by startDAte WORKS
+GET localhost:8080/api/events?orderBy=dateStart&desc=false&page=0
+
+
+
 

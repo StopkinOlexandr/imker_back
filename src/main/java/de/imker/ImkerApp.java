@@ -1,6 +1,7 @@
 package de.imker;
 
 import de.imker.InitializationData.FilesInitialization;
+import de.imker.InitializationData.GoogleMapLinkInitialization;
 import de.imker.InitializationData.PostsInitialization;
 import de.imker.InitializationData.RequestsInitialization;
 import de.imker.InitializationData.UserInitialization;
@@ -40,11 +41,13 @@ public class ImkerApp {
     PostsInitialization postsInitialization = context.getBean(PostsInitialization.class);
     FilesInitialization filesInitialization = context.getBean(FilesInitialization.class);
     UserInitialization usersInitialization = context.getBean(UserInitialization.class);
-
+    GoogleMapLinkInitialization googleMapLinkInitialization = context.getBean(GoogleMapLinkInitialization.class);
     requestsInitialization.reqInit();
     postsInitialization.postInit();
     filesInitialization.filesInit();
     usersInitialization.userInit();
+    googleMapLinkInitialization.linkInit();
+
   }
 
 }

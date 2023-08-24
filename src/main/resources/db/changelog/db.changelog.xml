@@ -67,20 +67,18 @@
             <column name="event_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="title" type="varchar(250)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="title" type="varchar(250)"/>
             <column name="address" type="varchar(250)"/>
             <column name="author" type="varchar(50)"/>
             <column name="description" type="text"/>
             <column name="photo" type="varchar(250)"/>
-            <column name="date" type="varchar(50)"/>
+            <column name="date_start" type="varchar(50)"/>
+            <column name="date_end" type="varchar(50)"/>
             <column name="start_time" type="varchar(50)"/>
             <column name="end_time" type="varchar(50)"/>
             <column name="location" type="varchar(50)"/>
             <column name="status" type="varchar(50)"/>
             <column name="quantity_of_members" type="varchar(50)"/>
-            <column name="user_id" type="varchar(50)"/>
 
         </createTable>
     </changeSet>
@@ -125,6 +123,25 @@
             <column name="file_type" type="varchar(10)"/>
             <column name="size" type="int"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="#7" author="vadim">
+        <createTable tableName="google_map">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="google_map_link" type="varchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="#8" author="andrii">
+        <createTable tableName="users_on_events">
+            <column name="user_event_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="int"/>
+            <column name="event_id" type="int"/>
+                   </createTable>
     </changeSet>
 
 </databaseChangeLog>

@@ -13,8 +13,25 @@ spring:
   mvc:
     cors:
       allowed-origins: http://localhost:5173
+
 logging:
   level:
     org:
       springframework:
         security: TRACE
+users:
+  sort:
+    fields: name,plz,role,state,id
+  filter:
+    fields: role,state
+  page:
+    size: 3
+
+events:
+  sort:
+    fields: dateStart
+  filter:
+    fields: dateStart
+  page:
+    size: 3
+
