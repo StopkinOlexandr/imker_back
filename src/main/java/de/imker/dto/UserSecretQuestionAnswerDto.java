@@ -12,16 +12,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class UserSecretQuestionsDto {
-
+public class UserSecretQuestionAnswerDto {
   @Schema(description = "User's id", example = "1")
   private Long id;
 
   @Schema(description = "User's e-main", example = "aaa@bbb.ccc")
   private String email;
 
-  @Schema(description = "List of secret questions", example = "First Auto? First animal name?")
-  private List<String> secretQuestions;
+  @Schema(description = "Secret question", example = "First Auto?")
+  private String secretQuestion;
+
+  @Schema(description = "Secret question answer", example = "Ford")
+  private String secretQuestionAnswer;
 }
-
-

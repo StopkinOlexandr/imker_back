@@ -17,9 +17,4 @@ public class UsersDto {
   @Schema(description = "Website users")
   private List<UserDto> users;
 
-  @Schema(description = "Users quantity")
-  private Long count;
-
-  @Schema(description = "Totaly pages", example = "3")
-  private Integer pagesCount;
 }

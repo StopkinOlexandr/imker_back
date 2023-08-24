@@ -6,6 +6,8 @@ import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
 import de.imker.dto.UserEmailDto;
 import de.imker.dto.UserIdDto;
+import de.imker.dto.UserRestorePwdDto;
+import de.imker.dto.UserSecretQuestionAnswerDto;
 import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.security.details.AuthenticatedUser;
@@ -35,7 +37,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Tags(value = {
     @Tag(name = "Users")
 })
-@RequestMapping("api/users")
+@RequestMapping("api/")
 public interface UsersApi {
 
   @Operation(summary = "Get User's profile", description = "Allowed to authenticated user. Get current user")
@@ -52,16 +54,15 @@ public interface UsersApi {
   @GetMapping("/me")
   ResponseEntity<UserDto> getMyProfile(@Parameter(hidden = true) @AuthenticationPrincipal AuthenticatedUser currentUser);
 
-  //----TODO restore password
   @Operation(summary = "Secret questions")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Get list of secret questions - one according email",
           content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserSecretQuestionsDto.class))
           }),
       @ApiResponse(responseCode = "401", description = "Wrong email",
           content = {
-              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
+              @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
           })
   })
 
@@ -70,24 +71,40 @@ public interface UsersApi {
   ResponseEntity<UserSecretQuestionsDto> secretQuestions(
       @Parameter(required = true, description = "User") @RequestBody @Valid UserEmailDto userEmail);
 
-//  @Operation(summary = "New password")
-//  @ApiResponses(value = {
-//      @ApiResponse(responseCode = "200", description = "Password is changed, user is login",
-//          content = {
-//              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
-//          }),
-//      @ApiResponse(responseCode = "401", description = "Authentication error, e-mail incorrect",
-//          content = {
-//              @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
-//          })
-//  })
-//
-//  @PostMapping("/restore")
-//  @ResponseStatus(HttpStatus.OK)
-//  ResponseEntity<UserDto> newPassword(
-//      @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
+  @Operation(summary = "Secret question and answer for secret question")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Answer for secret question is right",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserIdDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "Wrong question or answer",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
+          })
+  })
 
-//-----TODO restore password
+  @PostMapping("/question")
+  @ResponseStatus(HttpStatus.OK)
+  ResponseEntity<UserIdDto> secretQuestionAnswer(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserSecretQuestionAnswerDto secretQuestionAnswer);
+
+  @Operation(summary = "New password")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Password is changed, user is login",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          }),
+      @ApiResponse(responseCode = "401", description = "Password change error",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
+          })
+  })
+
+  @PostMapping("/restore")
+  @ResponseStatus(HttpStatus.OK)
+  ResponseEntity<UserDto> newPassword(
+      @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
+
 
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Users list",
@@ -101,9 +118,8 @@ public interface UsersApi {
   })
 
   @Operation(summary = "Get list of all users")
-  @GetMapping
+  @GetMapping("/users/")
   ResponseEntity<UsersDto> getAllUsers();
-
 
 
       @Operation(summary = "Delete User", description = "Only for admin")
@@ -119,7 +135,7 @@ public interface UsersApi {
   })
 
   @PreAuthorize("hasAuthority('ADMIN')")
-  @DeleteMapping("/{user-id}")
+  @DeleteMapping("/users/{user-id}")
   ResponseEntity<UserDto> deleteUser(
       @Parameter(required = true,
           description = "ID to delete",
@@ -132,14 +148,13 @@ public interface UsersApi {
           @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
       }),
 
-
       @ApiResponse(responseCode = "200", description = "Updated user",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
 
-  @PutMapping("/{user-id}")
+  @PutMapping("/users/{user-id}")
   ResponseEntity<UserDto> updateUser(
       @Parameter(required = true, description = "User ID to update", example = "2")
       @PathVariable("user-id") Long userId,
@@ -156,7 +171,7 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
-  @GetMapping("/{user-id}")
+  @GetMapping("/users/{user-id}")
   ResponseEntity<UserDto> getUser(@Parameter(required = true, description = "Users ID", example = "2")
   @PathVariable("user-id") Long userId);
 

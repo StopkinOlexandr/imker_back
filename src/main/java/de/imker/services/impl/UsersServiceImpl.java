@@ -5,6 +5,9 @@ import static de.imker.dto.UserDto.from;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
 import de.imker.dto.UserEmailDto;
+import de.imker.dto.UserIdDto;
+import de.imker.dto.UserRestorePwdDto;
+import de.imker.dto.UserSecretQuestionAnswerDto;
 import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.exeptions.NotFoundException;
@@ -14,11 +17,11 @@ import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
@@ -27,6 +30,8 @@ import org.springframework.stereotype.Service;
 public class UsersServiceImpl implements UsersService {
 
   UsersRepository usersRepository;
+  PasswordEncoder passwordEncoder;
+
 
 
   private UserDto findByEmail(String email) {
@@ -40,10 +45,10 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserSecretQuestionsDto getSecretQuestions(UserEmailDto userEmail) {
-    UserDto userDto = findByEmail(userEmail.getEmail()); //can refactor this
-    UserSecretQuestionsDto userSecretQuestions = new UserSecretQuestionsDto();
+    UserDto userDto = findByEmail(userEmail.getEmail());                      //can refactor this
     User user = usersRepository.findById(userDto.getId()).orElseThrow(
-        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));;
+        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
+
     List<String> list = new ArrayList<>();
     list.add(user.getSecretQuestion());
     list.add("Wie hieß Ihre erstes Tier?");
@@ -51,18 +56,36 @@ public class UsersServiceImpl implements UsersService {
     list.add("Wie hieß Ihr erster Lehrer/Lehrerin?");
     list.add("Was ist Ihre Lieblingsblume?");
     return UserSecretQuestionsDto.builder()
+        .id(user.getId())
         .email(user.getEmail())
         .secretQuestions(list)
         .build();
   }
 
-//  @Override
-//  public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
-//    User user = getUserFromRepository(restorePwd.getId());
-//    user.setHashPassword(restorePwd.getNewPassword());
-//    usersRepository.save(user);
-//    return UserDto.from(user);
-//  }
+  @Override
+  public UserIdDto getSecretQuestionAnswer(UserSecretQuestionAnswerDto secretQuestionAnswer) {
+    UserDto userDto = findByEmail(secretQuestionAnswer.getEmail());
+    User user = usersRepository.findById(userDto.getId()).orElseThrow(
+        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
+
+    if (user.getSecretQuestion().equals(secretQuestionAnswer.getSecretQuestion())) {
+      if (user.getAnswerSecretQuestion().equals(secretQuestionAnswer.getSecretQuestionAnswer())) {
+        return UserIdDto.builder()
+            .id(user.getId())
+            .build();
+      }
+    }
+    return null; //may be throw error?
+  }
+
+  @Override
+  public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
+
+    User user = getUserFromRepository(restorePwd.getId());
+    user.setHashPassword(passwordEncoder.encode(restorePwd.getNewPassword()));
+    usersRepository.save(user);
+    return UserDto.from(user);
+  }
 
   @Override
   public UsersDto getAllUsers() {
@@ -108,7 +131,6 @@ public class UsersServiceImpl implements UsersService {
   private User getUserOrThrow(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
         () -> new RestException(HttpStatus.NOT_FOUND, "User with Id <" + userId + "> not found"));
-    //TODO change for all entities (not only user)
   }
 }
 

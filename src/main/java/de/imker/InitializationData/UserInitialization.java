@@ -15,9 +15,10 @@ public class UserInitialization {
   private final UsersServiceImpl usersService;
   private final UsersRepository usersRepository;
   PasswordEncoder passwordEncoder;
+
   @Autowired
   public UserInitialization(UsersRepository usersRepository) {
-    this.usersService = new UsersServiceImpl(usersRepository);
+    this.usersService = new UsersServiceImpl(usersRepository, passwordEncoder);
     this.usersRepository = usersRepository;
   }
 

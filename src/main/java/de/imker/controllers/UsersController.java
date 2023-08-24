@@ -4,6 +4,9 @@ import de.imker.controllers.api.UsersApi;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
 import de.imker.dto.UserEmailDto;
+import de.imker.dto.UserIdDto;
+import de.imker.dto.UserRestorePwdDto;
+import de.imker.dto.UserSecretQuestionAnswerDto;
 import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.security.details.AuthenticatedUser;
@@ -34,16 +37,24 @@ public class UsersController implements UsersApi {
   @Override
   public ResponseEntity<UserSecretQuestionsDto> secretQuestions(UserEmailDto userEmail) {
     return ResponseEntity
-        .status(HttpStatus.CREATED)
+        .status(HttpStatus.OK)
         .body(usersService.getSecretQuestions(userEmail));
   }
 
-//  @Override
-//  public ResponseEntity<UserDto> newPassword(UserRestorePwdDto restorePwd) {
-//    return ResponseEntity
-//        .status(HttpStatus.CREATED)
-//        .body(usersService.setNewPassword(restorePwd));
-//  }
+  @Override
+  public ResponseEntity<UserIdDto> secretQuestionAnswer(
+      UserSecretQuestionAnswerDto secretQuestionAnswer) {
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(usersService.getSecretQuestionAnswer(secretQuestionAnswer));
+  }
+
+  @Override
+  public ResponseEntity<UserDto> newPassword(UserRestorePwdDto restorePwd) {
+    return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(usersService.setNewPassword(restorePwd));
+  }
 
   @Override
   public ResponseEntity<UsersDto> getAllUsers() {
