@@ -71,6 +71,7 @@
             <column name="address" type="varchar(250)"/>
             <column name="author" type="varchar(50)"/>
             <column name="description" type="text"/>
+            <column name="short_description" type="varchar(250)"/>
             <column name="photo" type="varchar(250)"/>
             <column name="date_start" type="varchar(50)"/>
             <column name="date_end" type="varchar(50)"/>

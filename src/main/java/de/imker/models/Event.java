@@ -30,6 +30,7 @@ public class Event {
     private String address;
     private String author;
     private String description;
+    private String shortDescription;
     private String quantityOfMembers;
     private String photo;
     private String dateStart;

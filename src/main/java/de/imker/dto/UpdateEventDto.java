@@ -22,6 +22,9 @@ public class UpdateEventDto {
     @Schema(description = "New events description", example = "Wash car")
     private String newDescription;
 
+    @Schema(description = "New short events description", example = "Wash car")
+    private String newShortDescription;
+
     @Schema(description = "New location of event", example = "https://gpp/gl/maps/...")
     private String newLocation;
 

@@ -36,6 +36,9 @@ public class EventDto {
     @Schema(description = "Events description", example = "Wash car")
     private String description;
 
+    @Schema(description = "Events short description", example = "Wash car")
+    private String shortDescription;
+
     @Schema(description = "Location of event", example = "https://gpp/gl/maps/...")
     private String location;
 
@@ -66,6 +69,7 @@ public class EventDto {
                 .idEvent(event.getEventId())
                 .title(event.getTitle())
                 .description(event.getDescription())
+                .shortDescription(event.getShortDescription())
                 .address(event.getAddress())
                 .author(event.getAuthor())
                 .location(event.getLocation())
