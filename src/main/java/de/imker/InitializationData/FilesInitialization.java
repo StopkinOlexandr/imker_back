@@ -24,7 +24,7 @@ public class FilesInitialization {
     if (filesList.size() == 0) {
       for (int i = 0; i < 50; i++) {
         FileUpload fileUpload = FileUpload.builder()
-            .category(FileUpload.Category.POST)
+            .category(FileUpload.Category.NONE)
             .originalName("empty -")
             .storedName("empty -")
             .fileType("empty -")

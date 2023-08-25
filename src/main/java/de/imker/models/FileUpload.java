@@ -17,6 +17,7 @@ import java.util.Date;
 @Table(name = "files")
 public class FileUpload {
   public enum Category {
+    NONE,
     POST,
     EVENT,
     GALLERY,

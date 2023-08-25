@@ -13,7 +13,7 @@ public interface FilesService {
 
   File resizeImage(File sourceImage, int width, int height, String targetDirectory);
 
-  FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height) throws IOException;
+  FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height, String category) throws IOException;
 
   FileUploadDto getFileInfoById(Long fileId);
 

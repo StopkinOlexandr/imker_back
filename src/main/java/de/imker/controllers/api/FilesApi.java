@@ -33,7 +33,9 @@ public interface FilesApi {
                            @Parameter(required = true, description = "Width", example = "300")
                            @RequestParam(value = "width") Integer width,
                            @Parameter(required = true, description = "Height", example = "300")
-                           @RequestParam(value = "height") Integer height) throws IOException;
+                           @RequestParam(value = "height") Integer height,
+                           @Parameter(required = true, description = "Category", example = "EVENT")
+                           @RequestParam(value = "category") String category) throws IOException;
 
   @Operation(summary = "Get file by ID", description = "Accessible to all users")
   @ApiResponses(value = {
