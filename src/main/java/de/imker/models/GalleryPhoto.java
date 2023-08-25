@@ -25,5 +25,5 @@ public class GalleryPhoto {
   @Column(name = "creation_time_photo")
   private Date creationTimePhoto;
 
-  private String linkToImg;
+  private Long linkToImg;
 }

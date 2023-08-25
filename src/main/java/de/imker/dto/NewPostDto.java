@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class NewPostDto {
   @Schema(description = "new post title", example = "Title of the post")
   private String titlePost;
-  @Schema(description = "Link to title image", example = "https://media.licdn.com/dms/image/D5612AQEbJ4rWMni4sg/article-cover_image-shrink_600_2000/0/1668510691763?e=2147483647&v=beta&t=BWQ7qKriObtTgft2YZa25YvzIeAhBfdF0xDXq09G9oE")
+  @Schema(description = "Id of title image file in DB", example = "1")
   private String linkToImg;
   @Schema(description = "short description for post text", example = "Short description")
   private String shortPostDescription;
