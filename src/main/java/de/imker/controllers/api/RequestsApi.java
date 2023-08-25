@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Tags(value = {
     @Tag(name = "Requests")
 })
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/requests")
 public interface RequestsApi {
 
