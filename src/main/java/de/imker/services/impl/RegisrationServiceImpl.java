@@ -30,8 +30,11 @@ public class RegisrationServiceImpl implements RegistrationService {
     User user = User.builder()
         .email(registerData.getEmail())
         .hashPassword(passwordEncoder.encode(registerData.getPassword()))
+        .name(registerData.getName())
+        .plz(registerData.getPlz())
+        .phone(registerData.getPhone())
         .role(Role.USER)
-        .state(State.NOT_CONFIRMED).build();
+        .state(State.CONFIRMED).build();
 
     usersRepository.save(user);
 
