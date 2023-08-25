@@ -1,24 +1,36 @@
 spring:
   datasource:
-    driverClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/Imker
     username: postgres
     password: root
+
+    hikari:
+      connectionTimeout: 20000
+      minimumIdle: 10
+      maximumPoolSize: 30
+      idleTimeout: 300000
+      maxLifetime: 1800000
+
   jpa:
     hibernate:
       ddl-auto: none
-      format_sql: true
-      use_sql_comments: true
     show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+
   mvc:
     cors:
       allowed-origins: http://localhost:5173
+
 
 logging:
   level:
     org:
       springframework:
         security: TRACE
+
 users:
   sort:
     fields: name,plz,role,state,id
