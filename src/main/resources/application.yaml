@@ -24,6 +24,13 @@ spring:
     cors:
       allowed-origins: http://localhost:5173
 
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+
 users:
   sort:
     fields: name,plz,role,state,id
@@ -39,3 +46,4 @@ events:
     fields: dateStart
   page:
     size: 3
+

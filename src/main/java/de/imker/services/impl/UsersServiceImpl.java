@@ -2,79 +2,40 @@ package de.imker.services.impl;
 
 import static de.imker.dto.UserDto.from;
 
-import de.imker.dto.NewUserDto;
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
+import de.imker.dto.UserEmailDto;
 import de.imker.dto.UserIdDto;
 import de.imker.dto.UserRestorePwdDto;
-import de.imker.dto.UserSecretQuestionDto;
-import de.imker.dto.UserSigninDto;
+import de.imker.dto.UserSecretQuestionAnswerDto;
+import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
-import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
-import de.imker.exeptions.UserNotFoundException;
+import de.imker.exeptions.RestException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
+import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @Service
 public class UsersServiceImpl implements UsersService {
 
-  private final UsersRepository usersRepository;
+  UsersRepository usersRepository;
+  PasswordEncoder passwordEncoder;
 
-//  private final PasswordEncoder passwordEncoder;
 
-  @Value("${users.sort.fields}")
-  private List<String> sortFields;
-
-  @Value("${users.filter.fields}")
-  private List<String> filterFields;
-
-  @Value("${users.page.size}")
-  private Integer pageSize;
-
-  @Override
-  public UserDto addUser(NewUserDto newUser) {
-    User user = User.builder()
-        .email(newUser.getEmail())
-        .password(newUser.getPassword())
-//        .hashPassword(passwordEncoder.encode(newUser.getPassword()))
-        .name(newUser.getName())
-        .plz(newUser.getPlz())
-        .phone(newUser.getPhone())
-        .secretQuestion(newUser.getSecretQuestion())
-        .role(User.Role.USER)
-        .state(User.State.NOT_CONFIRMED).build();
-
-    usersRepository.save(user);
-
-    return from(user);
-  }
-
-  @Override
-  public UserDto loginUser(UserSigninDto loginUser) {
-    UserDto userDto = findByEmail(loginUser.getEmail());
-    Long userId = userDto.getId();
-    if (getUserOrThrow(userId).getPassword().equals(loginUser.getPassword())) {
-      //check password here, then must change
-      return userDto;
-    } else {
-      return null;
-    }
-  }
 
   private UserDto findByEmail(String email) {
-    UsersDto list = getAllUsers(1, "", true, "", "");
+    UsersDto list = getAllUsers();
     return list.getUsers()
         .stream()
         .filter(p -> p.getEmail().equals(email))
@@ -83,54 +44,55 @@ public class UsersServiceImpl implements UsersService {
   }
 
   @Override
-  public UserIdDto checkSecretQuestion(UserSecretQuestionDto secretQuestion) {
-    UserDto userDto = findByEmail(secretQuestion.getEmail()); //can refactor this
-    UserIdDto userIdDto = new UserIdDto();
-    userIdDto.setId(userDto.getId());
-    return userIdDto;
+  public UserSecretQuestionsDto getSecretQuestions(UserEmailDto userEmail) {
+    UserDto userDto = findByEmail(userEmail.getEmail());                      //can refactor this
+    User user = usersRepository.findById(userDto.getId()).orElseThrow(
+        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
+
+    List<String> list = new ArrayList<>();
+    list.add(user.getSecretQuestion());
+    list.add("Wie hieß Ihre erstes Tier?");
+    list.add("Wie heißt Ihre erste Schule?");
+    list.add("Wie hieß Ihr erster Lehrer/Lehrerin?");
+    list.add("Was ist Ihre Lieblingsblume?");
+    return UserSecretQuestionsDto.builder()
+        .id(user.getId())
+        .email(user.getEmail())
+        .secretQuestions(list)
+        .build();
+  }
+
+  @Override
+  public UserIdDto getSecretQuestionAnswer(UserSecretQuestionAnswerDto secretQuestionAnswer) {
+    UserDto userDto = findByEmail(secretQuestionAnswer.getEmail());
+    User user = usersRepository.findById(userDto.getId()).orElseThrow(
+        () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
+
+    if (user.getSecretQuestion().equals(secretQuestionAnswer.getSecretQuestion())) {
+      if (user.getAnswerSecretQuestion().equals(secretQuestionAnswer.getSecretQuestionAnswer())) {
+        return UserIdDto.builder()
+            .id(user.getId())
+            .build();
+      }
+    }
+    return null; //may be throw error?
   }
 
   @Override
   public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
+
     User user = getUserFromRepository(restorePwd.getId());
-    user.setPassword(restorePwd.getNewPassword());
+    user.setHashPassword(passwordEncoder.encode(restorePwd.getNewPassword()));
     usersRepository.save(user);
     return UserDto.from(user);
   }
 
   @Override
-  public UsersDto getAllUsers(Integer pageNumber,
-      String orderByField,
-      Boolean desc,
-      String filterBy,
-      String filterValue) {
-
-    PageRequest pageRequest = getPageRequest(pageNumber, orderByField, desc);
-
-    Page<User> page = getUsersPage(filterBy, filterValue, pageRequest);
+  public UsersDto getAllUsers() {
 
     return UsersDto.builder()
-        .users(from(page.getContent()))
-        .count(page.getTotalElements())
-        .pagesCount(page.getTotalPages())
+        .users(from(usersRepository.findAll()))
         .build();
-  }
-
-  private Page<User> getUsersPage(String filterBy, String filterValue, PageRequest pageRequest) {
-    Page<User> page = Page.empty();
-    if (filterBy == null || filterBy.equals("")) {
-      page = usersRepository.findAll(pageRequest);
-    } else {
-      checkField(filterFields, filterBy);
-      if (filterBy.equals("role")) {
-        User.Role role = User.Role.valueOf(filterValue);
-        page = usersRepository.findAllByRole(role, pageRequest);
-      } else if (filterBy.equals("state")) {
-        User.State state = User.State.valueOf(filterValue);
-        page = usersRepository.findAllByState(state, pageRequest);
-      }
-    }
-    return page;
   }
 
   @Override
@@ -166,36 +128,9 @@ public class UsersServiceImpl implements UsersService {
         () -> new NotFoundException("User with id <" + userId + "> not found"));
   }
 
-  private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
-
-    if (orderByField != null && !orderByField.equals("")) {
-
-      checkField(sortFields, orderByField);
-
-      Sort.Direction direction = Sort.Direction.ASC;
-
-      if (desc != null && desc) {
-        direction = Sort.Direction.DESC;
-      }
-
-      Sort sort = Sort.by(direction, orderByField);
-
-      return PageRequest.of(pageNumber, pageSize, sort);
-    } else {
-      return PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-    }
-  }
-
-  private void checkField(List<String> allowedFields, String field) {
-    if (!allowedFields.contains(field)) {
-      throw new ForbiddenFieldException(field);
-    }
-  }
-
   private User getUserOrThrow(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
-        () -> new UserNotFoundException("User",
-            userId)); //TODO change for all entities (not only user)
+        () -> new RestException(HttpStatus.NOT_FOUND, "User with Id <" + userId + "> not found"));
   }
 }
 

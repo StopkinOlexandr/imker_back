@@ -50,8 +50,9 @@
             </column>
             <column name="email" type="varchar(300)"/>
             <column name="name" type="varchar(300)"/>
-            <column name="password" type="varchar(300)"/>
+            <column name="hash_password" type="varchar(300)"/>
             <column name="secret_question" type="varchar(300)"/>
+            <column name="answer_secret_question" type="varchar(300)"/>
             <column name="plz" type="varchar(5)"/>
             <column name="phone" type="varchar(300)"/>
             <column name="image" type="varchar"/>
@@ -70,6 +71,7 @@
             <column name="address" type="varchar(250)"/>
             <column name="author" type="varchar(50)"/>
             <column name="description" type="text"/>
+            <column name="short_description" type="varchar(250)"/>
             <column name="photo" type="varchar(250)"/>
             <column name="date_start" type="varchar(50)"/>
             <column name="date_end" type="varchar(50)"/>
