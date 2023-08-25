@@ -11,7 +11,7 @@ Content-Type: application/json
   "address": "Berlin, Winehof, 8",
   "author": "Andrii",
   "quantityOfMembers": "25",
-  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "location": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
   "photo": "C://Photos/added_photo.png",
   "startTime": "12:00",
   "endTime": "18:00",
@@ -32,7 +32,7 @@ Content-Type: application/json
   "address": "Bremen, CircusHof, 11",
   "author": "Andrii",
   "quantityOfMembers": "250",
-  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "location": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
   "photo": "C://Photos/added photo #2png",
   "startTime": "09:00",
   "endTime": "12:00",
@@ -55,7 +55,7 @@ Content-Type: application/json
   "address": "msterdam, Sing allee, 5",
   "author": "Joseph",
   "quantityOfMembers": "12",
-  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "location": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
   "photo": "C://Photos/added_photo_сфкфщлу.png",
   "startTime": "19:00",
   "endTime": "23:00",
@@ -76,7 +76,7 @@ Content-Type: application/json
   "address": "123 Adventure Street, Summitville",
   "author": "Adventure Enthusiast Club",
   "quantityOfMembers": "25",
-  "location": "https://goo.gl/maps/pspckiFLbm32zVkR9",
+  "location": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
   "photo": "https://example.com/event-photo.jpg",
   "startTime": "10:00",
   "endTime": "4:00 ",
@@ -96,7 +96,7 @@ Content-Type: application/json
   "address": "456 Culinary Lane, Savoryville",
   "author": "TasteBuds Culinary School",
   "quantityOfMembers": "15",
-  "location": "https://goo.gl/maps/abcd1234",
+  "location": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
   "photo": "https://example.com/cooking-class.jpg",
   "startTime": "6:30",
   "endTime": "9:00",
@@ -145,21 +145,22 @@ DELETE localhost:8080/api/events/2
 
 ### Update event
 
-PUT localhost:8080/api/events/1
+PUT localhost:8080/api/events/2
 Content-Type: application/json
 
 {
-  "newTitle" : "Second",
-  "newStatus" : "ENDED",
-  "newAddress" : "",
-  "newAuthor" : "updatedNewAuthor",
-  "newDescription" : "updatedNewDescription",
-  "newLocation" : "updatedNewLocation",
-  "newPhoto" : "updatedNewPhotoAddress",
-  "newDateStart" : "2024-04-04",
-  "newDateEnd" : "2024-04-05",
-  "newStartTime" : "12:12",
-  "newEndTime" : "13:13"
+  "title" : "Second",
+  "status" : "ENDED",
+  "address" : "",
+  "author" : "updatedNewAuthor",
+  "description" : "updatedNewDescription",
+  "shortDescription" : "somethingShort",
+  "location" : "updatedNewLocation",
+  "photo" : "updatedNewPhotoAddress",
+  "dateStart" : "2024-04-04",
+  "dateEnd" : "2024-04-05",
+  "startTime" : "12:12",
+  "endTime" : "13:13"
 
 }
 

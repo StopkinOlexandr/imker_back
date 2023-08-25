@@ -80,55 +80,57 @@ public class EventsServiceImpl implements EventsService {
     public EventDto updateEvent(Long eventId, UpdateEventDto eventWithUpdatedData) {
         Event eventToUpdate = getEventOrThrow(eventId);
 
-        if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getNewTitle()) &&
-                !(eventWithUpdatedData.getNewTitle().isEmpty() && eventWithUpdatedData.getNewTitle().isBlank()))
-            eventToUpdate.setTitle(eventWithUpdatedData.getNewTitle());
+        if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getTitle()) &&
+                !(eventWithUpdatedData.getTitle().isEmpty() && eventWithUpdatedData.getTitle().isBlank()))
+            eventToUpdate.setTitle(eventWithUpdatedData.getTitle());
 
-        if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getNewDescription()) &&
-                !(eventWithUpdatedData.getNewDescription().isBlank() && eventWithUpdatedData.getNewDescription().isEmpty()))
-            eventToUpdate.setDescription(eventWithUpdatedData.getNewDescription());
+        if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getDescription()) &&
+                !(eventWithUpdatedData.getDescription().isBlank() && eventWithUpdatedData.getDescription().isEmpty()))
+            eventToUpdate.setDescription(eventWithUpdatedData.getDescription());
 
-        if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getNewShortDescription()) &&
-                !(eventWithUpdatedData.getNewShortDescription().isBlank() && eventWithUpdatedData.getNewShortDescription().isEmpty()))
-            eventToUpdate.setShortDescription(eventWithUpdatedData.getNewShortDescription());
-
-
-        if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getNewAddress()) &&
-                !(eventWithUpdatedData.getNewAddress().isBlank() && eventWithUpdatedData.getNewAddress().isEmpty()))
-            eventToUpdate.setAddress(eventWithUpdatedData.getNewAddress());
+        if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getShortDescription()) &&
+                !(eventWithUpdatedData.getShortDescription().isBlank() && eventWithUpdatedData.getShortDescription().isEmpty()))
+            eventToUpdate.setShortDescription(eventWithUpdatedData.getShortDescription());
 
 
-        if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getNewAuthor()) &&
-                !(eventWithUpdatedData.getNewAuthor().isEmpty() && eventWithUpdatedData.getNewAuthor().isBlank()))
-            eventToUpdate.setAuthor(eventWithUpdatedData.getNewAuthor());
+        if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getAddress()) &&
+                !(eventWithUpdatedData.getAddress().isBlank() && eventWithUpdatedData.getAddress().isEmpty()))
+            eventToUpdate.setAddress(eventWithUpdatedData.getAddress());
 
-        if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getNewLocation()) &&
-                !(eventWithUpdatedData.getNewLocation().isBlank() && eventWithUpdatedData.getNewLocation().isEmpty()))
-            eventToUpdate.setLocation(eventWithUpdatedData.getNewLocation());
 
-        if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getNewPhoto()) &&
-                !(eventWithUpdatedData.getNewPhoto().isEmpty() && eventWithUpdatedData.getNewPhoto().isBlank()))
-            eventToUpdate.setPhoto(eventWithUpdatedData.getNewPhoto());
+        if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getAuthor()) &&
+                !(eventWithUpdatedData.getAuthor().isEmpty() && eventWithUpdatedData.getAuthor().isBlank()))
+            eventToUpdate.setAuthor(eventWithUpdatedData.getAuthor());
 
-        if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getNewDateStart()) &&
-                !(eventWithUpdatedData.getNewDateStart().isEmpty() && eventWithUpdatedData.getNewDateStart().isBlank()))
-            eventToUpdate.setDateStart(eventWithUpdatedData.getNewDateStart());
+        if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getLocation()) &&
+                !(eventWithUpdatedData.getLocation().isBlank() && eventWithUpdatedData.getLocation().isEmpty()))
+            eventToUpdate.setLocation(eventWithUpdatedData.getLocation());
 
-        if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getNewDateEnd()) &&
-                !(eventWithUpdatedData.getNewDateEnd().isEmpty() && eventWithUpdatedData.getNewDateEnd().isBlank()))
-            eventToUpdate.setDateEnd(eventWithUpdatedData.getNewDateEnd());
+        if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getPhoto()) &&
+                !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank()))
+            eventToUpdate.setPhoto(eventWithUpdatedData.getPhoto());
 
-        if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getNewStartTime()) &&
-                !(eventWithUpdatedData.getNewStartTime().isEmpty() && eventWithUpdatedData.getNewStartTime().isBlank()))
-            eventToUpdate.setStartTime(eventWithUpdatedData.getNewStartTime());
+        if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getDateStart()) &&
+                !(eventWithUpdatedData.getDateStart().isEmpty() && eventWithUpdatedData.getDateStart().isBlank()))
+            eventToUpdate.setDateStart(eventWithUpdatedData.getDateStart());
 
-        if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getNewEndTime()) &&
-                !(eventWithUpdatedData.getNewEndTime().isBlank() && eventWithUpdatedData.getNewEndTime().isEmpty()))
-            eventToUpdate.setEndTime(eventWithUpdatedData.getNewEndTime());
+        if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getDateEnd()) &&
+                !(eventWithUpdatedData.getDateEnd().isEmpty() && eventWithUpdatedData.getDateEnd().isBlank()))
+            eventToUpdate.setDateEnd(eventWithUpdatedData.getDateEnd());
 
-        if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getNewStatus()) &&
-                !(eventWithUpdatedData.getNewStatus().isBlank() && eventWithUpdatedData.getNewStatus().isEmpty()))
-            eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getNewStatus()));
+        if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getStartTime()) &&
+                !(eventWithUpdatedData.getStartTime().isEmpty() && eventWithUpdatedData.getStartTime().isBlank()))
+            eventToUpdate.setStartTime(eventWithUpdatedData.getStartTime());
+
+        if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getEndTime()) &&
+                !(eventWithUpdatedData.getEndTime().isBlank() && eventWithUpdatedData.getEndTime().isEmpty()))
+            eventToUpdate.setEndTime(eventWithUpdatedData.getEndTime());
+
+
+
+        if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getStatus()) &&
+                !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty()))
+            eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getStatus()));
 
         eventsRepository.save(eventToUpdate);
         return from(eventToUpdate);
