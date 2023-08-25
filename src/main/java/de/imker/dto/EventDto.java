@@ -79,7 +79,7 @@ public class EventDto {
                 .startTime(event.getStartTime())
                 .quantityOfMembers(event.getQuantityOfMembers())
                 .endTime(event.getEndTime())
-                .status(Event.Status.EXPECTED.toString())
+                .status(event.getStatus().toString())
 
                 .build();
 
