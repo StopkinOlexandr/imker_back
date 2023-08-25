@@ -22,6 +22,8 @@ public class FileUploadDto {
   private Long id;
   @Schema(description = "Time of file loading", example = "yyyy-MM-dd HH:mm:ss")
   private Date creationTime;
+  @Schema(description = "Category of file: POST, EVENT, GALLERY, AVATAR", example = "GALLERY")
+  private String category;
   @Schema(description = "Original file name", example = "example.jpg")
   private String originalName;
   @Schema(description = "Stored file name", example = "UUID+example.jpg")
@@ -35,6 +37,7 @@ public class FileUploadDto {
     return FileUploadDto.builder()
         .id(fileUpload.getId())
         .creationTime(fileUpload.getCreationTime())
+        .category(fileUpload.getCategory().name())
         .originalName(fileUpload.getOriginalName())
         .storedName(fileUpload.getStoredName())
         .fileType(fileUpload.getFileType())
