@@ -1,6 +1,5 @@
 package de.imker.services.impl;
 
-import de.imker.dto.FileUploadDto;
 import de.imker.dto.GalleryPhotoDto;
 import de.imker.dto.GalleryPhotosDto;
 import de.imker.dto.NewGalleryPhotoDto;

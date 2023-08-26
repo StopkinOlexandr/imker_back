@@ -75,7 +75,7 @@ public class FilesServiceImpl implements FilesService {
 
     Files.write(Paths.get(uploadPath + storedName), resizedFileBytes);
 
-    if (!EnumUtils.isValidEnum(FileUpload.Category.class, category)){
+    if (!EnumUtils.isValidEnum(FileUpload.Category.class, category)) {
       category = "NONE";
     }
 

@@ -1,7 +1,9 @@
 package de.imker.controllers.api;
 
 
-import de.imker.dto.*;
+import de.imker.dto.GalleryPhotoDto;
+import de.imker.dto.GalleryPhotosDto;
+import de.imker.dto.NewGalleryPhotoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,7 +31,7 @@ public interface GalleryApi {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   GalleryPhotoDto addPhoto(@Parameter(required = true, description = "NewGalleryPhotoDto")
-                          @RequestBody NewGalleryPhotoDto newGalleryPhotoDto);
+                           @RequestBody NewGalleryPhotoDto newGalleryPhotoDto);
 
   @Operation(summary = "Get list of gallery photos", description = "Accessible to all users")
   @ApiResponses(value = {
@@ -39,17 +41,17 @@ public interface GalleryApi {
           })})
   @GetMapping
   GalleryPhotosDto getAllPhotos(@Parameter(required = true, description = "Page number", example = "0")
-                       @RequestParam(value = "page") Integer page,
-                       @Parameter(required = true, description = "Number of items per page", example = "3")
-                       @RequestParam(value = "items") Integer items,
-                       @Parameter(required = true,
-                           description = "Sorting field: id, creationTimePhoto",
-                           example = "creationTimePhoto")
-                       @RequestParam(value = "orderBy") String orderBy,
-                       @Parameter(required = true,
-                           description = "Sorting direction (true = DESK, false = ASK)",
-                           example = "true")
-                       @RequestParam(value = "desk") Boolean desk);
+                                @RequestParam(value = "page") Integer page,
+                                @Parameter(required = true, description = "Number of items per page", example = "3")
+                                @RequestParam(value = "items") Integer items,
+                                @Parameter(required = true,
+                                    description = "Sorting field: id, creationTimePhoto",
+                                    example = "creationTimePhoto")
+                                @RequestParam(value = "orderBy") String orderBy,
+                                @Parameter(required = true,
+                                    description = "Sorting direction (true = DESK, false = ASK)",
+                                    example = "true")
+                                @RequestParam(value = "desk") Boolean desk);
 
   @Operation(summary = "Delete gallery photo by ID", description = "Accessible to all users")
   @ApiResponses(value = {
@@ -61,5 +63,5 @@ public interface GalleryApi {
   @ResponseStatus(HttpStatus.OK)
   @DeleteMapping(path = "/delete/{photo-id}")
   GalleryPhotoDto deletePhotoById(@Parameter(required = true, description = "Gallery photo ID", example = "1")
-                               @PathVariable("photo-id") Long photoId);
+                                  @PathVariable("photo-id") Long photoId);
 }
