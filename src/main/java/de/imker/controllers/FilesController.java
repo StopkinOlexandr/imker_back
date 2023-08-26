@@ -20,9 +20,9 @@ public class FilesController implements FilesApi {
   private final FilesService filesService;
 
   @Override
-  public FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height) throws IOException {
+  public FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height, String category) throws IOException {
 
-    return filesService.uploadFile(file, width, height);
+    return filesService.uploadFile(file, width, height, category);
   }
 
   @Override

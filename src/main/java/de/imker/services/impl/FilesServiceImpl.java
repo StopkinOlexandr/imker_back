@@ -9,6 +9,7 @@ import de.imker.services.FilesService;
 import de.imker.utils.FileUploadSpecifications;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.lang3.EnumUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -63,7 +64,7 @@ public class FilesServiceImpl implements FilesService {
   }
 
   @Override
-  public FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height) throws IOException {
+  public FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height, String category) throws IOException {
     String originalName = file.getOriginalFilename();
     String storedName = UUID.randomUUID() + originalName;
 
@@ -74,7 +75,12 @@ public class FilesServiceImpl implements FilesService {
 
     Files.write(Paths.get(uploadPath + storedName), resizedFileBytes);
 
+    if (!EnumUtils.isValidEnum(FileUpload.Category.class, category)) {
+      category = "NONE";
+    }
+
     FileUpload fileUpload = FileUpload.builder()
+        .category(FileUpload.Category.valueOf(category))
         .originalName(originalName)
         .storedName(storedName)
         .fileType(file.getContentType())
@@ -136,7 +142,7 @@ public class FilesServiceImpl implements FilesService {
     FileUpload fileUpload = filesRepository.getFileById(fileId).orElseThrow(
         () -> new NotFoundException("File with id <" + fileId + "> not found"));
 
-    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName()); // Путь к файлу
+    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
 
     try {
       Files.delete(filePath);

@@ -105,7 +105,6 @@
         </createTable>
 
         <loadData tableName="member"
-                  separator=","
                   file="db/data/members.csv">
         </loadData>
 
@@ -119,6 +118,7 @@
             <column name="creation_time" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+            <column name="category" type="varchar(100)"/>
             <column name="original_name" type="varchar(100)"/>
             <column name="stored_name" type="varchar(150)"/>
             <column name="file_type" type="varchar(10)"/>
@@ -143,6 +143,19 @@
             <column name="user_id" type="int"/>
             <column name="event_id" type="int"/>
                    </createTable>
+    </changeSet>
+
+    <changeSet id="#8" author="vadim">
+        <createTable tableName="gallery">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_time_photo" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="link_to_img" type="int"/>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

@@ -16,6 +16,13 @@ import java.util.Date;
 @Builder
 @Table(name = "files")
 public class FileUpload {
+  public enum Category {
+    NONE,
+    POST,
+    EVENT,
+    GALLERY,
+    AVATAR
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +33,19 @@ public class FileUpload {
   @Column(name = "creation_time")
   private Date creationTime;
 
+  @Column(nullable = false)
+  @Enumerated(value = EnumType.STRING)
+  private FileUpload.Category category;
+
+  @Column(nullable = false)
   private String originalName;
+
+  @Column(nullable = false)
   private String storedName;
+
+  @Column(nullable = false)
   private String fileType;
+
+  @Column(nullable = false)
   private Long size;
 }
