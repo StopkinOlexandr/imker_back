@@ -10,9 +10,10 @@ import de.imker.services.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static de.imker.utils.UtilsMethods.getPageRequest;
 
 @RequiredArgsConstructor
 @Transactional
@@ -68,21 +69,9 @@ public class PostServiceImpl implements PostsService {
   @Override
   public PostsDto getAllPosts(Integer page, Integer items, String orderBy, Boolean desk) {
 
-    PageRequest pageRequest;
     Page<Post> pageOfPosts;
 
-    if (orderBy != null && !orderBy.equals("")) {
-      Sort.Direction direction = Sort.Direction.ASC;
-
-      if (desk != null && desk) {
-        direction = Sort.Direction.DESC;
-      }
-
-      Sort sort = Sort.by(direction, orderBy);
-      pageRequest = PageRequest.of(page, items, sort);
-    } else {
-      pageRequest = PageRequest.of(page, items, Sort.by(Sort.Direction.ASC, "id"));
-    }
+    PageRequest pageRequest = getPageRequest(page, items, orderBy, desk);
 
     pageOfPosts = postsRepository.findAll(pageRequest);
 

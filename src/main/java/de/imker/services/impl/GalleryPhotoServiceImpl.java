@@ -7,11 +7,14 @@ import de.imker.models.GalleryPhoto;
 import de.imker.repositories.GalleryPhotoRepository;
 import de.imker.services.GalleryPhotoService;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static de.imker.utils.UtilsMethods.getPageRequest;
 
 @RequiredArgsConstructor
 @Transactional
@@ -32,21 +35,9 @@ public class GalleryPhotoServiceImpl implements GalleryPhotoService {
 
   @Override
   public GalleryPhotosDto getAllPhotos(Integer page, Integer items, String orderBy, Boolean desk) {
-    PageRequest pageRequest;
     Page<GalleryPhoto> pageOfPhotos;
 
-    if (orderBy != null && !orderBy.equals("")) {
-      Sort.Direction direction = Sort.Direction.ASC;
-
-      if (desk != null && desk) {
-        direction = Sort.Direction.DESC;
-      }
-
-      Sort sort = Sort.by(direction, orderBy);
-      pageRequest = PageRequest.of(page, items, sort);
-    } else {
-      pageRequest = PageRequest.of(page, items, Sort.by(Sort.Direction.ASC, "id"));
-    }
+    PageRequest pageRequest = getPageRequest(page, items, orderBy, desk);
 
     pageOfPhotos = galleryPhotoRepository.findAll(pageRequest);
 
@@ -56,4 +47,5 @@ public class GalleryPhotoServiceImpl implements GalleryPhotoService {
         .pages(pageOfPhotos.getTotalPages())
         .build();
   }
+
 }
