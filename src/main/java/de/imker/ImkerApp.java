@@ -1,10 +1,6 @@
 package de.imker;
 
-import de.imker.InitializationData.FilesInitialization;
-import de.imker.InitializationData.GoogleMapLinkInitialization;
-import de.imker.InitializationData.PostsInitialization;
-import de.imker.InitializationData.RequestsInitialization;
-import de.imker.InitializationData.UserInitialization;
+import de.imker.InitializationData.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -42,6 +38,8 @@ public class ImkerApp {
     FilesInitialization filesInitialization = context.getBean(FilesInitialization.class);
     UserInitialization usersInitialization = context.getBean(UserInitialization.class);
     GoogleMapLinkInitialization googleMapLinkInitialization = context.getBean(GoogleMapLinkInitialization.class);
+    EventInitialization eventInitialization = context.getBean(EventInitialization.class);
+    eventInitialization.eventInit();
     requestsInitialization.reqInit();
     postsInitialization.postInit();
     filesInitialization.filesInit();
