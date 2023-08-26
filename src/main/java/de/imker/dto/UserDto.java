@@ -54,7 +54,7 @@ public class UserDto {
         .email(user.getEmail())
         .state(user.getState().name())
         .role(user.getRole().name())
-        .plz(user.getName())
+        .plz(user.getPlz())
         .name(user.getName())
         .phone(user.getPhone())
         .image(user.getImage())
