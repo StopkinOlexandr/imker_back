@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.*;
 public interface PostsApi {
 
   @Operation(summary = "Create new post", description = "Accessible to all users")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "201", description = "Post created",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = PostsDto.class))
+          })})
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   PostDto addPost(@Parameter(required = true, description = "Post")
