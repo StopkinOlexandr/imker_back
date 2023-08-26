@@ -9,4 +9,7 @@ public interface GalleryPhotoService {
   GalleryPhotoDto addPhoto(NewGalleryPhotoDto newGalleryPhotoDto);
 
   GalleryPhotosDto getAllPhotos(Integer page, Integer items, String orderBy, Boolean desk);
+
+  GalleryPhotoDto deletePhotoById(Long photoId);
+
 }

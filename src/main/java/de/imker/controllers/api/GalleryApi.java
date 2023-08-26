@@ -1,10 +1,7 @@
 package de.imker.controllers.api;
 
 
-import de.imker.dto.GalleryPhotoDto;
-import de.imker.dto.GalleryPhotosDto;
-import de.imker.dto.NewGalleryPhotoDto;
-import de.imker.dto.PostsDto;
+import de.imker.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -53,4 +50,16 @@ public interface GalleryApi {
                            description = "Sorting direction (true = DESK, false = ASK)",
                            example = "true")
                        @RequestParam(value = "desk") Boolean desk);
+
+  @Operation(summary = "Delete gallery photo by ID", description = "Accessible to all users")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Photo deleted",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = GalleryPhotoDto.class))
+          })
+  })
+  @ResponseStatus(HttpStatus.OK)
+  @DeleteMapping(path = "/delete/{photo-id}")
+  GalleryPhotoDto deletePhotoById(@Parameter(required = true, description = "Gallery photo ID", example = "1")
+                               @PathVariable("photo-id") Long photoId);
 }

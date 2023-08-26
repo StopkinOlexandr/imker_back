@@ -22,4 +22,9 @@ public class GalleryController implements GalleryApi {
   public GalleryPhotosDto getAllPhotos(Integer page, Integer items, String orderBy, Boolean desk) {
     return galleryPhotoService.getAllPhotos(page, items, orderBy, desk);
   }
+
+  @Override
+  public GalleryPhotoDto deletePhotoById(Long photoId) {
+    return galleryPhotoService.deletePhotoById(photoId);
+  }
 }

@@ -142,7 +142,7 @@ public class FilesServiceImpl implements FilesService {
     FileUpload fileUpload = filesRepository.getFileById(fileId).orElseThrow(
         () -> new NotFoundException("File with id <" + fileId + "> not found"));
 
-    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName()); // Путь к файлу
+    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
 
     try {
       Files.delete(filePath);
