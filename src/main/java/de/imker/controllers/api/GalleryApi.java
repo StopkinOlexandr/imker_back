@@ -20,6 +20,6 @@ public interface GalleryApi {
   @Operation(summary = "Add photo to the gallery", description = "Accessible to all users")
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  GalleryPhotoDto addPost(@Parameter(required = true, description = "NewGalleryPhotoDto")
+  GalleryPhotoDto addPhoto(@Parameter(required = true, description = "NewGalleryPhotoDto")
                           @RequestBody NewGalleryPhotoDto newGalleryPhotoDto);
 }
