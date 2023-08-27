@@ -7,7 +7,7 @@ import lombok.Data;
 public class UpdateMemberDto {
 
   @Schema(description = "State of Member - SHOW, HIDDEN, DELETED", example = "HIDDEN")
-  private String newState;
+  private String state;
   @Schema(description = "Members Name", example = "Mart Tven")
   private String name;
   private String position;
