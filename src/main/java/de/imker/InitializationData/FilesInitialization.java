@@ -22,7 +22,7 @@ public class FilesInitialization {
   public void filesInit() {
     List<FileUpload> filesList = filesRepository.findAll();
     if (filesList.size() == 0) {
-      for (int i = 0; i < 50; i++) {
+      for (int i = 0; i < 200; i++) {
         FileUpload fileUpload = FileUpload.builder()
             .category(FileUpload.Category.NONE)
             .originalName("empty -")
