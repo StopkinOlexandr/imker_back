@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Tags(value = {
     @Tag(name = "Members")
 })
+@CrossOrigin(origins = "http://localhost:5173")
 
 public interface MembersApi {
 

@@ -57,6 +57,7 @@ public class MembersServiceImpl implements MembersService {
     Member member = getMemberOrThrow(memberId);
 
     return MemberDto.builder()
+        .id(member.getId())
         .state(member.getState().name())
         .name(member.getName())
         .position(member.getPosition())
@@ -74,7 +75,7 @@ public class MembersServiceImpl implements MembersService {
 
     Member updMember = getMemberOrThrow(memberId);
 
-    updMember.setState(Member.State.valueOf(updateMemberDto.getNewState()));
+    updMember.setState(Member.State.valueOf(updateMemberDto.getState()));
     updMember.setName(updateMemberDto.getName());
     updMember.setPosition(updateMemberDto.getPosition());
     updMember.setDescription(updateMemberDto.getDescription());
