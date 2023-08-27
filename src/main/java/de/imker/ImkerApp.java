@@ -1,5 +1,6 @@
 package de.imker;
 
+import com.jpomykala.springhoc.cors.EnableCORS;
 import de.imker.InitializationData.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+@EnableCORS
 public class ImkerApp {
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -25,7 +27,9 @@ public class ImkerApp {
       @Override
       public void addCorsMappings(@NotNull CorsRegistry registry) {
         // (allowedOrigins) (addMapping)
-        registry.addMapping("/**").allowedOrigins("*");
+        registry.addMapping("/**")
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
+            .allowedOrigins("*");
       }
     };
   }

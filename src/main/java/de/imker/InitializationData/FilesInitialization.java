@@ -22,7 +22,7 @@ public class FilesInitialization {
   public void filesInit() {
     List<FileUpload> filesList = filesRepository.findAll();
     if (filesList.size() == 0) {
-      for (int i = 0; i < 50; i++) {
+      for (int i = 0; i < 200; i++) {
         FileUpload fileUpload = FileUpload.builder()
             .category(FileUpload.Category.NONE)
             .originalName("empty -")
@@ -122,6 +122,38 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
+      fileUpload = FileUpload.builder()
+          .id(151L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("team1.jpg")
+          .storedName("!151-c5d57669-2182-4e00-8db1-a1eb9318a4f9team1.jpg")
+          .fileType("image/jpeg")
+          .size((long) 17179)
+          .build();
+      filesRepository.save(fileUpload);
+
+      fileUpload = FileUpload.builder()
+          .id(153L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("team2.jpg")
+          .storedName("!153-63fb33c8-6fe5-41e0-9752-d89a72b3244bteam2.jpg")
+          .fileType("image/jpeg")
+          .size((long) 14377)
+          .build();
+      filesRepository.save(fileUpload);
+
+      fileUpload = FileUpload.builder()
+          .id(152L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("team3.jpg")
+          .storedName("!152-66cae5ef-ff98-4455-a6d5-dd44b47776e3team3.jpg")
+          .fileType("image/jpeg")
+          .size((long) 14418)
+          .build();
+      filesRepository.save(fileUpload);
     }
   }
 }
