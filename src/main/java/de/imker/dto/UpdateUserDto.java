@@ -25,6 +25,6 @@ public class UpdateUserDto {
   @Schema(description = "Users status - NOT_CONFIRMED, CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
   private String newState;
 
-  @Schema(description = "User's role: ADMIN, USER", example = "USER")
+  @Schema(description = "User's role: ADMIN, MEMBER, USER", example = "USER")
   private String newRole;
 }

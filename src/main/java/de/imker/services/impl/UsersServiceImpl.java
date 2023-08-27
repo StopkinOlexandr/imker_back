@@ -88,6 +88,20 @@ public class UsersServiceImpl implements UsersService {
   }
 
   @Override
+  public UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser) {
+    User user = getUserFromRepository(userId);
+    user.setName(updateUser.getNewName());
+    user.setPlz(updateUser.getNewPlz());
+    user.setPhone(updateUser.getNewPhone());
+    user.setImage(updateUser.getNewImage());
+    user.setState(User.State.valueOf(updateUser.getNewState()));
+    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+
+    usersRepository.save(user);
+    return UserDto.from(user);
+  }
+
+  @Override
   public UsersDto getAllUsers() {
 
     return UsersDto.builder()
@@ -111,8 +125,8 @@ public class UsersServiceImpl implements UsersService {
     user.setPlz(updateUser.getNewPlz());
     user.setPhone(updateUser.getNewPhone());
     user.setImage(updateUser.getNewImage());
-    user.setState(User.State.valueOf(updateUser.getNewState()));
-    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+//    user.setState(User.State.valueOf(updateUser.getNewState()));
+//    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
 
     usersRepository.save(user);
     return UserDto.from(user);
