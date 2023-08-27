@@ -1,6 +1,6 @@
 state,name,position,description,image,phone,email,facebook,instagram
-SHOW,Maik Jäger,1 Vorsitzender,Description 1 The best boss,img/team1.jpg,+49 5162901266,Imkerverein-Ahlden@t-online.de,https://www.facebook.com/MaikJäger,https://www.instagram.com/MaikJäger
-SHOW,Peter Förster,2 Vorsitzender,Description 2 Vorsitzender,img/team2.jpg,+49 2222222,rem@Svinc.com,https://www.facebook.com/PeterFörster,https://www.instagram.com/PeterFörster
-SHOW,Vanessa Arndt,Kassenwartin, The best Kassenwartin-imker,img/team3.jpg,+49 333333333,VanessaArndt@gmail.com,https://www.facebook.com/VanessaArndt,https://www.instagram.com/VanessaArndt
-SHOW,Bärbel Grube,Schriftführerin,description 4 The best imker,img/team2.jpg,+49 444444444,BärbelGrube@gmail.com,https://www.facebook.com/Bärbel Grube,https://www.instagram.com/Bärbel Grube
-SHOW,Heinz Timrott,Wanderwart,description 5 The best Wanderwart,img/team1.jpg,+49 55555555,HeinzTimrott@gmail.com,https://www.facebook.com/HeinzTimrott,https://www.instagram.com/HeinzTimrott
+SHOW,Maik Jäger,1 Vorsitzender,Description 1 The best boss,51,+49 5162901266,Imkerverein-Ahlden@t-online.de,https://www.facebook.com/MaikJäger,https://www.instagram.com/MaikJäger
+SHOW,Peter Förster,2 Vorsitzender,Description 2 Vorsitzender,52,+49 2222222,rem@Svinc.com,https://www.facebook.com/PeterFörster,https://www.instagram.com/PeterFörster
+SHOW,Vanessa Arndt,Kassenwartin, The best Kassenwartin-imker,53,+49 333333333,VanessaArndt@gmail.com,https://www.facebook.com/VanessaArndt,https://www.instagram.com/VanessaArndt
+SHOW,Bärbel Grube,Schriftführerin,description 4 The best imker,51,+49 444444444,BärbelGrube@gmail.com,https://www.facebook.com/Bärbel Grube,https://www.instagram.com/Bärbel Grube
+SHOW,Heinz Timrott,Wanderwart,description 5 The best Wanderwart,52,+49 55555555,HeinzTimrott@gmail.com,https://www.facebook.com/HeinzTimrott,https://www.instagram.com/HeinzTimrott
