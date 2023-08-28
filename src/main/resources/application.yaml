@@ -47,3 +47,7 @@ events:
   page:
     size: 3
 
+files:
+  upload:
+    path: uploads/
+
