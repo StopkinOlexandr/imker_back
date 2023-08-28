@@ -31,11 +31,11 @@ public class RegisterDto {
   @Schema(description = "User's phone", example = "0123456789")
   private String phone;
 
-  @NotBlank
+//  @NotBlank
   @Schema(description = "User's secret question ", example = "My first car?")
   private String secretQuestion;
 
-  @NotBlank
+//  @NotBlank
   @Schema(description = "User's answer for secret question ", example = "My first car? - Ford")
   private String answerSecretQuestion;
 }
