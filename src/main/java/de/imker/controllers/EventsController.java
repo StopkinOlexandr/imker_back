@@ -9,7 +9,6 @@ import de.imker.services.EventsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -25,9 +24,11 @@ public class EventsController implements EventsApi {
         return ResponseEntity.status(HttpStatus.CREATED).body(eventsService.addEvent(newEvent));
     }
 
+
+
     @Override
-    public ResponseEntity<EventsDto> getAllEvents(Integer page, String orderBy, Boolean desc, String filterBy, String filterValue) {
-        return ResponseEntity.ok((eventsService.getAllEvents(page, orderBy, desc, filterBy, filterValue)));
+    public EventsDto getAllEvents(Integer page, Integer pageSize, String orderBy, Boolean desc, String filterBy, String filterValue) {
+        return eventsService.getAllEvents(page, pageSize, orderBy, desc, filterBy, filterValue);
     }
 
 

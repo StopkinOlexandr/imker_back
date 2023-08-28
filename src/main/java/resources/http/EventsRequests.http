@@ -166,7 +166,7 @@ Content-Type: application/json
 
 
 ### Get Event (sort)order by startDAte WORKS
-GET localhost:8080/api/events?orderBy=dateStart&desc=false&page=0
+GET localhost:8080/api/events?orderBy=dateStart&desc=false&pageSize=3&page=0
 
 
 

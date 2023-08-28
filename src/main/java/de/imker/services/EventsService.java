@@ -10,7 +10,7 @@ public interface EventsService {
     EventDto addEvent(NewEventDto newEvent);
 
 
-    EventsDto getAllEvents(Integer page, String orderBy, Boolean desc, String filterBy, String filterValue);
+    EventsDto getAllEvents(Integer page, Integer pageSize, String orderBy, Boolean desc, String filterBy, String filterValue );
 
     EventDto deleteEvent(Long eventId);
 
