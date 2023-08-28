@@ -59,9 +59,11 @@ public interface EventsApi {
     })
     @Operation(summary = "Get All Events", description = "Full access")
     @GetMapping
-    ResponseEntity<EventsDto> getAllEvents(
+    EventsDto getAllEvents(
             @Parameter(description = "Page number", example = "1")
             @RequestParam(value = "page") Integer page,
+            @Parameter(description = "Page size", example = "4")
+            @RequestParam(value = "pageSize") Integer pageSize,
             @Parameter(description = "Sort field. Enable:something")
             @RequestParam(value = "orderBy", required = false) String orderBy,
             @Parameter(description = "If True -> DESC")
@@ -69,6 +71,8 @@ public interface EventsApi {
             @RequestParam(value = "filterBy", required = false) String filterBy,
             @RequestParam(value = "filterValue", required = false) String filterValue);
 
+
+   // EventsDto getAllEvents(Integer page,Integer pageSize, String orderBy, Boolean desc, String filterBy, String filterValue);
 
     @Operation(summary = "Delete Event", description = "Only for admin")
     @ApiResponses(value = {

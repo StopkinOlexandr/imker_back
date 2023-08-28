@@ -36,8 +36,8 @@ public class EventsServiceImpl implements EventsService {
     @Value("${events.filter.fields}")
     private List<String> filterFields;
 
-    @Value("${events.page.size}")
-    private Integer pageSize;
+//    @Value("${events.page.size}")
+//    private Integer pageSize;
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
@@ -61,8 +61,8 @@ public class EventsServiceImpl implements EventsService {
     }
 
     @Override
-    public EventsDto getAllEvents(Integer pageNumber, String orderByField, Boolean desc, String filterBy, String filterValue) {
-        PageRequest pageRequest = getPageRequest(pageNumber, orderByField, desc);
+    public EventsDto getAllEvents(Integer pageNumber, Integer pageSize, String orderByField, Boolean desc, String filterBy, String filterValue) {
+        PageRequest pageRequest = getPageRequest(pageNumber, orderByField, desc, pageSize);
         Page<Event> page = getEventsPage(filterBy, filterValue, pageRequest);
         return EventsDto.builder()
                 .events(from(page.getContent()))
@@ -169,7 +169,7 @@ public class EventsServiceImpl implements EventsService {
                 .build();
     }
 
-    private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
+    private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc, Integer pageSize) {
 
         if (orderByField != null && !orderByField.equals("")) {
 
@@ -185,11 +185,11 @@ public class EventsServiceImpl implements EventsService {
 
             return PageRequest.of(pageNumber, pageSize, sort);
         } else {
-            return getDefaultPageRequest(pageNumber);
+            return getDefaultPageRequest(pageNumber, pageSize);
         }
     }
 
-    private PageRequest getDefaultPageRequest(Integer pageNumber) {
+    private PageRequest getDefaultPageRequest(Integer pageNumber, Integer pageSize) {
         return PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id"));
     }
 

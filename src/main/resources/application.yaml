@@ -44,8 +44,6 @@ events:
     fields: dateStart
   filter:
     fields: dateStart
-  page:
-    size: 3
 
 files:
   upload:
