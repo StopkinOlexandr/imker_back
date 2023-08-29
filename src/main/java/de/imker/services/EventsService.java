@@ -19,4 +19,7 @@ public interface EventsService {
 
 
     EventFollowDto followEventById(Long eventId);
+
+
+    EventFollowDto deleteFollowedEvent(Long followedId);
 }
