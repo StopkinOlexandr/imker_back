@@ -43,13 +43,14 @@ public class ImkerApp {
     UserInitialization usersInitialization = context.getBean(UserInitialization.class);
     GoogleMapLinkInitialization googleMapLinkInitialization = context.getBean(GoogleMapLinkInitialization.class);
     EventInitialization eventInitialization = context.getBean(EventInitialization.class);
+    GalleryInitialization galleryInitialization = context.getBean(GalleryInitialization.class);
     eventInitialization.eventInit();
     requestsInitialization.reqInit();
     postsInitialization.postInit();
     filesInitialization.filesInit();
     usersInitialization.userInit();
     googleMapLinkInitialization.linkInit();
-
+    galleryInitialization.galleryInit();
   }
 
 }
