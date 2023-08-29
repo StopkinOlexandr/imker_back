@@ -244,10 +244,10 @@ public class EventsServiceImpl implements EventsService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-
-//System.out.println("Email: " + currentPrincipalName);
         UserDto userEntity = usersService.findByEmail(currentPrincipalName);
-       // System.out.println(userEntity.getId());
+
+
+
         EventFollow eventFollow = EventFollow.builder()
                 .event_id(followedEvent.getEventId())
                 .user_id(userEntity.getId())
@@ -259,11 +259,6 @@ public class EventsServiceImpl implements EventsService {
 
         return EventFollowDto.from(eventFollow);
 
-    }
-
-    public static String dateToString(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormat.format(date);
     }
 
 
