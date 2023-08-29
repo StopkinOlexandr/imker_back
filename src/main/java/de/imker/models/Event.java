@@ -31,7 +31,7 @@ public class Event {
     private String author;
     private String description;
     private String shortDescription;
-    private String quantityOfMembers;
+    private Integer quantityOfMembers;
     private String photo;
     private String dateStart;
     private String dateEnd;

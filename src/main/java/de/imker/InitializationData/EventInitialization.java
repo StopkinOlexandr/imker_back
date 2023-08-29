@@ -4,6 +4,7 @@ import de.imker.dto.NewEventDto;
 import de.imker.models.Event;
 import de.imker.repositories.EventsRepository;
 
+import de.imker.repositories.UsersOnEventsRepository;
 import de.imker.services.impl.EventsServiceImpl;
 import liquibase.license.LicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,10 @@ public class EventInitialization {
     private final EventsServiceImpl eventsService;
     private final EventsRepository eventsRepository;
 
+
     @Autowired
     public EventInitialization(EventsRepository eventsRepository) {
-        this.eventsService = new EventsServiceImpl(eventsRepository);
+        this.eventsService = new EventsServiceImpl(eventsRepository, null,null);
         this.eventsRepository = eventsRepository;
     }
 
@@ -31,7 +33,7 @@ public class EventInitialization {
                     .shortDescription("Imkertreffen mit Erfahrungsaustausch und Fortbildungen")
                     .address("Imkerhof Musterstraße 123, Beispielstadt")
                     .author("Imkerverein Beispielstadt")
-                    .quantityOfMembers("10")
+                    .quantityOfMembers(10)
                     .location("<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
                     .photo("link_zum_foto.jpg")
                     .startTime("09:00")
@@ -49,7 +51,7 @@ public class EventInitialization {
                     .shortDescription("Honigfest: Feiern, Lernen und Verkostung")
                     .address("Bienenhof Sonnenschein, Musterstadt")
                     .author("Imkergemeinschaft Musterstadt")
-                    .quantityOfMembers("20")
+                    .quantityOfMembers(20)
                     .location("<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
                     .photo("link_zum_foto.jpg")
                     .startTime("10:00")
@@ -66,7 +68,7 @@ public class EventInitialization {
                     .shortDescription("Workshop: Fortgeschrittenes Bienenmanagement")
                     .address("Schulungsraum Bienenwissen, Beispielstadt")
                     .author("Bienenwissen Akademie")
-                    .quantityOfMembers("30")
+                    .quantityOfMembers(30)
                     .location("<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
                     .photo("link_zum_foto.jpg")
                     .startTime("13:00")
@@ -82,7 +84,7 @@ public class EventInitialization {
                     .shortDescription("Jahrestreffen: Erfahrungen teilen und Netzwerken")
                     .address("Gasthaus Bienenfreude, Musterstadt")
                     .author("Imkerzunft Musterstadt")
-                    .quantityOfMembers("40")
+                    .quantityOfMembers(40)
                     .location("<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
                     .photo("link_zum_foto.jpg")
                     .startTime("14:00")
@@ -98,7 +100,7 @@ public class EventInitialization {
                     .shortDescription("Seminar: Bienenschutz und Maßnahmen")
                     .address("Umweltzentrum Nachhaltigkeit, Beispielstadt")
                     .author("Umweltschutzverein Beispielstadt")
-                    .quantityOfMembers("50")
+                    .quantityOfMembers(50)
                     .location("<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2430.1166171018426!2d13.2207348!3d52.4770242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a859bdeafe589f%3A0xa79c987b6c7854a3!2z0KTQvtGA0YHRgiDQk9GA0YPQvdC10LLQsNC70YzQtA!5e0!3m2!1sru!2sde!4v1692992412612!5m2!1sru!2sde\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>")
                     .photo("link_zum_foto.jpg")
                     .startTime("16:30")

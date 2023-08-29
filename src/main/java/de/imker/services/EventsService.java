@@ -1,10 +1,7 @@
 package de.imker.services;
 
 
-import de.imker.dto.EventDto;
-import de.imker.dto.EventsDto;
-import de.imker.dto.NewEventDto;
-import de.imker.dto.UpdateEventDto;
+import de.imker.dto.*;
 
 public interface EventsService {
     EventDto addEvent(NewEventDto newEvent);
@@ -19,4 +16,7 @@ public interface EventsService {
     EventsDto getEventsOfUser(Long userId);
 
     EventDto getEventById(Long eventId);
+
+
+    EventFollowDto followEventById(Long eventId);
 }
