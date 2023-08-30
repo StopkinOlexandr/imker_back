@@ -41,6 +41,7 @@ public class SecurityConfig {
         .antMatchers("/api/users/**").authenticated()
         .and()
         .formLogin()
+        .loginProcessingUrl("/api/login")
         .successHandler((request, response, authentication) -> {
           fillResponse(response, HttpStatus.OK, "Login successful");
         })
@@ -61,6 +62,7 @@ public class SecurityConfig {
         })
         .and()
         .logout()
+        .logoutUrl("/api/logout")
         .logoutSuccessHandler((request, response, authentication) -> {
           fillResponse(response, HttpStatus.OK, "Logout successful");
         });
