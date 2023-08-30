@@ -38,6 +38,4 @@ public class EventFollow {
     @Schema(description = "Time of follow state creation", example = "yyyy-MM-dd HH:mm:ss")
     private Date followCreationTime;
 
-
-
 }

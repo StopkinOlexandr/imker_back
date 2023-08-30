@@ -1,13 +1,12 @@
 package de.imker.models;
 
-import java.util.List;
-import javax.persistence.*;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -30,6 +29,7 @@ public class User {
     BANNED,
     DELETED
   }
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -62,9 +62,11 @@ public class User {
   private State state;
 
   @ManyToMany
-  @JoinTable(name = "users_on_events",
-          joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"))
-  private List<Event> eventsList;
+  @JoinTable(
+      name = "user_event",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "events_id")
+  )
+  private List<Event> events = new ArrayList<>();
 
 }

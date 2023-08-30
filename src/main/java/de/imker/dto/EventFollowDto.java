@@ -32,17 +32,17 @@ public class EventFollowDto {
     private boolean followedStatus;
 
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Time of follow state creation", example = "yyyy-MM-dd HH:mm:ss")
-    private String followCreationTime;
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Schema(description = "Time of follow state creation", example = "yyyy-MM-dd HH:mm:ss")
+//    private String followCreationTime;
 
 
     public static EventFollowDto from(EventFollow eventFollow) {
         return EventFollowDto.builder()
                 .idEvent(eventFollow.getEvent_id())
                 .idUser(eventFollow.getUser_id())
-                .followCreationTime(dateToString(eventFollow.getFollowCreationTime()))
+//                .followCreationTime(dateToString(eventFollow.getFollowCreationTime()))
                 .followedStatus(eventFollow.isFollowedStatus())
 
 
