@@ -1,15 +1,8 @@
 package de.imker.models;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -67,5 +60,11 @@ public class User {
   @Column(nullable = false)
   @Enumerated(value = EnumType.STRING)
   private State state;
+
+  @ManyToMany
+  @JoinTable(name = "users_on_events",
+          joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"))
+  private List<Event> eventsList;
 
 }

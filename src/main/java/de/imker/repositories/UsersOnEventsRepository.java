@@ -13,6 +13,8 @@ import java.util.Optional;
 
 public interface UsersOnEventsRepository extends JpaRepository <EventFollow, Long> {
 
-   // List<EventFollow> findAllByUserId(Long userId);
+//    List<EventFollow> findAllByEvent_id(Long eventId);
+//    List<EventFollow> Fi(Long eventId);
+//    List<EventFollow> findEventFollowByUser_id(Long userId);
 
 }

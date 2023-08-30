@@ -16,30 +16,30 @@ public class NewEventDto {
 //@NotNull
    // @NotBlank
     @Size(min=3,max=1200)
-    @Schema(description = "Even's title", example = "Title about event...")
+    @Schema(description = "Even's title", example = "Honigfest 2023")
     private String title;
 
     @NotNull
     @NotBlank
-    @Schema(description = "Description of event", example = "Ex. dress-code, or food")
+    @Schema(description = "Description of event", example = "Herzlich willkommen auf unserem Honigfest")
     private String description;
 
     @NotNull
     @NotBlank
-    @Schema(description = "Short description of event", example = "Ex. dress-code, or food")
+    @Schema(description = "Short description of event", example = "Honigfest in Bremen")
     private String shortDescription;
 
 
     @Schema(description = "Event's place", example = "Berlin, Kirchweg str., 13")
     private String address;
 
-    @Schema(description = "Events author", example = "Andrii")
+    @Schema(description = "Events author", example = "Georg")
     private String author;
 
     @Schema(description = "Planned number of participants", example = "182")
     private Integer quantityOfMembers;//int
 
-    @Schema(description = "Address of photo", example = "./src/photo/photo12.png")
+    @Schema(description = "Address of photo", example = "62")
     private String photo;
 
     @Schema(description = "Publishing start date in format YYYY-MM-DD", example = "2022-02-02")
