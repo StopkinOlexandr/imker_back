@@ -48,7 +48,6 @@ public class User {
 
   @Column(nullable = false)
   private String hashPassword;
-//  private String password;
 
   @Column(nullable = false)
   private String secretQuestion;
@@ -69,8 +68,4 @@ public class User {
   @Enumerated(value = EnumType.STRING)
   private State state;
 
-  private Boolean isLogin;
-
-//  private String token;
-//  private String coordinates;
 }
