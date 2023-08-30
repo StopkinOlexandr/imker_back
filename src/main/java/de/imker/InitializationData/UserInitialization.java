@@ -30,6 +30,7 @@ public class UserInitialization {
           .hashPassword("$2a$10$INw4/IiTNe9XwikhBxmezeUNsS7MXJPWTs1rGb6lEwfPENWnBBasu") //!Boss12345
           .name("Boss")
           .plz("01234")
+          .image("")
           .phone("01234567890123")
           .secretQuestion("Auto?")
           .answerSecretQuestion("Ford")
