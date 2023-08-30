@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -232,14 +233,14 @@ public class EventsServiceImpl implements EventsService {
 
 
     @Override
-    public EventFollowDto followEventById(Long eventId) {///TODO Delete get all by user Id, get usersByEvent ID   JPA REP - search is exist
+    public EventFollowDto followEventById(Long eventId) {
         Event followedEvent = getEventOrThrow(eventId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         UserDto userEntity = usersService.findByEmail(currentPrincipalName);
         Long userId = userEntity.getId();
 
-       // System.out.println("Find all " + usersOnEventsRepository.findAllByUser_id(userId));
+        // System.out.println("Find all " + usersOnEventsRepository.findAllByUser_id(userId));
 
         EventFollow eventFollow = EventFollow.builder()
                 .event_id(followedEvent.getEventId())
@@ -256,27 +257,16 @@ public class EventsServiceImpl implements EventsService {
 
     @Override
     public EventFollowDto deleteFollowedEvent(Long followedId) {
-       EventFollow eventFollow= usersOnEventsRepository.findById(followedId).orElseThrow(
+        EventFollow eventFollow = usersOnEventsRepository.findById(followedId).orElseThrow(
                 () -> new NotFoundException("Follower with: " + followedId + " not found "));
-               usersOnEventsRepository.delete(eventFollow);
+        usersOnEventsRepository.delete(eventFollow);
         return EventFollowDto.from(eventFollow);
     }
 
 
-//    public EventFollowDto getUsersEvents() {
-//
-//        List<EventFollow> eventFollowList = new ArrayList<>();
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-//        UserDto userEntity = usersService.findByEmail(currentPrincipalName);
-//
-//        EventFollow eventFollow = EventFollow.builder()
-//                .user_id(userEntity.getId())
-//                .event_id(eve)
-//
-//                .build();
-//
-//return null;
-//    }
+
+
+///TODO Delete get all by user Id, get usersByEvent ID   JPA REP - search is exist
+
 
 }
