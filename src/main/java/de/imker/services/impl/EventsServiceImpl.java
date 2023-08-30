@@ -9,7 +9,6 @@ import de.imker.models.EventFollow;
 import de.imker.repositories.EventsRepository;
 import de.imker.repositories.UsersOnEventsRepository;
 import de.imker.services.EventsService;
-import de.imker.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -20,8 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +33,7 @@ public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
     private final UsersServiceImpl usersService;
-     private final UsersOnEventsRepository usersOnEventsRepository;
+    private final UsersOnEventsRepository usersOnEventsRepository;
 
     @Value("${events.sort.fields}")
     private List<String> sortFields;
@@ -43,10 +41,6 @@ public class EventsServiceImpl implements EventsService {
     @Value("${events.filter.fields}")
     private List<String> filterFields;
 
-    // AuthenticatedUser currentAuthenticatedUser;
-
-//    @Value("${events.page.size}")
-//    private Integer pageSize;
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
@@ -241,28 +235,38 @@ public class EventsServiceImpl implements EventsService {
     @Override
     public EventFollowDto followEventById(Long eventId) {
         Event followedEvent = getEventOrThrow(eventId);
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         UserDto userEntity = usersService.findByEmail(currentPrincipalName);
+        Long userId = userEntity.getId();
 
-
+        // System.out.println("Find all " + usersOnEventsRepository.findAllByUser_id(userId));
 
         EventFollow eventFollow = EventFollow.builder()
                 .event_id(followedEvent.getEventId())
-                .user_id(userEntity.getId())
+                .user_id(userId)
                 .followedStatus(true)
                 .build();
 
-        followedEvent.setQuantityOfMembers(followedEvent.getQuantityOfMembers()+1);
+        followedEvent.setQuantityOfMembers(followedEvent.getQuantityOfMembers() + 1);
         usersOnEventsRepository.save(eventFollow);
 
         return EventFollowDto.from(eventFollow);
 
     }
 
+    @Override
+    public EventFollowDto deleteFollowedEvent(Long followedId) {
+        EventFollow eventFollow = usersOnEventsRepository.findById(followedId).orElseThrow(
+                () -> new NotFoundException("Follower with: " + followedId + " not found "));
+        usersOnEventsRepository.delete(eventFollow);
+        return EventFollowDto.from(eventFollow);
+    }
 
 
+
+
+///TODO Delete get all by user Id, get usersByEvent ID   JPA REP - search is exist
 
 
 }

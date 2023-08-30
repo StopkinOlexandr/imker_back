@@ -60,5 +60,12 @@ public class EventsController implements EventsApi {
                 .ok(eventsService.followEventById(eventId));
     }
 
+    @Override
+    public ResponseEntity<EventFollowDto> deleteFollowedEvent(Long eventId) {
+        return ResponseEntity.ok(eventsService.deleteFollowedEvent(eventId));
+    }
+
+
+
 
 }

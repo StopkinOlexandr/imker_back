@@ -397,27 +397,91 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
-      fileUpload = FileUpload.builder()
-          .id(153L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("team2.jpg")
-          .storedName("!153-63fb33c8-6fe5-41e0-9752-d89a72b3244bteam2.jpg")
-          .fileType("image/jpeg")
-          .size((long) 14377)
-          .build();
-      filesRepository.save(fileUpload);
+            fileUpload = FileUpload.builder()
+                    .id(153L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.AVATAR)
+                    .originalName("team2.jpg")
+                    .storedName("!153-63fb33c8-6fe5-41e0-9752-d89a72b3244bteam2.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 14377)
+                    .build();
+            filesRepository.save(fileUpload);
 
-      fileUpload = FileUpload.builder()
-          .id(152L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("team3.jpg")
-          .storedName("!152-66cae5ef-ff98-4455-a6d5-dd44b47776e3team3.jpg")
-          .fileType("image/jpeg")
-          .size((long) 14418)
-          .build();
-      filesRepository.save(fileUpload);
+            fileUpload = FileUpload.builder()
+                    .id(152L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.AVATAR)
+                    .originalName("team3.jpg")
+                    .storedName("!152-66cae5ef-ff98-4455-a6d5-dd44b47776e3team3.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 14418)
+                    .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                    .id(91L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.EVENT)
+                    .originalName("!091Event1.jpg")
+                    .storedName("!091-f9b2c21f-76c6-43a1-8f40-0365924ff952!091Event1.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 15780)
+                    .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                    .id(92L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.EVENT)
+                    .originalName("!092EventHonigFest.jpg")
+                    .storedName("!092-297a0746-3d2f-4755-8b5a-795d87a07c0c!092EventHonigFest.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 13569)
+                    .build();
+            filesRepository.save(fileUpload);
+
+ fileUpload = FileUpload.builder()
+                    .id(93L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.EVENT)
+                    .originalName("!093Beene.jpg")
+                    .storedName("!093-267238124-e0a9-400a-aa03-c0014ae5c3e7!093Beene.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 14079)
+                    .build();
+
+
+            filesRepository.save(fileUpload);
+ fileUpload = FileUpload.builder()
+                    .id(94L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.EVENT)
+                    .originalName("!094Imker.jpg")
+                    .storedName("!094-cb3312f8-f586-4dd0-b0ee-b39601adc6d1!094Imker.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 19887)
+                    .build();
+            filesRepository.save(fileUpload);
+
+            filesRepository.save(fileUpload);
+ fileUpload = FileUpload.builder()
+                    .id(95L)
+                    .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                    .category(FileUpload.Category.EVENT)
+                    .originalName("!095.jpg")
+                    .storedName("!095-2cce7697-dee7-4287-8615-6dd854438024!095.jpg")
+                    .fileType("image/jpeg")
+                    .size((long) 14159)
+                    .build();
+            filesRepository.save(fileUpload);
+
+
+
+
+        }
+
+
     }
-  }
 }
+

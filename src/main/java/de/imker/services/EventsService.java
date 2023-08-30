@@ -3,6 +3,8 @@ package de.imker.services;
 
 import de.imker.dto.*;
 
+import java.util.List;
+
 public interface EventsService {
     EventDto addEvent(NewEventDto newEvent);
 
@@ -19,4 +21,8 @@ public interface EventsService {
 
 
     EventFollowDto followEventById(Long eventId);
+
+
+    EventFollowDto deleteFollowedEvent(Long followedId);
+
 }
