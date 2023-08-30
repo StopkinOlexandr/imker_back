@@ -1,10 +1,7 @@
 package de.imker.controllers;
 
 import de.imker.controllers.api.EventsApi;
-import de.imker.dto.EventDto;
-import de.imker.dto.EventsDto;
-import de.imker.dto.NewEventDto;
-import de.imker.dto.UpdateEventDto;
+import de.imker.dto.*;
 import de.imker.services.EventsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -55,6 +52,12 @@ public class EventsController implements EventsApi {
     public ResponseEntity<EventDto> getEventById(Long eventId) {
         return ResponseEntity
                 .ok(eventsService.getEventById(eventId));
+    }
+
+    @Override
+    public ResponseEntity<EventFollowDto> followEvent(Long eventId) {
+        return ResponseEntity
+                .ok(eventsService.followEventById(eventId));
     }
 
 

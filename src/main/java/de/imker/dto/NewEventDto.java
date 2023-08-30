@@ -37,7 +37,7 @@ public class NewEventDto {
     private String author;
 
     @Schema(description = "Planned number of participants", example = "182")
-    private String quantityOfMembers;//int
+    private Integer quantityOfMembers;//int
 
     @Schema(description = "Address of photo", example = "./src/photo/photo12.png")
     private String photo;

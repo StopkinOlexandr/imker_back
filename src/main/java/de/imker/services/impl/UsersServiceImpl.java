@@ -34,7 +34,7 @@ public class UsersServiceImpl implements UsersService {
 
 
 
-  private UserDto findByEmail(String email) {
+  public UserDto findByEmail(String email) {
     UsersDto list = getAllUsers();
     return list.getUsers()
         .stream()

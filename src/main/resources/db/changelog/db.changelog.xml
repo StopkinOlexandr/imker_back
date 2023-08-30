@@ -23,6 +23,7 @@
         </createTable>
     </changeSet>
 
+
     <changeSet id="#2" author="vadim">
         <createTable tableName="posts">
             <column name="id" type="int" autoIncrement="true">
@@ -77,7 +78,7 @@
             <column name="end_time" type="varchar(50)"/>
             <column name="location" type="varchar(1000)"/>
             <column name="status" type="varchar(50)"/>
-            <column name="quantity_of_members" type="varchar(50)"/>
+            <column name="quantity_of_members" type="int"/>
 
         </createTable>
     </changeSet>
@@ -140,6 +141,12 @@
             </column>
             <column name="user_id" type="int"/>
             <column name="event_id" type="int"/>
+
+            <column name="followed_status" type="bool"/>
+            <column name="follow_creation_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 

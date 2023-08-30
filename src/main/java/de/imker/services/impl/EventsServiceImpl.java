@@ -1,27 +1,32 @@
 package de.imker.services.impl;
 
 
-import de.imker.dto.EventDto;
-import de.imker.dto.EventsDto;
-import de.imker.dto.NewEventDto;
-import de.imker.dto.UpdateEventDto;
+import de.imker.dto.*;
 import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.Event;
+import de.imker.models.EventFollow;
 import de.imker.repositories.EventsRepository;
+import de.imker.repositories.UsersOnEventsRepository;
 import de.imker.services.EventsService;
+import de.imker.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import static de.imker.dto.EventDto.from;
+
 
 @RequiredArgsConstructor
 @Transactional
@@ -29,12 +34,16 @@ import static de.imker.dto.EventDto.from;
 public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
+    private final UsersServiceImpl usersService;
+     private final UsersOnEventsRepository usersOnEventsRepository;
 
     @Value("${events.sort.fields}")
     private List<String> sortFields;
 
     @Value("${events.filter.fields}")
     private List<String> filterFields;
+
+    // AuthenticatedUser currentAuthenticatedUser;
 
 //    @Value("${events.page.size}")
 //    private Integer pageSize;
@@ -129,7 +138,6 @@ public class EventsServiceImpl implements EventsService {
             eventToUpdate.setEndTime(eventWithUpdatedData.getEndTime());
 
 
-
         if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getStatus()) &&
                 !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty()))
             eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getStatus()));
@@ -168,6 +176,7 @@ public class EventsServiceImpl implements EventsService {
                 .photo(event.getPhoto())
                 .build();
     }
+
 
     private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc, Integer pageSize) {
 
@@ -227,4 +236,33 @@ public class EventsServiceImpl implements EventsService {
         return eventsRepository.findById(eventId).orElseThrow(
                 () -> new NotFoundException("Event with: " + eventId + " not found "));
     }
+
+
+    @Override
+    public EventFollowDto followEventById(Long eventId) {
+        Event followedEvent = getEventOrThrow(eventId);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        UserDto userEntity = usersService.findByEmail(currentPrincipalName);
+
+
+
+        EventFollow eventFollow = EventFollow.builder()
+                .event_id(followedEvent.getEventId())
+                .user_id(userEntity.getId())
+                .followedStatus(true)
+                .build();
+
+        followedEvent.setQuantityOfMembers(followedEvent.getQuantityOfMembers()+1);
+        usersOnEventsRepository.save(eventFollow);
+
+        return EventFollowDto.from(eventFollow);
+
+    }
+
+
+
+
+
 }

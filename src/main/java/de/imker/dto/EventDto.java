@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Events Value")
+@Schema(description = "Events data")
 public class EventDto {
 
     @Schema(description = "Event's ID", example = "1")
@@ -44,7 +44,7 @@ public class EventDto {
 
 
     @Schema(description = "Planned number of participants", example = "182")
-    private String quantityOfMembers;//int
+    private Integer quantityOfMembers;//int
 
     @Schema(description = "Address of photo", example = "./src/photo/photo12.png")
     private String photo;
