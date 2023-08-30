@@ -24,7 +24,7 @@ public class UserDto {
   @Schema(description = "User's e-main", example = "aaa@bbb.ccc")
   private String email;
 
-  @Schema(description = "User's role: ADMIN, USER", example = "USER")
+  @Schema(description = "User's role: ADMIN, MEMBER, USER", example = "USER")
   private String role;
 
   @Schema(description = "User's state: CONFIRMED, NOT_CONFIRMED, BANNED, DELETED", example = "CONFIRMED")

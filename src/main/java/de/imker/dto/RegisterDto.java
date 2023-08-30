@@ -16,26 +16,28 @@ public class RegisterDto {
   @NotBlank
   private String email;
 
-  @Schema(description = "User's password", example = "qwerty007")
+  @Schema(description = "User's password", example = "!Aqwerty007")
   @NotBlank
-  @Size(min = 7, max = 1000)
-  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", message = "Weak password")
+  @Size(min = 6, max = 100)
+  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{5,}$", message = "Weak password")
   private String password;
 
   @Schema(description = "User's name", example = "Alex Krause")
   private String name;
 
+  @Size(min = 5, max = 5)
+  @Pattern(regexp = "^\\d{5}$", message = "Wrong PLZ")
   @Schema(description = "User's PLZ", example = "01234")
   private String plz;
 
   @Schema(description = "User's phone", example = "0123456789")
   private String phone;
 
-  @NotBlank
+//  @NotBlank
   @Schema(description = "User's secret question ", example = "My first car?")
   private String secretQuestion;
 
-  @NotBlank
+//  @NotBlank
   @Schema(description = "User's answer for secret question ", example = "My first car? - Ford")
   private String answerSecretQuestion;
 }

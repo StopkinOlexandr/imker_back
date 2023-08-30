@@ -26,4 +26,6 @@ public interface UsersService {
   UserIdDto getSecretQuestionAnswer(UserSecretQuestionAnswerDto secretQuestionAnswer);
 
   UserDto setNewPassword(UserRestorePwdDto restorePwd);
+
+  UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser);
 }
