@@ -58,12 +58,13 @@
             <column name="role" type="varchar(30)"/>
             <column name="state" type="varchar(30)"/>
             <column name="is_login" type="bool"/>
+            <column name="events" type="int"/>
         </createTable>
     </changeSet>
 
     <changeSet id="#4" author="andrii">
         <createTable tableName="events">
-            <column name="event_id" type="int" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="title" type="varchar(250)"/>
@@ -79,6 +80,7 @@
             <column name="location" type="varchar(1000)"/>
             <column name="status" type="varchar(50)"/>
             <column name="quantity_of_members" type="int"/>
+            <column name="users" type="int"/>
 
         </createTable>
     </changeSet>
@@ -148,7 +150,20 @@
             </column>
 
         </createTable>
+        <addForeignKeyConstraint baseTableName="account" baseColumnNames="id"
+                                 constraintName="users_on_events" referencedTableName="events"
+                                 referencedColumnNames="id"/>
+
     </changeSet>
+
+<!--       <addForeignKeyConstraint baseTableName="customers" baseColumnNames="country_id"
+                                 constraintName="fk_customers_countries" referencedTableName="countries"
+                                 referencedColumnNames="country_id"/>-->
+
+
+
+
+
 
     <changeSet id="#9" author="vadim">
         <createTable tableName="gallery">
@@ -176,3 +191,109 @@
     </changeSet>
 
 </databaseChangeLog>
+<!--Vadim, [30.08.2023 22:33]
+<changeSet id="#1" author="sergey">
+        <createTable tableName="categories">
+            <column name="category_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="category_name" type="varchar(50)"/>
+            <column name="description" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="countries">
+            <column name="country_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="country_name" type="varchar(50)"/>
+        </createTable>
+        <createTable tableName="customers">
+            <column name="customer_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customer_name" type="varchar(100)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="country_id" type="int"/>
+        </createTable>
+        <createTable tableName="order_details">
+            <column name="order_detail_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="order_id" type="int"/>
+            <column name="product_id" type="int"/>
+            <column name="quantity" type="int"/>
+        </createTable>
+        <createTable tableName="orders">
+            <column name="order_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="int"/>
+            <column name="shop_id" type="int"/>
+            <column name="order_date" type="timestamp"/>
+            <column name="state" type="varchar(25)"/>
+        </createTable>
+        <createTable tableName="products">
+            <column name="product_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="category_id" type="int"/>
+            <column name="supplier_id" type="int"/>
+            <column name="product_name" type="varchar(50)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="price" type="numeric(10,2)"/>
+            <column name="is_deleted" type="boolean"/>
+        </createTable>
+        <createTable tableName="products_in_shop">
+            <column name="product_in_shop_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" type="int"/>
+            <column name="shop_id" type="int"/>
+            <column name="quantity" type="int"/>
+        </createTable>
+        <createTable tableName="shops">
+            <column name="shop_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="shop_name" type="varchar(50)"/>
+        </createTable>
+        <createTable tableName="suppliers">
+            <column name="supplier_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="supplier_name" type="varchar(50)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="country_id" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="customers" baseColumnNames="country_id"
+                                 constraintName="fk_customers_countries" referencedTableName="countries"
+                                 referencedColumnNames="country_id"/>
+        <addForeignKeyConstraint baseTableName="order_details" baseColumnNames="order_id"
+                                 constraintName="fk_order_details_orders" referencedTableName="orders"
+                                 referencedColumnNames="order_id"/>
+        <addForeignKeyConstraint baseTableName="order_details" baseColumnNames="product_id"
+                                 constraintName="fk_order_details_products" referencedTableName="products"
+
+Vadim, [30.08.2023 22:33]
+referencedColumnNames="product_id"/>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="customer_id"
+                                 constraintName="fk_orders_customers" referencedTableName="customers"
+                                 referencedColumnNames="customer_id"/>
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="shop_id"
+                                 constraintName="fk_orders_shops" referencedTableName="shops"
+                                 referencedColumnNames="shop_id"/>
+        <addForeignKeyConstraint baseTableName="products" baseColumnNames="category_id"
+                                 constraintName="fk_products_categories" referencedTableName="categories"
+                                 referencedColumnNames="category_id"/>
+        <addForeignKeyConstraint baseTableName="products" baseColumnNames="supplier_id"
+                                 constraintName="fk_products_suppliers" referencedTableName="suppliers"
+                                 referencedColumnNames="supplier_id"/>
+        <addForeignKeyConstraint baseTableName="products_in_shop" baseColumnNames="product_id"
+                                 constraintName="fk_products_in_shop_products" referencedTableName="products"
+                                 referencedColumnNames="product_id"/>
+        <addForeignKeyConstraint baseTableName="products_in_shop" baseColumnNames="shop_id"
+                                 constraintName="fk_products_in_shop_shops" referencedTableName="shops"
+                                 referencedColumnNames="shop_id"/>
+        <addForeignKeyConstraint baseTableName="suppliers" baseColumnNames="country_id"
+                                 constraintName="fk_suppliers_countries" referencedTableName="countries"
+                                 referencedColumnNames="country_id"/>
+    </changeSet>-->

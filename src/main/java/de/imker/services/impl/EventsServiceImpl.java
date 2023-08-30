@@ -19,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -155,7 +154,7 @@ public class EventsServiceImpl implements EventsService {
     public EventDto getEventById(Long eventId) {
         Event event = getEventOrThrow(eventId);
         return EventDto.builder()
-                .idEvent(event.getEventId())
+                .idEvent(event.getId())
                 .title(event.getTitle())
                 .description(event.getDescription())
                 .shortDescription(event.getShortDescription())
@@ -243,7 +242,7 @@ public class EventsServiceImpl implements EventsService {
         // System.out.println("Find all " + usersOnEventsRepository.findAllByUser_id(userId));
 
         EventFollow eventFollow = EventFollow.builder()
-                .event_id(followedEvent.getEventId())
+                .event_id(followedEvent.getId())
                 .user_id(userId)
                 .followedStatus(true)
                 .build();

@@ -20,7 +20,7 @@ public class EventFollow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_event_id;
+    private Long id;
 
 
     @Schema(description = "Event's ID", example = "1")

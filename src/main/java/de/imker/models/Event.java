@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -17,6 +18,7 @@ import javax.persistence.*;
 //@EqualsAndHashCode(exclude = "events")
 //@ToString(exclude = "events")
 public class Event {
+
     public enum Status {
         EXPECTED,
         ENDED,
@@ -25,7 +27,7 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long eventId;
+    private Long id;
     private String title;
     private String address;
     private String author;
@@ -42,8 +44,9 @@ public class Event {
     private Status status;
 
 
-//    @OneToMany(mappedBy = "user_ID")//TODO
-//    private List<Event> events;
+   @ManyToMany(mappedBy = "eventsList")
+    private List<User> users;
+
 
 
 }
