@@ -15,6 +15,7 @@ import de.imker.exeptions.RestException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
+import de.imker.services.telegrammNotice.TelegramNotice;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -67,6 +68,21 @@ public class UsersServiceImpl implements UsersService {
     UserDto userDto = findByEmail(secretQuestionAnswer.getEmail());
     User user = usersRepository.findById(userDto.getId()).orElseThrow(
         () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
+
+    String message = String.format("""
+        User with ID %s tried to restore his password.
+          Email: %s
+          Name: %s
+          PLZ: %s
+          PhoneNumber: %s
+          Role: %s
+        """, user.getId().toString(),
+        user.getEmail(),
+        user.getName(),
+        user.getPlz(),
+        user.getPhone(),
+        user.getRole());
+    TelegramNotice.sendTelegramNotice(message);
 
     if (user.getSecretQuestion().equals(secretQuestionAnswer.getSecretQuestion())) {
       if (user.getAnswerSecretQuestion().equals(secretQuestionAnswer.getSecretQuestionAnswer())) {

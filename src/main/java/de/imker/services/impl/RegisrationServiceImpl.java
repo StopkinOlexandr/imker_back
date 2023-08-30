@@ -9,6 +9,7 @@ import de.imker.models.User.Role;
 import de.imker.models.User.State;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.RegistrationService;
+import de.imker.services.telegrammNotice.TelegramNotice;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -38,7 +39,20 @@ public class RegisrationServiceImpl implements RegistrationService {
         .state(State.CONFIRMED).build();
 
     usersRepository.save(user);
+    String message = String.format("""
+        New user registered:
 
+          Email: %s
+          Name: %s
+          PLZ: %s
+          PhoneNumber: %s
+          Role: %s
+        """,user.getEmail(),
+        user.getName(),
+        user.getPlz(),
+        user.getPhone(),
+        user.getRole());
+    TelegramNotice.sendTelegramNotice(message);
     return from(user);
   }
 }
