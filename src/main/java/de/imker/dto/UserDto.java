@@ -42,12 +42,6 @@ public class UserDto {
   @Schema(description = "User's image", example = "???") //TODO
   private String image;
 
-  //  private String secretQuestion;
-
-  @Schema(description = "User's is signed in", example = "TRUE")
-  private Boolean isLogin;
-
-
   public static UserDto from(User user) {
     return UserDto.builder()
         .id(user.getId())
@@ -58,8 +52,6 @@ public class UserDto {
         .name(user.getName())
         .phone(user.getPhone())
         .image(user.getImage())
-//        .secretQuestion(user.getSecretQuestion())
-        .isLogin(user.getIsLogin())
         .build();
   }
 

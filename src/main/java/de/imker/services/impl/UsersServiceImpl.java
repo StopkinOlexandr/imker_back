@@ -125,8 +125,6 @@ public class UsersServiceImpl implements UsersService {
     user.setPlz(updateUser.getNewPlz());
     user.setPhone(updateUser.getNewPhone());
     user.setImage(updateUser.getNewImage());
-//    user.setState(User.State.valueOf(updateUser.getNewState()));
-//    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
 
     usersRepository.save(user);
     return UserDto.from(user);

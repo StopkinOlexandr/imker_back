@@ -32,6 +32,7 @@ public class RegisrationServiceImpl implements RegistrationService {
         .hashPassword(passwordEncoder.encode(registerData.getPassword()))
         .name(registerData.getName())
         .plz(registerData.getPlz())
+        .image("")
         .phone(registerData.getPhone())
         .role(Role.USER)
         .state(State.CONFIRMED).build();
