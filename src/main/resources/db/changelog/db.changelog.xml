@@ -141,16 +141,16 @@
             </column>
             <column name="user_id" type="int"/>
             <column name="event_id" type="int"/>
+
             <column name="followed_status" type="bool"/>
             <column name="follow_creation_time" type="timestamp">
                 <constraints nullable="false"/>
             </column>
 
-
         </createTable>
     </changeSet>
 
-    <changeSet id="#8" author="vadim">
+    <changeSet id="#9" author="vadim">
         <createTable tableName="gallery">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -160,6 +160,18 @@
             </column>
 
             <column name="link_to_img" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="#10" author="vadim">
+        <createTable tableName="address">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="address" type="varchar(300)"/>
+            <column name="phone" type="varchar(300)"/>
+            <column name="email" type="varchar(300)"/>
+
         </createTable>
     </changeSet>
 
