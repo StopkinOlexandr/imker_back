@@ -264,6 +264,16 @@ public class EventsServiceImpl implements EventsService {
         .build();
   }
 
+  @Override
+  public EventsDto getAllTimeEvents() {
+
+    List<Event> events = eventsRepository.findAll();
+    return EventsDto.builder()
+            .events(from(events))
+            .count(events.size())
+            .build();
+  }
+
   private boolean userHasEvent(User user, Event event) {
     return user.getEvents().contains(event);
   }

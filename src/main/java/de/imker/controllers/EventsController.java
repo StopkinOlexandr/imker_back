@@ -65,7 +65,10 @@ public class EventsController implements EventsApi {
      return null;
 //        return ResponseEntity.ok(eventsService.deleteFollowedEvent(eventId));
     }
-
+    @Override
+    public EventsDto getAllTimeEvents() {
+        return eventsService.getAllTimeEvents();
+    }
 
 
 
