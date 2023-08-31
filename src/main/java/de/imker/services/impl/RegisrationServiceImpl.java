@@ -35,6 +35,8 @@ public class RegisrationServiceImpl implements RegistrationService {
         .plz(registerData.getPlz())
         .image("")
         .phone(registerData.getPhone())
+        .secretQuestion(registerData.getSecretQuestion())
+        .answerSecretQuestion(registerData.getAnswerSecretQuestion())
         .role(Role.USER)
         .state(State.CONFIRMED).build();
 
