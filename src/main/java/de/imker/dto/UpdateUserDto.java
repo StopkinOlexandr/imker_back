@@ -1,8 +1,10 @@
 package de.imker.dto;
 
+import de.imker.models.Event;
 import de.imker.models.User.Role;
 import de.imker.models.User.State;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -27,4 +29,7 @@ public class UpdateUserDto {
 
   @Schema(description = "User's role: ADMIN, MEMBER, USER", example = "USER")
   private String newRole;
+
+  @Schema(description = "User's events list")
+  private List<Event> newEvents;
 }

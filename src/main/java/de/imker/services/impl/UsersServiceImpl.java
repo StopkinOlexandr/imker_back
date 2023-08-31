@@ -1,6 +1,7 @@
 package de.imker.services.impl;
 
 import static de.imker.dto.UserDto.from;
+import static de.imker.utils.UtilsMethods.getPageRequest;
 
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
@@ -12,6 +13,7 @@ import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.exeptions.NotFoundException;
 import de.imker.exeptions.RestException;
+import de.imker.models.Post;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
@@ -21,13 +23,17 @@ import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class UsersServiceImpl implements UsersService {
 
   UsersRepository usersRepository;
@@ -36,7 +42,7 @@ public class UsersServiceImpl implements UsersService {
 
 
   public UserDto findByEmail(String email) {
-    UsersDto list = getAllUsers();
+    UsersDto list = getAllUsers(1, usersRepository.findAll().size(), "id", true);
     return list.getUsers()
         .stream()
         .filter(p -> p.getEmail().equals(email))
@@ -118,10 +124,15 @@ public class UsersServiceImpl implements UsersService {
   }
 
   @Override
-  public UsersDto getAllUsers() {
+  public UsersDto getAllUsers(Integer page, Integer items, String orderBy, Boolean desc) {
+    Page<User> pageOfUsers;
 
+    PageRequest pageRequest = getPageRequest(page, items, orderBy, desc);
+
+    pageOfUsers = usersRepository.findAll(pageRequest);
     return UsersDto.builder()
-        .users(from(usersRepository.findAll()))
+        .users(from(pageOfUsers.getContent()))
+        .count((int) pageOfUsers.getTotalElements())
         .build();
   }
 

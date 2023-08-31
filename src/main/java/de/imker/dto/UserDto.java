@@ -1,5 +1,6 @@
 package de.imker.dto;
 
+import de.imker.models.Event;
 import de.imker.models.User;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -39,8 +40,11 @@ public class UserDto {
   @Schema(description = "User's phone", example = "0123456789")
   private String phone;
 
-  @Schema(description = "User's image", example = "???") //TODO
+  @Schema(description = "User's image", example = "1.jpg")
   private String image;
+
+  @Schema(description = "User's events list")
+  private List<Event> events;
 
   public static UserDto from(User user) {
     return UserDto.builder()
@@ -52,6 +56,7 @@ public class UserDto {
         .name(user.getName())
         .phone(user.getPhone())
         .image(user.getImage())
+        .events(user.getEvents())
         .build();
   }
 

@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"secretQuestion", "password", "plz", "phone", "image", "role", "state", "isLogin"})
+@EqualsAndHashCode(exclude = {"secretQuestion", "password", "plz", "phone", "image", "role", "state"})
 @Entity
 @Table(name = "account")
 public class User {
