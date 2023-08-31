@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Tags(value = {
         @Tag(name = "Events")
@@ -130,9 +131,41 @@ public interface EventsApi {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = EventDto.class))
                     })
     })
-    @GetMapping("/{id-event}")
+    @GetMapping("/{event-id}")
     ResponseEntity<EventDto> getEventById(@Parameter(required = true, description = "Event ID", example = "1")
-                        @PathVariable("id-event") Long eventId);
+                        @PathVariable("event-id") Long eventId);
+
+
+    @Operation(summary = "Follow Event", description = "Follow available only for members")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Can't find event", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+            }),
+            @ApiResponse(responseCode = "200", description = "Follow event",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = EventFollowDto.class))
+                    })
+    })
+    @PutMapping("/{event-id}/follow")
+    ResponseEntity<EventFollowDto> followEvent(@Parameter(required = true, description = "ID to follow", example = "2")
+                                         @PathVariable("event-id") Long eventId);
+
+////////////////////
+
+    @Operation(summary = "Delete follow", description = "Only for admin")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Can't find follower event", content = {
+                    @Content()
+            }),
+            @ApiResponse(responseCode = "200", description = "follow event deleted",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = EventFollowDto.class))
+                    })
+    })
+
+
+    @DeleteMapping("/{event-id}/follow")
+    ResponseEntity<EventFollowDto> deleteFollowedEvent(@Parameter(required = true, description = "ID to delete", example = "2") @PathVariable("event-id") Long eventId);
 
 
 

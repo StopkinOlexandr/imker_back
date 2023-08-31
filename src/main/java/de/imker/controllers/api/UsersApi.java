@@ -52,7 +52,8 @@ public interface UsersApi {
           })
   })
   @GetMapping("/me")
-  ResponseEntity<UserDto> getMyProfile(@Parameter(hidden = true) @AuthenticationPrincipal AuthenticatedUser currentUser);
+  ResponseEntity<UserDto> getMyProfile(
+      @Parameter(hidden = true) @AuthenticationPrincipal AuthenticatedUser currentUser);
 
   @Operation(summary = "Secret questions")
   @ApiResponses(value = {
@@ -122,7 +123,7 @@ public interface UsersApi {
   ResponseEntity<UsersDto> getAllUsers();
 
 
-      @Operation(summary = "Delete User", description = "Only for admin")
+  @Operation(summary = "Delete User", description = "Only for admin")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "Can't find user",
           content = {
@@ -160,6 +161,26 @@ public interface UsersApi {
       @PathVariable("user-id") Long userId,
       @RequestBody UpdateUserDto updateUser);
 
+  @Operation(summary = "Change user's data by ADMIN",
+      description = "Change user's data including role from USER to MEMBER or ADMIN and back")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "404", description = "Can't find user", content = {
+          @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+      }),
+
+      @ApiResponse(responseCode = "200", description = "Updated user",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+          })
+  })
+
+  @PreAuthorize("hasAuthority('ADMIN')")
+  @PutMapping("/users/admin/{user-id}")
+  ResponseEntity<UserDto> updateUserAdmin(
+      @Parameter(required = true, description = "User DTO for update", example = "2")
+      @PathVariable("user-id") Long userId,
+      @RequestBody UpdateUserDto updateUser);
+
   @Operation(summary = "Get user by ID", description = "Allowed for all")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "User not found",
@@ -171,9 +192,12 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
+
+  @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping("/users/{user-id}")
-  ResponseEntity<UserDto> getUser(@Parameter(required = true, description = "Users ID", example = "2")
-  @PathVariable("user-id") Long userId);
+  ResponseEntity<UserDto> getUser(
+      @Parameter(required = true, description = "Users ID", example = "2")
+      @PathVariable("user-id") Long userId);
 
 
 }

@@ -8,10 +8,10 @@ import javax.validation.ConstraintValidatorContext;
 
 public class PasswordValidator implements ConstraintValidator<NotWeakPassword, String> {
 
-  private static final Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$");
+  private static final Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{5,}$");
   @Override
   public boolean isValid(String password, ConstraintValidatorContext constraintValidatorContext) {
-    // проверяем строку по шаблону (pattern-у, регулярному выражению)
+
     Matcher matcher = pattern.matcher(password);
     return matcher.matches();
   }

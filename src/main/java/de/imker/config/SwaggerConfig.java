@@ -43,8 +43,8 @@ public class SwaggerConfig {
 
   static Paths buildAuthenticationPath() {
     return new Paths()
-        .addPathItem("/login", buildAuthenticationPathItem())
-        .addPathItem("/logout", buildLogoutPathItem());
+        .addPathItem("/api/login", buildAuthenticationPathItem())
+        .addPathItem("/api/logout", buildLogoutPathItem());
   }
 
   private static PathItem buildLogoutPathItem() {

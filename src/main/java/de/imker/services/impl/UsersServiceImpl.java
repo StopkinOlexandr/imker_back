@@ -15,6 +15,7 @@ import de.imker.exeptions.RestException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
+import de.imker.services.telegrammNotice.TelegramNotice;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -34,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
 
 
 
-  private UserDto findByEmail(String email) {
+  public UserDto findByEmail(String email) {
     UsersDto list = getAllUsers();
     return list.getUsers()
         .stream()
@@ -68,6 +69,21 @@ public class UsersServiceImpl implements UsersService {
     User user = usersRepository.findById(userDto.getId()).orElseThrow(
         () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
 
+    String message = String.format("""
+        User with ID %s tried to restore his password.
+          Email: %s
+          Name: %s
+          PLZ: %s
+          PhoneNumber: %s
+          Role: %s
+        """, user.getId().toString(),
+        user.getEmail(),
+        user.getName(),
+        user.getPlz(),
+        user.getPhone(),
+        user.getRole());
+    TelegramNotice.sendTelegramNotice(message);
+
     if (user.getSecretQuestion().equals(secretQuestionAnswer.getSecretQuestion())) {
       if (user.getAnswerSecretQuestion().equals(secretQuestionAnswer.getSecretQuestionAnswer())) {
         return UserIdDto.builder()
@@ -83,6 +99,20 @@ public class UsersServiceImpl implements UsersService {
 
     User user = getUserFromRepository(restorePwd.getId());
     user.setHashPassword(passwordEncoder.encode(restorePwd.getNewPassword()));
+    usersRepository.save(user);
+    return UserDto.from(user);
+  }
+
+  @Override
+  public UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser) {
+    User user = getUserFromRepository(userId);
+    user.setName(updateUser.getNewName());
+    user.setPlz(updateUser.getNewPlz());
+    user.setPhone(updateUser.getNewPhone());
+    user.setImage(updateUser.getNewImage());
+    user.setState(User.State.valueOf(updateUser.getNewState()));
+    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+
     usersRepository.save(user);
     return UserDto.from(user);
   }
@@ -111,8 +141,6 @@ public class UsersServiceImpl implements UsersService {
     user.setPlz(updateUser.getNewPlz());
     user.setPhone(updateUser.getNewPhone());
     user.setImage(updateUser.getNewImage());
-    user.setState(User.State.valueOf(updateUser.getNewState()));
-    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
 
     usersRepository.save(user);
     return UserDto.from(user);
