@@ -1,8 +1,8 @@
 package de.imker.models;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Builder
 @Table(name="aboutus")
 public class AboutUs {
+
+  @Schema(description = "Identification", example = "1")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -22,5 +24,4 @@ public class AboutUs {
   private String descriptionBottom;
   private String image1;
   private String image2;
-
 }

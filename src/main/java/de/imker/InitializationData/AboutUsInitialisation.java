@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class AboutUsInitialization {
+public class AboutUsInitialisation {
 
   @Autowired
   private final AboutUsRepository aboutUsRepository;

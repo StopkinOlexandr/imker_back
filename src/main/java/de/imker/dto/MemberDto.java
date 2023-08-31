@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class MemberDto {
   @Schema(description = "Phone", example = "+49 1234 5678912")
   private String phone;
   @Schema(description = "E-mail", example = "imker@gmail.com")
+  @Email
   private String email;
   @Schema(description = "Facebook", example = "https://www.facebook.com/FacebookId")
   private String facebook;

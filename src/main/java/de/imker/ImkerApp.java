@@ -51,6 +51,8 @@ public class ImkerApp {
     usersInitialization.userInit();
     googleMapLinkInitialization.linkInit();
     galleryInitialization.galleryInit();
+    AboutUsInitialisation aboutUsInitialisation = context.getBean(AboutUsInitialisation.class);
+    aboutUsInitialisation.aboutUsInit();
   }
 
 }

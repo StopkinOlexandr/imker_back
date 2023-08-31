@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
 @Schema(description = "About Us Description")
 public class AboutUsDto {
 
-  @Schema(description = "Identification", example = "1")
+  @Schema(description = "ID", example = "1")
   private Integer id;
   @Schema(description = "Title Top", example = "Our story")
   private String titleTop;
-  @Schema(description = "Ddescrption Top", example = "")
+  @Schema(description = "Ddescrption Top", example = "Ein Imkerverein ist eine bedeutende Vereinigung")
   private String descriptionTop;
-  @Schema(description = "Title Bottom", example = "")
+  @Schema(description = "Title Bottom", example = "Our philosophy")
   private String titleBottom;
-  @Schema(description = "Ddescrption Bottom", example = "")
+  @Schema(description = "Ddescrption Bottom", example = "Der Verein setzt sich für...")
   private String descriptionBottom;
   @Schema(description = "Image №1 for article", example = "7")
   private String image1;

@@ -9,6 +9,4 @@ public interface AboutUsService {
   AboutUsDto getAboutUsById(Integer aboutUsId);
 
   AboutUsDto updateAboutUs(Integer aboutUsId, UpdateAboutUsDto updateAboutUsDto);
-
-
 }
