@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Tags(value = {
@@ -106,7 +107,7 @@ public interface UsersApi {
   ResponseEntity<UserDto> newPassword(
       @Parameter(required = true, description = "User") @RequestBody @Valid UserRestorePwdDto restorePwd);
 
-
+  @Operation(summary = "Get list of all users")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Users list",
           content = {
@@ -118,9 +119,20 @@ public interface UsersApi {
           })
   })
 
-  @Operation(summary = "Get list of all users")
   @GetMapping("/users/")
-  ResponseEntity<UsersDto> getAllUsers();
+  ResponseEntity<UsersDto> getAllUsers(
+      @Parameter(required = true, description = "Page number", example = "0")
+      @RequestParam(value = "page") Integer page,
+      @Parameter(required = true, description = "Number of items per page", example = "3")
+      @RequestParam(value = "items") Integer items,
+      @Parameter(required = true,
+          description = "Sorting field: id, name, email, role",
+          example = "name")
+      @RequestParam(value = "orderBy") String orderBy,
+      @Parameter(required = true,
+          description = "Sorting direction (true = DESС, false = ASС)",
+          example = "true")
+      @RequestParam(value = "desс") Boolean desс);
 
 
   @Operation(summary = "Delete User", description = "Only for admin")
