@@ -1,14 +1,11 @@
 package de.imker.services.impl;
 
-
 import de.imker.dto.*;
 import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.Event;
-import de.imker.models.EventFollow;
 import de.imker.models.User;
 import de.imker.repositories.EventsRepository;
-import de.imker.repositories.UsersOnEventsRepository;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.EventsService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +32,6 @@ public class EventsServiceImpl implements EventsService {
   private final EventsRepository eventsRepository;
   private final UsersRepository usersRepository;
   private final UsersServiceImpl usersService;
-  private final UsersOnEventsRepository usersOnEventsRepository;
 
   @Value("${events.sort.fields}")
   private List<String> sortFields;
@@ -87,68 +83,68 @@ public class EventsServiceImpl implements EventsService {
   public EventDto updateEvent(Long eventId, UpdateEventDto eventWithUpdatedData) {
     Event eventToUpdate = getEventOrThrow(eventId);
 
-      if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getTitle()) &&
-          !(eventWithUpdatedData.getTitle().isEmpty() && eventWithUpdatedData.getTitle().isBlank())) {
-          eventToUpdate.setTitle(eventWithUpdatedData.getTitle());
-      }
+    if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getTitle()) &&
+        !(eventWithUpdatedData.getTitle().isEmpty() && eventWithUpdatedData.getTitle().isBlank())) {
+      eventToUpdate.setTitle(eventWithUpdatedData.getTitle());
+    }
 
-      if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getDescription()) &&
-          !(eventWithUpdatedData.getDescription().isBlank() && eventWithUpdatedData.getDescription().isEmpty())) {
-          eventToUpdate.setDescription(eventWithUpdatedData.getDescription());
-      }
+    if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getDescription()) &&
+        !(eventWithUpdatedData.getDescription().isBlank() && eventWithUpdatedData.getDescription().isEmpty())) {
+      eventToUpdate.setDescription(eventWithUpdatedData.getDescription());
+    }
 
-      if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getShortDescription()) &&
-          !(eventWithUpdatedData.getShortDescription().isBlank() && eventWithUpdatedData.getShortDescription().isEmpty())) {
-          eventToUpdate.setShortDescription(eventWithUpdatedData.getShortDescription());
-      }
-
-
-      if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getAddress()) &&
-          !(eventWithUpdatedData.getAddress().isBlank() && eventWithUpdatedData.getAddress().isEmpty())) {
-          eventToUpdate.setAddress(eventWithUpdatedData.getAddress());
-      }
+    if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getShortDescription()) &&
+        !(eventWithUpdatedData.getShortDescription().isBlank() && eventWithUpdatedData.getShortDescription().isEmpty())) {
+      eventToUpdate.setShortDescription(eventWithUpdatedData.getShortDescription());
+    }
 
 
-      if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getAuthor()) &&
-          !(eventWithUpdatedData.getAuthor().isEmpty() && eventWithUpdatedData.getAuthor().isBlank())) {
-          eventToUpdate.setAuthor(eventWithUpdatedData.getAuthor());
-      }
-
-      if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getLocation()) &&
-          !(eventWithUpdatedData.getLocation().isBlank() && eventWithUpdatedData.getLocation().isEmpty())) {
-          eventToUpdate.setLocation(eventWithUpdatedData.getLocation());
-      }
-
-      if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getPhoto()) &&
-          !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank())) {
-          eventToUpdate.setPhoto(eventWithUpdatedData.getPhoto());
-      }
-
-      if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getDateStart()) &&
-          !(eventWithUpdatedData.getDateStart().isEmpty() && eventWithUpdatedData.getDateStart().isBlank())) {
-          eventToUpdate.setDateStart(eventWithUpdatedData.getDateStart());
-      }
-
-      if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getDateEnd()) &&
-          !(eventWithUpdatedData.getDateEnd().isEmpty() && eventWithUpdatedData.getDateEnd().isBlank())) {
-          eventToUpdate.setDateEnd(eventWithUpdatedData.getDateEnd());
-      }
-
-      if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getStartTime()) &&
-          !(eventWithUpdatedData.getStartTime().isEmpty() && eventWithUpdatedData.getStartTime().isBlank())) {
-          eventToUpdate.setStartTime(eventWithUpdatedData.getStartTime());
-      }
-
-      if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getEndTime()) &&
-          !(eventWithUpdatedData.getEndTime().isBlank() && eventWithUpdatedData.getEndTime().isEmpty())) {
-          eventToUpdate.setEndTime(eventWithUpdatedData.getEndTime());
-      }
+    if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getAddress()) &&
+        !(eventWithUpdatedData.getAddress().isBlank() && eventWithUpdatedData.getAddress().isEmpty())) {
+      eventToUpdate.setAddress(eventWithUpdatedData.getAddress());
+    }
 
 
-      if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getStatus()) &&
-          !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty())) {
-          eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getStatus()));
-      }
+    if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getAuthor()) &&
+        !(eventWithUpdatedData.getAuthor().isEmpty() && eventWithUpdatedData.getAuthor().isBlank())) {
+      eventToUpdate.setAuthor(eventWithUpdatedData.getAuthor());
+    }
+
+    if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getLocation()) &&
+        !(eventWithUpdatedData.getLocation().isBlank() && eventWithUpdatedData.getLocation().isEmpty())) {
+      eventToUpdate.setLocation(eventWithUpdatedData.getLocation());
+    }
+
+    if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getPhoto()) &&
+        !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank())) {
+      eventToUpdate.setPhoto(eventWithUpdatedData.getPhoto());
+    }
+
+    if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getDateStart()) &&
+        !(eventWithUpdatedData.getDateStart().isEmpty() && eventWithUpdatedData.getDateStart().isBlank())) {
+      eventToUpdate.setDateStart(eventWithUpdatedData.getDateStart());
+    }
+
+    if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getDateEnd()) &&
+        !(eventWithUpdatedData.getDateEnd().isEmpty() && eventWithUpdatedData.getDateEnd().isBlank())) {
+      eventToUpdate.setDateEnd(eventWithUpdatedData.getDateEnd());
+    }
+
+    if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getStartTime()) &&
+        !(eventWithUpdatedData.getStartTime().isEmpty() && eventWithUpdatedData.getStartTime().isBlank())) {
+      eventToUpdate.setStartTime(eventWithUpdatedData.getStartTime());
+    }
+
+    if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getEndTime()) &&
+        !(eventWithUpdatedData.getEndTime().isBlank() && eventWithUpdatedData.getEndTime().isEmpty())) {
+      eventToUpdate.setEndTime(eventWithUpdatedData.getEndTime());
+    }
+
+
+    if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getStatus()) &&
+        !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty())) {
+      eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getStatus()));
+    }
 
     eventsRepository.save(eventToUpdate);
     return from(eventToUpdate);
@@ -260,14 +256,14 @@ public class EventsServiceImpl implements EventsService {
       usersRepository.save(user);
     }
     assert user != null;
-    EventFollow eventFollow = EventFollow.builder()
-        .event_id(eventsId)
-        .user_id(user.getId())
+
+    return EventFollowDto.builder()
+        .idEvent(eventsId)
+        .idUser(user.getId())
         .followedStatus(true)
         .build();
-
-    return EventFollowDto.from(eventFollow);
   }
+
   private boolean userHasEvent(User user, Event event) {
     return user.getEvents().contains(event);
   }
@@ -292,13 +288,13 @@ public class EventsServiceImpl implements EventsService {
 //
 //        return EventFollowDto.from(eventFollow);
 
-  @Override
-  public EventFollowDto deleteFollowedEvent(Long followedId) {
-    EventFollow eventFollow = usersOnEventsRepository.findById(followedId).orElseThrow(
-        () -> new NotFoundException("Follower with: " + followedId + " not found "));
-    usersOnEventsRepository.delete(eventFollow);
-    return EventFollowDto.from(eventFollow);
-  }
+//  @Override
+//  public EventFollowDto deleteFollowedEvent(Long followedId) {
+//    EventFollow eventFollow = usersOnEventsRepository.findById(followedId).orElseThrow(
+//        () -> new NotFoundException("Follower with: " + followedId + " not found "));
+//    usersOnEventsRepository.delete(eventFollow);
+//    return EventFollowDto.from(eventFollow);
+//  }
 
 
 ///TODO Delete get all by user Id, get usersByEvent ID   JPA REP - search is exist
