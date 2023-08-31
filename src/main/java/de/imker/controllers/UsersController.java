@@ -57,10 +57,10 @@ public class UsersController implements UsersApi {
   }
 
   @Override
-  public ResponseEntity<UsersDto> getAllUsers(Integer page, Integer items, String orderBy, Boolean desс, AuthenticatedUser currentUser) {
-    Long userId = currentUser.id();
+  public ResponseEntity<UsersDto> getAllUsers(Integer page, Integer items, String orderBy, Boolean desc) {
+
     return ResponseEntity
-        .ok(usersService.getAllUsers(page, items, orderBy, desс));
+        .ok(usersService.getAllUsers(page, items, orderBy, desc));
   }
 
 

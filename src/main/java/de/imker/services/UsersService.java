@@ -13,7 +13,7 @@ public interface UsersService {
 
 //  UserDto addUser(NewUserDto newUser);
 
-  UsersDto getAllUsers(Integer page, Integer items, String orderBy, Boolean desс);
+  UsersDto getAllUsers(Integer page, Integer items, String orderBy, Boolean desc);
 
   UserDto deleteUser(Long userId);
 
