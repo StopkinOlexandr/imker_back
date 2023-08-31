@@ -1,22 +1,20 @@
 package de.imker.dto;
 
 import de.imker.models.Event;
-import de.imker.models.User;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Schema(description = "Events data")
-public class EventDto {
+public class EventDtoNoUsers {
 
     @Schema(description = "Event's ID", example = "1")
     private Long idEvent;
@@ -63,11 +61,10 @@ public class EventDto {
     @Schema(description = "End time of event", example = "18:00")
     private String endTime;
 
-    @Schema(description = "List of users on event")
-    private List<User> participants;
 
-    public static EventDto from(Event event) {
-        return EventDto.builder()
+
+    public static EventDtoNoUsers from(Event event) {
+        return EventDtoNoUsers.builder()
                 .idEvent(event.getId())
                 .title(event.getTitle())
                 .description(event.getDescription())
@@ -82,14 +79,14 @@ public class EventDto {
                 .quantityOfMembers(event.getQuantityOfMembers())
                 .endTime(event.getEndTime())
                 .status(event.getStatus().toString())
-                .participants(event.getParticipants())
+
                 .build();
 
     }
 
-    public static List<EventDto> from(List<Event> events) {
+    public static List<EventDtoNoUsers> from(List<Event> events) {
         return events.stream()
-                .map(EventDto::from)
+                .map(EventDtoNoUsers::from)
                 .collect(Collectors.toList());
     }
 }

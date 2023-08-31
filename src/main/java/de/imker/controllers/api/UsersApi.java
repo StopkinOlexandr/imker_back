@@ -120,7 +120,7 @@ public interface UsersApi {
   })
 
 
-  @GetMapping("/users/")
+  @GetMapping("/users")
   ResponseEntity<UsersDto> getAllUsers(
       @Parameter(required = true, description = "Page number", example = "0")
       @RequestParam(value = "page") Integer page,
@@ -131,9 +131,9 @@ public interface UsersApi {
           example = "name")
       @RequestParam(value = "orderBy") String orderBy,
       @Parameter(required = true,
-          description = "Sorting direction (true = DESС, false = ASС)",
+          description = "Sorting direction (true = DESC, false = ASС)",
           example = "true")
-      @RequestParam(value = "desс") Boolean desс, @AuthenticationPrincipal AuthenticatedUser currentUser);
+      @RequestParam(value = "desc") Boolean desc);
 
 
   @Operation(summary = "Delete User", description = "Only for admin")
