@@ -167,6 +167,10 @@ public interface EventsApi {
     @DeleteMapping("/{event-id}/follow")
     ResponseEntity<EventFollowDto> deleteFollowedEvent(@Parameter(required = true, description = "ID to delete", example = "2") @PathVariable("event-id") Long eventId);
 
+    @Operation(summary = "Get All Time Events", description = "Full access")
+    @GetMapping("/getAll")
+    EventsDto getAllTimeEvents();
+
 
 
 }

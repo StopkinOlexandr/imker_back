@@ -25,4 +25,6 @@ public interface EventsService {
 
 //    EventFollowDto deleteFollowedEvent(Long followedId);
 
+    EventsDto getAllTimeEvents();
+
 }
