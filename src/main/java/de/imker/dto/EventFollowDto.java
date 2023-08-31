@@ -1,19 +1,13 @@
 package de.imker.dto;
 
-import de.imker.models.Event;
-import de.imker.models.EventFollow;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -22,14 +16,14 @@ import java.util.stream.Collectors;
 @Schema(description = "Follow event")
 public class EventFollowDto {
 
-    @Schema(description = "Event's ID", example = "1")
-    private Long idEvent;
+  @Schema(description = "Event's ID", example = "1")
+  private Long idEvent;
 
-    @Schema(description = "User's ID", example = "1")
-    private Long idUser;
+  @Schema(description = "User's ID", example = "1")
+  private Long idUser;
 
-    @Schema(description = "Follow status - FOLLOW, UNFOLLOW ", example = "FOLLOW")
-    private boolean followedStatus;
+  @Schema(description = "Follow status - FOLLOW, UNFOLLOW ", example = "FOLLOW")
+  private boolean followedStatus;
 
 
 //    @CreationTimestamp
@@ -38,30 +32,30 @@ public class EventFollowDto {
 //    private String followCreationTime;
 
 
-    public static EventFollowDto from(EventFollow eventFollow) {
-        return EventFollowDto.builder()
-                .idEvent(eventFollow.getEvent_id())
-                .idUser(eventFollow.getUser_id())
-//                .followCreationTime(dateToString(eventFollow.getFollowCreationTime()))
-                .followedStatus(eventFollow.isFollowedStatus())
+//    public static EventFollowDto from(EventFollow eventFollow) {
+//        return EventFollowDto.builder()
+//                .idEvent(eventFollow.getEvent_id())
+//                .idUser(eventFollow.getUser_id())
+////                .followCreationTime(dateToString(eventFollow.getFollowCreationTime()))
+//                .followedStatus(eventFollow.isFollowedStatus())
+//
+//
+//                //.followedStatus()
+//                //.followCreationTime(eventFollow.ge)
+//                .build();
+//
+//    }
+//
+//    public static List<EventFollowDto> from(List<EventFollow> eventsFollow) {
+//        return eventsFollow.stream()
+//                .map(EventFollowDto::from)
+//                .collect(Collectors.toList());
+//    }
 
-
-                //.followedStatus()
-                //.followCreationTime(eventFollow.ge)
-                .build();
-
-    }
-
-    public static List<EventFollowDto> from(List<EventFollow> eventsFollow) {
-        return eventsFollow.stream()
-                .map(EventFollowDto::from)
-                .collect(Collectors.toList());
-    }
-
-    public static String dateToString(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormat.format(date);
-    }
+  public static String dateToString(Date date) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    return dateFormat.format(date);
+  }
 
 
 }
