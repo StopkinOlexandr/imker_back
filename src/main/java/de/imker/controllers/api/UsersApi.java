@@ -119,6 +119,7 @@ public interface UsersApi {
           })
   })
 
+
   @GetMapping("/users/")
   ResponseEntity<UsersDto> getAllUsers(
       @Parameter(required = true, description = "Page number", example = "0")
@@ -132,7 +133,7 @@ public interface UsersApi {
       @Parameter(required = true,
           description = "Sorting direction (true = DESС, false = ASС)",
           example = "true")
-      @RequestParam(value = "desс") Boolean desс);
+      @RequestParam(value = "desс") Boolean desс, @AuthenticationPrincipal AuthenticatedUser currentUser);
 
 
   @Operation(summary = "Delete User", description = "Only for admin")
@@ -189,7 +190,7 @@ public interface UsersApi {
   @PreAuthorize("hasAuthority('ADMIN')")
   @PutMapping("/users/admin/{user-id}")
   ResponseEntity<UserDto> updateUserAdmin(
-      @Parameter(required = true, description = "User DTO for update", example = "2")
+      @Parameter(required = true, description = "User Id for update", example = "2")
       @PathVariable("user-id") Long userId,
       @RequestBody UpdateUserDto updateUser);
 
