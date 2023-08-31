@@ -149,17 +149,6 @@ public class PostsInitialization {
           .build();
       postService.addPost(newPost);
 
-      newPost = NewPostDto.builder()
-          .titlePost("Die Bienenflüsterer Deutschlands: Leidenschaftliche Pioniere der Imkerei")
-          .linkToImg("8888")
-          .shortPostDescription("Erfahre mehr über die engagierten deutschen Imker, ihre Hingabe zur Bienenzucht und ihre Beiträge zum Schutz der Bienenpopulation.")
-          .textOfPost("<p>Deutschland ist die Heimat leidenschaftlicher Imker, die das Handwerk der Bienenzucht mit Begeisterung aus&uuml;ben. Diese Bienenfl&uuml;sterer sind nicht nur Honigproduzenten, sondern auch wichtige Akteure im Schutz der Umwelt.</p>\n" +
-              "<p>Deutsche Imker sind bekannt f&uuml;r ihre Fachkenntnisse und ihre Bereitschaft, ihr Wissen zu teilen. Imkervereine und Schulungen bieten Plattformen f&uuml;r den Austausch von bew&auml;hrten Praktiken und neuesten Erkenntnissen. Ihre Expertise erstreckt sich &uuml;ber die Pflege von Bienenst&ouml;cken hinaus und umfasst die F&ouml;rderung der Artenvielfalt und den nachhaltigen Umgang mit Bienenpopulationen.</p>\n" +
-              "<p>Einige deutsche Imker haben innovative Ans&auml;tze entwickelt, um die Gesundheit der Bienen zu f&ouml;rdern. Von bienenfreundlichen G&auml;rten bis hin zu modernen Technologien, die die Bienen&uuml;berwachung erleichtern - diese Bienenfl&uuml;sterer setzen sich aktiv f&uuml;r den Erhalt der Bienen ein.</p>\n" +
-              "<p>Die Leidenschaft der deutschen Imker geht &uuml;ber die Honigproduktion hinaus. Sie erkennen die Bedeutung der Bienen f&uuml;r unsere Umwelt und arbeiten daran, diese winzigen Best&auml;uber zu sch&uuml;tzen und zu unterst&uuml;tzen. Ihre Arbeit hinter den Kulissen tr&auml;gt dazu bei, das Gleichgewicht in der Natur aufrechtzuerhalten und die Grundlagen unserer Nahrungsmittelproduktion zu sichern.</p>")
-          .authorName("")
-          .build();
-      postService.addPost(newPost);
     }
   }
 }
