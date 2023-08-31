@@ -24,7 +24,7 @@ public class UserDto {
   @Schema(description = "User's e-main", example = "aaa@bbb.ccc")
   private String email;
 
-  @Schema(description = "User's role: ADMIN, USER", example = "USER")
+  @Schema(description = "User's role: ADMIN, MEMBER, USER", example = "USER")
   private String role;
 
   @Schema(description = "User's state: CONFIRMED, NOT_CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
@@ -42,12 +42,6 @@ public class UserDto {
   @Schema(description = "User's image", example = "???") //TODO
   private String image;
 
-  //  private String secretQuestion;
-
-  @Schema(description = "User's is signed in", example = "TRUE")
-  private Boolean isLogin;
-
-
   public static UserDto from(User user) {
     return UserDto.builder()
         .id(user.getId())
@@ -58,8 +52,6 @@ public class UserDto {
         .name(user.getName())
         .phone(user.getPhone())
         .image(user.getImage())
-//        .secretQuestion(user.getSecretQuestion())
-        .isLogin(user.getIsLogin())
         .build();
   }
 

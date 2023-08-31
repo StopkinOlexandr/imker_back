@@ -7,6 +7,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
@@ -18,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisplayName("UsersController is works: ")
 @DisplayNameGeneration(value = DisplayNameGenerator.ReplaceUnderscores.class)
+@ActiveProfiles("test")
 class UsersControllerTest {
 
     @Autowired
@@ -40,12 +42,12 @@ class UsersControllerTest {
             mockMvc.perform(post("/api/users")
                     .header("Content-Type", "application/json")
                     .content("{\n"
-                        + "  \"email\": \"sidikov.marsel@gmail.com\",\n"
-                        + "  \"password\": \"qwerty007\"\n"
+                        + "  \"email\": \"user1@gmail.com\",\n"
+                        + "  \"password\": \"!Aqwerty007\"\n"
                         + "}"))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.email", is("sidikov.marsel@gmail.com")))
+                .andExpect(jsonPath("$.email", is("user1@gmail.com")))
                 .andExpect(jsonPath("$.role", is("USER")))
                 .andExpect(jsonPath("$.state", is("NOT_CONFIRMED")));
         }

@@ -76,6 +76,12 @@ public class UsersController implements UsersApi {
   }
 
   @Override
+  public ResponseEntity<UserDto> updateUserAdmin(Long userId, UpdateUserDto updateUser) {
+    return ResponseEntity
+        .ok(usersService.updateUserAdmin(userId, updateUser));
+  }
+
+  @Override
   public ResponseEntity<UserDto> getUser(Long userId) {
     return ResponseEntity
         .ok(usersService.getUser(userId));
