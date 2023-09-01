@@ -70,6 +70,23 @@ public class EventsController implements EventsApi {
         return eventsService.getAllTimeEvents();
     }
 
+    @Override
+    public ResponseEntity<EventsList> getMyEventsList() {
+        return ResponseEntity
+            .ok(eventsService.getMyEventsList());
+    }
+
+    @Override
+    public ResponseEntity<UsersList> getUsersListByEventId(Long eventId) {
+        return ResponseEntity
+            .ok(eventsService.getUsersListByEventId(eventId));
+    }
+
+    @Override
+    public ResponseEntity<EventFollowDto> unfollowEventById(Long eventId) {
+        return ResponseEntity
+            .ok(eventsService.unfollowEventById(eventId));
+    }
 
 
 }

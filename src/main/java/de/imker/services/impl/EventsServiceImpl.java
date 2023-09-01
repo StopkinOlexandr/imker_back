@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static de.imker.dto.EventDto.from;
 
@@ -241,6 +244,15 @@ public class EventsServiceImpl implements EventsService {
         () -> new NotFoundException("Event with: " + eventId + " not found "));
   }
 
+  @Override
+  public EventsDto getAllTimeEvents() {
+
+    List<Event> events = eventsRepository.findAll();
+    return EventsDto.builder()
+            .events(from(events))
+            .count(events.size())
+            .build();
+  }
 
   @Override
   public EventFollowDto followEventById(Long eventsId) {
@@ -264,18 +276,51 @@ public class EventsServiceImpl implements EventsService {
         .build();
   }
 
-  @Override
-  public EventsDto getAllTimeEvents() {
-
-    List<Event> events = eventsRepository.findAll();
-    return EventsDto.builder()
-            .events(from(events))
-            .count(events.size())
-            .build();
-  }
-
   private boolean userHasEvent(User user, Event event) {
     return user.getEvents().contains(event);
+  }
+
+  @Override
+  public EventsList getMyEventsList() {
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+        () -> new NotFoundException("User not found"));
+
+    return EventsList.builder()
+        .events(EventDto.from(new ArrayList<>(user.getEvents())))
+        .build();
+  }
+
+  @Override
+  public UsersList getUsersListByEventId(Long eventId) {
+
+    Event event = getEventOrThrow(eventId);
+
+    return UsersList.builder()
+        .users(UserDto.from(new ArrayList<>(event.getUsers())))
+        .build();
+  }
+
+  @Override
+  public EventFollowDto unfollowEventById(Long eventId) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+        () -> new NotFoundException("User not found"));
+
+    Event event = getEventOrThrow(eventId);
+
+    user.getEvents().remove(event);
+
+    usersRepository.save(user);
+
+    return EventFollowDto.builder()
+        .idEvent(eventId)
+        .idUser(user.getId())
+        .followedStatus(false)
+        .build();
   }
 
 

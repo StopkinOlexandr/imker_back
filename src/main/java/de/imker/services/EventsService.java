@@ -2,6 +2,7 @@ package de.imker.services;
 
 
 import de.imker.dto.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -27,4 +28,9 @@ public interface EventsService {
 
     EventsDto getAllTimeEvents();
 
+    EventsList getMyEventsList();
+
+    UsersList getUsersListByEventId(Long eventId);
+
+    EventFollowDto unfollowEventById(Long eventId);
 }

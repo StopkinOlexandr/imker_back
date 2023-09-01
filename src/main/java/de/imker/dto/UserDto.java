@@ -43,9 +43,6 @@ public class UserDto {
   @Schema(description = "User's image", example = "1.jpg")
   private String image;
 
-  @Schema(description = "User's events list")
-  private List<Event> events;
-
   public static UserDto from(User user) {
     return UserDto.builder()
         .id(user.getId())
@@ -56,7 +53,6 @@ public class UserDto {
         .name(user.getName())
         .phone(user.getPhone())
         .image(user.getImage())
-        .events(user.getEvents())
         .build();
   }
 

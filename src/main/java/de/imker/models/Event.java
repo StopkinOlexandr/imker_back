@@ -1,9 +1,6 @@
 package de.imker.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +8,7 @@ import java.util.List;
 
 
 @Data
+@EqualsAndHashCode(of = {"id", "title"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -46,5 +44,5 @@ public class Event {
   private Status status;
 
   @ManyToMany(mappedBy = "events")
-  private List<User> participants = new ArrayList<>();
+  private List<User> users;
 }

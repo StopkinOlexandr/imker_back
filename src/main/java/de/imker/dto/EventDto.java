@@ -63,9 +63,6 @@ public class EventDto {
     @Schema(description = "End time of event", example = "18:00")
     private String endTime;
 
-    @Schema(description = "List of users on event")
-    private List<User> participants;
-
     public static EventDto from(Event event) {
         return EventDto.builder()
                 .idEvent(event.getId())
@@ -82,7 +79,6 @@ public class EventDto {
                 .quantityOfMembers(event.getQuantityOfMembers())
                 .endTime(event.getEndTime())
                 .status(event.getStatus().toString())
-                .participants(event.getParticipants())
                 .build();
 
     }
