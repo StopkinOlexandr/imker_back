@@ -171,6 +171,33 @@ public interface EventsApi {
     @GetMapping("/getAll")
     EventsDto getAllTimeEvents();
 
+  @Operation(summary = "Get events list", description = "Full access")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "404", description = "Events not found",
+          content = {
+              @Content()
+          }),
+      @ApiResponse(responseCode = "200", description = "Events found ",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = EventDto.class))
+          })
+  })
+  @GetMapping("/myeventslist")
+  ResponseEntity<EventsList> getMyEventsList();
 
+  @Operation(summary = "Get users list by event ID", description = "Full access")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "404", description = "Event not found",
+          content = {
+              @Content()
+          }),
+      @ApiResponse(responseCode = "200", description = "Event found ",
+          content = {
+              @Content(mediaType = "application/json", schema = @Schema(implementation = EventDto.class))
+          })
+  })
+  @GetMapping("/{event-id}/users")
+  ResponseEntity<UsersList> getUsersListByEventId(@Parameter(required = true, description = "Event ID", example = "1")
+                                        @PathVariable("event-id") Long eventId);
 
 }
