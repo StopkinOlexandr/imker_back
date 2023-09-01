@@ -2,6 +2,7 @@ package de.imker.services;
 
 
 import de.imker.dto.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -26,5 +27,9 @@ public interface EventsService {
 //    EventFollowDto deleteFollowedEvent(Long followedId);
 
     EventsDto getAllTimeEvents();
+
+    EventsList getMyEventsList();
+
+    UsersList getUsersListByEventId(Long eventId);
 
 }
