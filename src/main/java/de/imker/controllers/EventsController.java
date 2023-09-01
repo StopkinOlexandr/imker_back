@@ -41,13 +41,6 @@ public class EventsController implements EventsApi {
                 .ok(eventsService.updateEvent(eventId, updateEvent));
     }
 
-
-    @Override
-    public ResponseEntity<EventsDto> getEventsOfUser(Long userId) {
-        return ResponseEntity
-                .ok(eventsService.getEventsOfUser(userId));
-    }
-
     @Override
     public ResponseEntity<EventDto> getEventById(Long eventId) {
         return ResponseEntity
@@ -55,17 +48,12 @@ public class EventsController implements EventsApi {
     }
 
     @Override
-    public ResponseEntity<EventFollowDto> followEvent(Long eventId) {
+    public ResponseEntity<EventFollowDto> followEventById(Long eventId) {
         return ResponseEntity
                 .ok(eventsService.followEventById(eventId));
     }
 
-    @Override
-    public ResponseEntity<EventFollowDto> deleteFollowedEvent(Long eventId) {
-     return null;
-//        return ResponseEntity.ok(eventsService.deleteFollowedEvent(eventId));
-    }
-    @Override
+     @Override
     public EventsDto getAllTimeEvents() {
         return eventsService.getAllTimeEvents();
     }
