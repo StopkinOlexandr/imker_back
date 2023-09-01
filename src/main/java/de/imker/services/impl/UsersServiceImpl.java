@@ -13,7 +13,6 @@ import de.imker.dto.UserSecretQuestionsDto;
 import de.imker.dto.UsersDto;
 import de.imker.exeptions.NotFoundException;
 import de.imker.exeptions.RestException;
-import de.imker.models.Post;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.UsersService;
@@ -103,7 +102,7 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
 
-    User user = getUserFromRepository(restorePwd.getId());
+    User user = getUserOrThrow(restorePwd.getId());
     user.setHashPassword(passwordEncoder.encode(restorePwd.getNewPassword()));
     usersRepository.save(user);
     return UserDto.from(user);
@@ -111,13 +110,13 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser) {
-    User user = getUserFromRepository(userId);
-    user.setName(updateUser.getNewName());
-    user.setPlz(updateUser.getNewPlz());
-    user.setPhone(updateUser.getNewPhone());
-    user.setImage(updateUser.getNewImage());
-    user.setState(User.State.valueOf(updateUser.getNewState()));
-    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+    User user = getUserOrThrow(userId);
+    user.setName(updateUser.getName());
+    user.setPlz(updateUser.getPlz());
+    user.setPhone(updateUser.getPhone());
+    user.setImage(updateUser.getImage());
+    user.setState(User.State.valueOf(updateUser.getState()));
+    user.setRole(User.Role.valueOf(updateUser.getRole()));
 
     usersRepository.save(user);
     return UserDto.from(user);
@@ -139,7 +138,7 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public UserDto deleteUser(Long userId) {
 
-    User user = getUserFromRepository(userId);
+    User user = getUserOrThrow(userId);
 
     usersRepository.delete(user);
     return UserDto.from(user);
@@ -147,11 +146,11 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
-    User user = getUserFromRepository(userId);
-    user.setName(updateUser.getNewName());
-    user.setPlz(updateUser.getNewPlz());
-    user.setPhone(updateUser.getNewPhone());
-    user.setImage(updateUser.getNewImage());
+    User user = getUserOrThrow(userId);
+    user.setName(updateUser.getName());
+    user.setPlz(updateUser.getPlz());
+    user.setPhone(updateUser.getPhone());
+    user.setImage(updateUser.getImage());
 
     usersRepository.save(user);
     return UserDto.from(user);
@@ -162,12 +161,7 @@ public class UsersServiceImpl implements UsersService {
     return from(getUserOrThrow(userId));
   }
 
-  private User getUserFromRepository(Long userId) {
-    return usersRepository.findById(userId).orElseThrow(
-        () -> new NotFoundException("User with id <" + userId + "> not found"));
-  }
-
-  private User getUserOrThrow(Long userId) {
+    private User getUserOrThrow(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
         () -> new RestException(HttpStatus.NOT_FOUND, "User with Id <" + userId + "> not found"));
   }
