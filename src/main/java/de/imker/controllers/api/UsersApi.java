@@ -67,7 +67,6 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
           })
   })
-
   @PostMapping("/questions")
   @ResponseStatus(HttpStatus.OK)
   ResponseEntity<UserSecretQuestionsDto> secretQuestions(
@@ -84,7 +83,6 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
           })
   })
-
   @PostMapping("/question")
   @ResponseStatus(HttpStatus.OK)
   ResponseEntity<UserIdDto> secretQuestionAnswer(
@@ -101,7 +99,6 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
           })
   })
-
   @PostMapping("/restore")
   @ResponseStatus(HttpStatus.OK)
   ResponseEntity<UserDto> newPassword(
@@ -118,8 +115,6 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
           })
   })
-
-
   @GetMapping("/users")
   ResponseEntity<UsersDto> getAllUsers(
       @Parameter(required = true, description = "Page number", example = "0")
@@ -135,7 +130,6 @@ public interface UsersApi {
           example = "true")
       @RequestParam(value = "desc") Boolean desc);
 
-
   @Operation(summary = "Delete User", description = "Only for admin")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "Can't find user",
@@ -147,7 +141,6 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
-
   @PreAuthorize("hasAuthority('ADMIN')")
   @DeleteMapping("/users/{user-id}")
   ResponseEntity<UserDto> deleteUser(
@@ -161,13 +154,11 @@ public interface UsersApi {
       @ApiResponse(responseCode = "404", description = "Can't find user", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
       }),
-
       @ApiResponse(responseCode = "200", description = "Updated user",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
-
   @PutMapping("/users/{user-id}")
   ResponseEntity<UserDto> updateUser(
       @Parameter(required = true, description = "User ID to update", example = "2")
@@ -180,13 +171,11 @@ public interface UsersApi {
       @ApiResponse(responseCode = "404", description = "Can't find user", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
       }),
-
       @ApiResponse(responseCode = "200", description = "Updated user",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
-
   @PreAuthorize("hasAuthority('ADMIN')")
   @PutMapping("/users/admin/{user-id}")
   ResponseEntity<UserDto> updateUserAdmin(
@@ -205,13 +194,10 @@ public interface UsersApi {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
           })
   })
-
   @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping("/users/{user-id}")
   ResponseEntity<UserDto> getUser(
       @Parameter(required = true, description = "Users ID", example = "2")
       @PathVariable("user-id") Long userId);
-
-
 }
 
