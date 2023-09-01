@@ -303,6 +303,26 @@ public class EventsServiceImpl implements EventsService {
         .build();
   }
 
+  @Override
+  public EventFollowDto unfollowEventById(Long eventId) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+        () -> new NotFoundException("User not found"));
+
+    Event event = getEventOrThrow(eventId);
+
+    user.getEvents().remove(event);
+
+    usersRepository.save(user);
+
+    return EventFollowDto.builder()
+        .idEvent(eventId)
+        .idUser(user.getId())
+        .followedStatus(false)
+        .build();
+  }
+
 
 //        Event followedEvent = getEventOrThrow(eventId);
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

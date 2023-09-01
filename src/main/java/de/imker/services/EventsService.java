@@ -32,4 +32,5 @@ public interface EventsService {
 
     UsersList getUsersListByEventId(Long eventId);
 
+    EventFollowDto unfollowEventById(Long eventId);
 }

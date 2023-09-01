@@ -82,5 +82,11 @@ public class EventsController implements EventsApi {
             .ok(eventsService.getUsersListByEventId(eventId));
     }
 
+    @Override
+    public ResponseEntity<EventFollowDto> unfollowEventById(Long eventId) {
+        return ResponseEntity
+            .ok(eventsService.unfollowEventById(eventId));
+    }
+
 
 }
