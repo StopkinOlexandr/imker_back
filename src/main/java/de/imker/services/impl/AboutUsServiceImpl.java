@@ -1,15 +1,21 @@
 package de.imker.services.impl;
 
 import de.imker.dto.AboutUsDto;
+import de.imker.dto.AboutUsListDto;
+import de.imker.dto.MembersDto;
 import de.imker.dto.UpdateAboutUsDto;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.AboutUs;
+import de.imker.models.Member;
 import de.imker.repositories.AboutUsRepository;
 import de.imker.services.AboutUsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static de.imker.dto.AboutUsDto.transformAboutUsToAboutUsDto;
+import static de.imker.dto.MemberDto.transformMemberToMemberDto;
 
 @RequiredArgsConstructor
 @Service
@@ -48,6 +54,15 @@ public class AboutUsServiceImpl implements AboutUsService {
     aboutUsRepository.save(updAboutUs);
 
     return transformAboutUsToAboutUsDto(updAboutUs);
+  }
+
+  @Override
+  public AboutUsListDto getAllAboutUs() {
+    List<AboutUs> aboutUsList = aboutUsRepository.findAll();
+
+    return AboutUsListDto.builder()
+        .aboutUsAll(transformAboutUsToAboutUsDto(aboutUsList))
+        .build();
   }
 
   private AboutUs getAboutUsOrThrow(Integer aboutUsId) {

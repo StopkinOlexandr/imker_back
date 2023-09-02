@@ -21,40 +21,22 @@ public class AboutUsInitialisation {
     if (aboutUsList.size() == 0) {
       AboutUs newAboutUs = AboutUs.builder()
           .titleTop("Imkerverein: Mission, Ziele und Aufgaben")
-          .descriptionTop("<div className=\"mb-3\">\n" +
-              "          <p className={styles.about_text}><h4>Imkerverein: Mission, Ziele und Aufgaben</h4>\n" +
-              "            <br />\n" +
-              "            Ein Imkerverein ist eine bedeutende Vereinigung, die Imker unterschiedlichen Erfahrungsniveaus\n" +
-              "            vereint und sich für die Förderung der Imkerei sowie den Schutz und die Erhaltung von Bienen einsetzt.\n" +
-              "            In dieser Artikel werden wir einen näheren Blick auf die Mission,\n" +
-              "            die Ziele und die Aufgaben eines Imkervereins werfen.\n" +
-              "          </p>\n" +
-              "          <br />\n" +
-              "          <p className={styles.about_text}><h4>Die Mission eines Imkervereins:</h4><br />\n" +
-              "            Die Mission eines Imkervereins besteht darin, eine Gemeinschaft von Imkern zu schaffen,\n" +
-              "            die sich gegenseitig unterstützt, Wissen teilt und zur Förderung und Erhaltung der\n" +
-              "            Imkerei beiträgt. Der Verein verfolgt das Ziel, das Bewusstsein für die Bedeutung der\n" +
-              "            Bienenhaltung und des Bienenschutzes zu schärfen und die Interessen der Imker in der\n" +
-              "            Gesellschaft zu vertreten.\n" +
-              "          </p>\n" +
-              "        </div>")
+          .descriptionTop("<p><br>Ein Imkerverein ist eine bedeutende Vereinigung, die Imker " +
+              "unterschiedlichen Erfahrungsniveaus vereint und sich f&uuml;r die F&ouml;rderung der Imkerei sowie den Schutz und die Erhaltung von Bienen einsetzt. In dieser Artikel werden wir einen n&auml;heren Blick auf die Mission, die Ziele und die Aufgaben eines Imkervereins werfen. &gt;</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h4>Die Mission eines Imkervereins:</h4>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<p><br>Die Mission eines Imkervereins besteht darin, eine Gemeinschaft von Imkern zu schaffen, die sich gegenseitig unterst&uuml;tzt, Wissen teilt und zur F&ouml;rderung und Erhaltung der Imkerei beitr&auml;gt. Der Verein verfolgt das Ziel, das Bewusstsein f&uuml;r die Bedeutung der Bienenhaltung und des Bienenschutzes zu sch&auml;rfen und die Interessen der Imker in der Gesellschaft zu vertreten.</p>\n")
           .titleBottom("Ziele eines Imkervereins: ")
-          .descriptionBottom(" <div>\n" +
-              "          <p className={styles.about_text + \" mb-3\"}>\n" +
-              "            <br />1.\tBildung und Schulung: Ein Hauptziel des Imkervereins ist die Bereitstellung von Bildung und Schulung für Imker auf allen Ebenen. Dies umfasst Workshops, Seminare, Kurse und Informationsveranstaltungen, bei denen Mitglieder ihre Kenntnisse über Bienenhaltung, Bienenverhalten, Krankheitsprävention und Honiggewinnung vertiefen können.\n" +
-              "            <br />2.\tBienengesundheit und -schutz: Der Verein setzt sich für den Schutz der Bienen und die Förderung ihrer Gesundheit ein. Dies beinhaltet die Vermittlung bewährter Praktiken zur Bienenpflege, die Sensibilisierung für die Bedrohungen der Bienenpopulationen und die Unterstützung von Forschungsprojekten zur Bienenkrankheit.\n" +
-              "            <br />3.\tFörderung nachhaltiger Praktiken: Im Imkerverein steht die Förderung nachhaltiger Imkereipraktiken im Vordergrund. Dies umfasst die Anwendung umweltfreundlicher Methoden, die Erhaltung natürlicher Lebensräume für Bienen und die Förderung der Bestäubung von Pflanzen.\n" +
-              "            <br />4.\tGemeinschaft und Austausch: Ein weiteres Ziel des Vereins ist es, eine starke Gemeinschaft von Imkern aufzubauen, die Erfahrungen und Ratschläge austauschen können. Durch regelmäßige Treffen, Veranstaltungen und Diskussionsforen wird der Austausch von Informationen gefördert.\n" +
-              "          </p>\n" +
-              "          <p className={styles.about_text + \" mb-3\"}><h4>Aufgaben eines Imkervereins:</h4>\n" +
-              "            <br />1.\tOrganisation von Veranstaltungen: Der Verein organisiert Workshops, Schulungen, Vorträge und Veranstaltungen, um Mitgliedern eine Plattform zum Lernen, Austauschen und Vernetzen zu bieten.\n" +
-              "            <br />2.\tForschungsförderung: Ein Imkerverein kann Forschungsprojekte zur Bienenkrankheit, zur Bienenökologie und zur Verbesserung der Bienenhaltung unterstützen und fördern.\n" +
-              "            <br />3.\tÖffentlichkeitsarbeit: Der Verein fördert die öffentliche Wahrnehmung der Bedeutung von Bienen und Imkerei durch Bildungsprogramme, Bienenfestivals und Informationsveranstaltungen.\n" +
-              "            <br />4.\tUnterstützung von Anfängern: Der Verein bietet Unterstützung und Ressourcen für Anfänger im Bereich der Imkerei, um ihnen den Einstieg zu erleichtern.\n" +
-              "          </p>\n" +
-              "        </div>")
-          .image1("156")
-          .image2("157")
+          .descriptionBottom(" \n" +
+              "    <p>\n" +
+              "<br>1. Bildung und Schulung: Ein Hauptziel des Imkervereins ist die Bereitstellung von Bildung und Schulung f&uuml;r Imker auf allen Ebenen. Dies umfasst Workshops, Seminare, Kurse und Informationsveranstaltungen, bei denen Mitglieder ihre Kenntnisse &uuml;ber Bienenhaltung, Bienenverhalten, Krankheitspr&auml;vention und Honiggewinnung vertiefen k&ouml;nnen.<br>2. Bienengesundheit und -schutz: Der Verein setzt sich f&uuml;r den Schutz der Bienen und die F&ouml;rderung ihrer Gesundheit ein. Dies beinhaltet die Vermittlung bew&auml;hrter Praktiken zur Bienenpflege, die Sensibilisierung f&uuml;r die Bedrohungen der Bienenpopulationen und die Unterst&uuml;tzung von Forschungsprojekten zur Bienenkrankheit.<br>3. F&ouml;rderung nachhaltiger Praktiken: Im Imkerverein steht die F&ouml;rderung nachhaltiger Imkereipraktiken im Vordergrund. Dies umfasst die Anwendung umweltfreundlicher Methoden, die Erhaltung nat&uuml;rlicher Lebensr&auml;ume f&uuml;r Bienen und die F&ouml;rderung der Best&auml;ubung von Pflanzen.<br>4. Gemeinschaft und Austausch: Ein weiteres Ziel des Vereins ist es, eine starke Gemeinschaft von Imkern aufzubauen, die Erfahrungen und Ratschl&auml;ge austauschen k&ouml;nnen. Durch regelm&auml;&szlig;ige Treffen, Veranstaltungen und Diskussionsforen wird der Austausch von Informationen gef&ouml;rdert. </p>\n" +
+              "    <p>\n" +
+              "<h4>Aufgaben eines Imkervereins:</h4></p>\n" +
+              "    <p>\n" +
+              "<br>1. Organisation von Veranstaltungen: Der Verein organisiert Workshops, Schulungen, Vortr&auml;ge und Veranstaltungen, um Mitgliedern eine Plattform zum Lernen, Austauschen und Vernetzen zu bieten.<br>2. Forschungsf&ouml;rderung: Ein Imkerverein kann Forschungsprojekte zur Bienenkrankheit, zur Bienen&ouml;kologie und zur Verbesserung der Bienenhaltung unterst&uuml;tzen und f&ouml;rdern.<br>3. &Ouml;ffentlichkeitsarbeit: Der Verein f&ouml;rdert die &ouml;ffentliche Wahrnehmung der Bedeutung von Bienen und Imkerei durch Bildungsprogramme, Bienenfestivals und Informationsveranstaltungen.<br>4. Unterst&uuml;tzung von Anf&auml;ngern: Der Verein bietet Unterst&uuml;tzung und Ressourcen f&uuml;r Anf&auml;nger im Bereich der Imkerei, um ihnen den Einstieg zu erleichtern. </p>")
+          .image1("154")
+          .image2("155")
           .build();
       aboutUsRepository.save(newAboutUs);
     }

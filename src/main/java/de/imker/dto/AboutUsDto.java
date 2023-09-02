@@ -1,11 +1,15 @@
 package de.imker.dto;
 
 import de.imker.models.AboutUs;
+import de.imker.models.Member;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -39,5 +43,12 @@ public class AboutUsDto {
         .image1(aboutUs.getImage1())
         .image2(aboutUs.getImage2())
         .build();
+  }
+
+  public static List<AboutUsDto> transformAboutUsToAboutUsDto(List<AboutUs> aboutUs) {
+
+    return aboutUs
+        .stream().map(AboutUsDto::transformAboutUsToAboutUsDto)
+        .collect(Collectors.toList());
   }
 }
