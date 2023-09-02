@@ -36,7 +36,7 @@
 
             <column name="title_post" type="varchar(300)"/>
             <column name="link_to_img" type="varchar(300)"/>
-            <column name="short_post_description" type="varchar(300)"/>
+            <column name="short_post_description" type="varchar(400)"/>
             <column name="text_of_post" type="TEXT"/>
             <column name="author_name" type="varchar(100)"/>
         </createTable>
