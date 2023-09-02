@@ -144,12 +144,16 @@ public class FilesServiceImpl implements FilesService {
 
     Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
 
-    try {
-      Files.delete(filePath);
-      filesRepository.delete(fileUpload);
-    } catch (IOException e) {
-      throw new NotFoundException("File not found");
+    if (Files.exists(filePath)) {
+      try {
+        Files.delete(filePath);
+        filesRepository.delete(fileUpload);
+      } catch (IOException e) {
+        throw new NotFoundException("Failed to delete file: " + e.getMessage());
+      }
     }
+
     return FileUploadDto.from(fileUpload);
   }
+
 }
