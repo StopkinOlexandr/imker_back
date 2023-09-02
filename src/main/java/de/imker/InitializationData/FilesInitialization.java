@@ -418,6 +418,28 @@ public class FilesInitialization {
           .size((long) 14418)
           .build();
       filesRepository.save(fileUpload);
+
+      fileUpload = FileUpload.builder()
+          .id(154L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("about_1.jpg")
+          .storedName("!154-7e9a519c-60ab-4967-9e00-01a5326a736aabout_1.jpg")
+          .fileType("image/jpeg")
+          .size((long) 49988)
+          .build();
+      filesRepository.save(fileUpload);
+
+      fileUpload = FileUpload.builder()
+          .id(155L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("about_2.jpg")
+          .storedName("!155-73b462ca-1ecd-4ed7-8d67-74965dedc223about_2.jpg")
+          .fileType("image/jpeg")
+          .size((long) 80844)
+          .build();
+      filesRepository.save(fileUpload);
     }
   }
 }
