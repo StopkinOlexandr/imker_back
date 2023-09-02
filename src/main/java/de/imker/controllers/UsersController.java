@@ -57,9 +57,10 @@ public class UsersController implements UsersApi {
   }
 
   @Override
-  public ResponseEntity<UsersDto> getAllUsers() {
+  public ResponseEntity<UsersDto> getAllUsers(Integer page, Integer items, String orderBy, Boolean desc) {
+
     return ResponseEntity
-        .ok(usersService.getAllUsers());
+        .ok(usersService.getAllUsers(page, items, orderBy, desc));
   }
 
 
@@ -73,6 +74,12 @@ public class UsersController implements UsersApi {
   public ResponseEntity<UserDto> updateUser(Long userId, UpdateUserDto updateUser) {
     return ResponseEntity
         .ok(usersService.updateUser(userId, updateUser));
+  }
+
+  @Override
+  public ResponseEntity<UserDto> updateUserAdmin(Long userId, UpdateUserDto updateUser) {
+    return ResponseEntity
+        .ok(usersService.updateUserAdmin(userId, updateUser));
   }
 
   @Override

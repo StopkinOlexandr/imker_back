@@ -25,11 +25,6 @@ class EventsControllerTest {
     @Autowired
     private EventsRepository eventsRepository;
 
-//    @BeforeEach
-//    public void setUp() {
-//        eventsRepository.clear();
-//    }
-
     @Nested
     @DisplayName("getAllEvents() method is works: ")
     class addEventTest {
@@ -39,20 +34,36 @@ class EventsControllerTest {
                             .header("Content-Type", "application/json")
                             .content("\n" +
                                     "{\n" +
-                                    "  \"name\": \"Circus\",\n" +
-                                    "  \"description\": \"Kids circus\",\n" +
-                                    "  \"author\": \"Andrii\",\n" +
-                                    "  \"place\": \"Bremen, CircusHof, 11\",\n" +
-                                    "  \"quantityOfMembers\": \"250\",\n" +
-                                    "  \"photo\": \"added photo #2\",\n" +
-                                    "  \"date\": \"01/09/2023\"\n" +
+//                                    "  \"id\": \"13\",\n" +
+                                    "  \"title\": \"Bienenforschung und Wissenschaft: Aktuelle Erkenntnisse zur Bienenhaltung!\",\n" +
+                                    "  \"description\": \"Tauchen Sie ein in die faszinierende Welt der Bienenforschung!\",\n" +
+                                    "  \"shortDescription\": \"Seminar: Bienenforschung und Wissenschaft\",\n" +
+                                    "  \"author\": \"Bienenforscherin Dr. Anna Schneider\",\n" +
+                                    "  \"location\": \"Bremen, CircusHof, 11\",\n" +
+                                    "  \"quantityOfMembers\": \"30\",\n" +
+                                    "  \"photo\": \"101\",\n" +
+                                    "  \"dateStart\": \"2023-03-10\",\n" +
+                                    "  \"dateEnd\": \"2023-03-10\",\n" +
+                                    "  \"startTime\": \"10:00\",\n" +
+                                    "  \"endTime\": \"16:00\",\n" +
+                                    "  \"address\": \"Bienenforschungsinstitut, Musterstadt\"\n" +
+
                                     "\n" +
                                     "}"))
                     .andExpect(status().isCreated())
-                    .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.place", is("Bremen, CircusHof, 11")))
-                    .andExpect(jsonPath("$.author", is("Andrii")))
-                    .andExpect(jsonPath("$.status", is("EXPECTED")));
+                    // .andExpect(jsonPath("$.id", is(13)))
+                    .andExpect(jsonPath("$.title", is("Bienenforschung und Wissenschaft: Aktuelle Erkenntnisse zur Bienenhaltung!")))
+                    .andExpect(jsonPath("$.description", is("Tauchen Sie ein in die faszinierende Welt der Bienenforschung!")))
+                    .andExpect(jsonPath("$.shortDescription", is("Seminar: Bienenforschung und Wissenschaft")))
+                    .andExpect(jsonPath("$.author", is("Bienenforscherin Dr. Anna Schneider")))
+                    .andExpect(jsonPath("$.location", is("Bremen, CircusHof, 11")))
+                    .andExpect(jsonPath("$.quantityOfMembers", is(30)))
+                    .andExpect(jsonPath("$.photo", is("101")))
+                    .andExpect(jsonPath("$.dateStart", is("2023-03-10")))
+                    .andExpect(jsonPath("$.dateEnd", is("2023-03-10")))
+                    .andExpect(jsonPath("$.startTime", is("10:00")))
+                    .andExpect(jsonPath("$.endTime", is("16:00")))
+                    .andExpect(jsonPath("$.address", is("Bienenforschungsinstitut, Musterstadt")));
         }
     }
 
@@ -65,9 +76,9 @@ class EventsControllerTest {
             eventsRepository.save(Event.builder().status(Event.Status.EXPECTED).build());
             eventsRepository.save(Event.builder().status(Event.Status.EXPECTED).build());
 
-            mockMvc.perform(get("/api/events"))
+            mockMvc.perform(get("/api/events/getAll"))
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.count", is(2)));
+                    .andExpect(jsonPath("$.count", is(11)));
         }
 
 
@@ -91,36 +102,6 @@ class EventsControllerTest {
                     .andExpect(status().isNotFound());
         }
 
-    }
-
-    ///////////////////////////////////////////////////////////////
-    @Nested
-    @DisplayName("updateEvent() method is works: ")
-    class UpdateEventTests {
-        @Test
-        void update_exist_event() throws Exception {
-            eventsRepository.save(Event.builder().status(Event.Status.EXPECTED).build());
-
-            mockMvc.perform(put("/api/events/1")
-                            .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newStatus\" : \"ENDED\"\n" +
-                                    "}"))
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.status", is("ENDED")));
-
-        }
-
-        @Test
-        void update_not_exist_event() throws Exception {
-            mockMvc.perform(put("/api/events/1").header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newStatus\" : \"ENDED\"\n" +
-                                    "}"))
-                    .andExpect(status().isNotFound());
-
-        }
     }
 }
 

@@ -1,27 +1,31 @@
 package de.imker.services.impl;
 
-
-import de.imker.dto.EventDto;
-import de.imker.dto.EventsDto;
-import de.imker.dto.NewEventDto;
-import de.imker.dto.UpdateEventDto;
+import de.imker.dto.*;
 import de.imker.exeptions.ForbiddenFieldException;
 import de.imker.exeptions.NotFoundException;
 import de.imker.models.Event;
+import de.imker.models.User;
 import de.imker.repositories.EventsRepository;
+import de.imker.repositories.UsersRepository;
 import de.imker.services.EventsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static de.imker.dto.EventDto.from;
+
 
 @RequiredArgsConstructor
 @Transactional
@@ -29,6 +33,8 @@ import static de.imker.dto.EventDto.from;
 public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
+    private final UsersRepository usersRepository;
+    private final UsersServiceImpl usersService;
 
     @Value("${events.sort.fields}")
     private List<String> sortFields;
@@ -36,8 +42,6 @@ public class EventsServiceImpl implements EventsService {
     @Value("${events.filter.fields}")
     private List<String> filterFields;
 
-//    @Value("${events.page.size}")
-//    private Integer pageSize;
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
@@ -83,77 +87,77 @@ public class EventsServiceImpl implements EventsService {
         Event eventToUpdate = getEventOrThrow(eventId);
 
         if (!Objects.equals(eventToUpdate.getTitle(), eventWithUpdatedData.getTitle()) &&
-                !(eventWithUpdatedData.getTitle().isEmpty() && eventWithUpdatedData.getTitle().isBlank()))
+                !(eventWithUpdatedData.getTitle().isEmpty() && eventWithUpdatedData.getTitle().isBlank())) {
             eventToUpdate.setTitle(eventWithUpdatedData.getTitle());
+        }
 
         if (!Objects.equals(eventToUpdate.getDescription(), eventWithUpdatedData.getDescription()) &&
-                !(eventWithUpdatedData.getDescription().isBlank() && eventWithUpdatedData.getDescription().isEmpty()))
+                !(eventWithUpdatedData.getDescription().isBlank() && eventWithUpdatedData.getDescription().isEmpty())) {
             eventToUpdate.setDescription(eventWithUpdatedData.getDescription());
+        }
 
         if (!Objects.equals(eventToUpdate.getShortDescription(), eventWithUpdatedData.getShortDescription()) &&
-                !(eventWithUpdatedData.getShortDescription().isBlank() && eventWithUpdatedData.getShortDescription().isEmpty()))
+                !(eventWithUpdatedData.getShortDescription().isBlank() && eventWithUpdatedData.getShortDescription().isEmpty())) {
             eventToUpdate.setShortDescription(eventWithUpdatedData.getShortDescription());
+        }
 
 
         if (!Objects.equals(eventToUpdate.getAddress(), eventWithUpdatedData.getAddress()) &&
-                !(eventWithUpdatedData.getAddress().isBlank() && eventWithUpdatedData.getAddress().isEmpty()))
+                !(eventWithUpdatedData.getAddress().isBlank() && eventWithUpdatedData.getAddress().isEmpty())) {
             eventToUpdate.setAddress(eventWithUpdatedData.getAddress());
+        }
 
 
         if (!Objects.equals(eventToUpdate.getAuthor(), eventWithUpdatedData.getAuthor()) &&
-                !(eventWithUpdatedData.getAuthor().isEmpty() && eventWithUpdatedData.getAuthor().isBlank()))
+                !(eventWithUpdatedData.getAuthor().isEmpty() && eventWithUpdatedData.getAuthor().isBlank())) {
             eventToUpdate.setAuthor(eventWithUpdatedData.getAuthor());
+        }
 
         if (!Objects.equals(eventToUpdate.getLocation(), eventWithUpdatedData.getLocation()) &&
-                !(eventWithUpdatedData.getLocation().isBlank() && eventWithUpdatedData.getLocation().isEmpty()))
+                !(eventWithUpdatedData.getLocation().isBlank() && eventWithUpdatedData.getLocation().isEmpty())) {
             eventToUpdate.setLocation(eventWithUpdatedData.getLocation());
+        }
 
         if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getPhoto()) &&
-                !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank()))
+                !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank())) {
             eventToUpdate.setPhoto(eventWithUpdatedData.getPhoto());
+        }
 
         if (!Objects.equals(eventToUpdate.getDateStart(), eventWithUpdatedData.getDateStart()) &&
-                !(eventWithUpdatedData.getDateStart().isEmpty() && eventWithUpdatedData.getDateStart().isBlank()))
+                !(eventWithUpdatedData.getDateStart().isEmpty() && eventWithUpdatedData.getDateStart().isBlank())) {
             eventToUpdate.setDateStart(eventWithUpdatedData.getDateStart());
+        }
 
         if (!Objects.equals(eventToUpdate.getDateEnd(), eventWithUpdatedData.getDateEnd()) &&
-                !(eventWithUpdatedData.getDateEnd().isEmpty() && eventWithUpdatedData.getDateEnd().isBlank()))
+                !(eventWithUpdatedData.getDateEnd().isEmpty() && eventWithUpdatedData.getDateEnd().isBlank())) {
             eventToUpdate.setDateEnd(eventWithUpdatedData.getDateEnd());
+        }
 
         if (!Objects.equals(eventToUpdate.getStartTime(), eventWithUpdatedData.getStartTime()) &&
-                !(eventWithUpdatedData.getStartTime().isEmpty() && eventWithUpdatedData.getStartTime().isBlank()))
+                !(eventWithUpdatedData.getStartTime().isEmpty() && eventWithUpdatedData.getStartTime().isBlank())) {
             eventToUpdate.setStartTime(eventWithUpdatedData.getStartTime());
+        }
 
         if (!Objects.equals(eventToUpdate.getEndTime(), eventWithUpdatedData.getEndTime()) &&
-                !(eventWithUpdatedData.getEndTime().isBlank() && eventWithUpdatedData.getEndTime().isEmpty()))
+                !(eventWithUpdatedData.getEndTime().isBlank() && eventWithUpdatedData.getEndTime().isEmpty())) {
             eventToUpdate.setEndTime(eventWithUpdatedData.getEndTime());
-
+        }
 
 
         if (!Objects.equals(eventToUpdate.getStatus(), eventWithUpdatedData.getStatus()) &&
-                !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty()))
+                !(eventWithUpdatedData.getStatus().isBlank() && eventWithUpdatedData.getStatus().isEmpty())) {
             eventToUpdate.setStatus(Event.Status.valueOf(eventWithUpdatedData.getStatus()));
+        }
 
         eventsRepository.save(eventToUpdate);
         return from(eventToUpdate);
     }
 
     @Override
-    public EventsDto getEventsOfUser(Long eventId) {
-        Event event = getEventOrThrow(eventId);
-//        return EventsDto.builder()
-//                .events(from(event.getEvents()))
-//                .count(event.getEvents().size())
-//                .build();
-
-        return null;
-    }
-
-    @Override
     public EventDto getEventById(Long eventId) {
         Event event = getEventOrThrow(eventId);
         return EventDto.builder()
-                .idEvent(event.getEventId())
+                .idEvent(event.getId())
                 .title(event.getTitle())
                 .description(event.getDescription())
                 .shortDescription(event.getShortDescription())
@@ -168,6 +172,7 @@ public class EventsServiceImpl implements EventsService {
                 .photo(event.getPhoto())
                 .build();
     }
+
 
     private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc, Integer pageSize) {
 
@@ -227,4 +232,84 @@ public class EventsServiceImpl implements EventsService {
         return eventsRepository.findById(eventId).orElseThrow(
                 () -> new NotFoundException("Event with: " + eventId + " not found "));
     }
+
+    @Override
+    public EventsDto getAllTimeEvents() {
+
+        List<Event> events = eventsRepository.findAll();
+        return EventsDto.builder()
+                .events(from(events))
+                .count(events.size())
+                .build();
+    }
+
+    @Override
+    public EventFollowDto followEventById(Long eventsId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+                () -> new NotFoundException("User not found"));
+
+        Event event = getEventOrThrow(eventsId);
+
+        if (user != null && event != null && !userHasEvent(user, event)) {
+            user.getEvents().add(event);
+            usersRepository.save(user);
+        }
+        assert user != null;
+
+        return EventFollowDto.builder()
+                .idEvent(eventsId)
+                .idUser(user.getId())
+                .followedStatus(true)
+                .build();
+    }
+
+    private boolean userHasEvent(User user, Event event) {
+        return user.getEvents().contains(event);
+    }
+
+    @Override
+    public EventsList getMyEventsList() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+                () -> new NotFoundException("User not found"));
+
+        return EventsList.builder()
+                .events(EventDto.from(new ArrayList<>(user.getEvents())))
+                .build();
+    }
+
+    @Override
+    public UsersList getUsersListByEventId(Long eventId) {
+
+        Event event = getEventOrThrow(eventId);
+
+        return UsersList.builder()
+                .users(UserDto.from(new ArrayList<>(event.getUsers())))
+                .build();
+    }
+
+    @Override
+    public EventFollowDto unfollowEventById(Long eventId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = usersRepository.findByEmail(authentication.getName()).orElseThrow(
+                () -> new NotFoundException("User not found"));
+
+        Event event = getEventOrThrow(eventId);
+
+        user.getEvents().remove(event);
+
+        usersRepository.save(user);
+
+        return EventFollowDto.builder()
+                .idEvent(eventId)
+                .idUser(user.getId())
+                .followedStatus(false)
+                .build();
+    }
+
 }

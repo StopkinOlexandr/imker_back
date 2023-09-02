@@ -63,7 +63,7 @@
 
     <changeSet id="#4" author="andrii">
         <createTable tableName="events">
-            <column name="event_id" type="int" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="title" type="varchar(250)"/>
@@ -78,8 +78,7 @@
             <column name="end_time" type="varchar(50)"/>
             <column name="location" type="varchar(1000)"/>
             <column name="status" type="varchar(50)"/>
-            <column name="quantity_of_members" type="varchar(50)"/>
-
+            <column name="quantity_of_members" type="int"/>
         </createTable>
     </changeSet>
 
@@ -135,16 +134,21 @@
     </changeSet>
 
     <changeSet id="#8" author="andrii">
-        <createTable tableName="users_on_events">
-            <column name="user_event_id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
+        <createTable tableName="user_event">
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_event_account"
+                             references="account(id)"/>
             </column>
-            <column name="user_id" type="int"/>
-            <column name="event_id" type="int"/>
+
+            <column name="events_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_event_events"
+                             references="events(id)"/>
+            </column>
+
         </createTable>
     </changeSet>
 
-    <changeSet id="#8" author="vadim">
+    <changeSet id="#9" author="vadim">
         <createTable tableName="gallery">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -157,7 +161,19 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="#9" author="Valentyna">
+    <changeSet id="#10" author="vadim">
+        <createTable tableName="address">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="address" type="varchar(300)"/>
+            <column name="phone" type="varchar(300)"/>
+            <column name="email" type="varchar(300)"/>
+
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="#11" author="Valentyna">
         <createTable tableName="aboutus">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>

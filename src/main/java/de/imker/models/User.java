@@ -1,26 +1,18 @@
 package de.imker.models;
 
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = {"secretQuestion", "password", "plz", "phone", "image", "role", "state", "isLogin"})
+@EqualsAndHashCode(exclude = {"secretQuestion", "password", "plz", "phone", "image", "role", "state"})
 @Entity
 @Table(name = "account")
 public class User {
@@ -37,6 +29,7 @@ public class User {
     BANNED,
     DELETED
   }
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -48,7 +41,6 @@ public class User {
 
   @Column(nullable = false)
   private String hashPassword;
-//  private String password;
 
   @Column(nullable = false)
   private String secretQuestion;
@@ -69,8 +61,12 @@ public class User {
   @Enumerated(value = EnumType.STRING)
   private State state;
 
-  private Boolean isLogin;
+  @ManyToMany
+  @JoinTable(
+      name = "user_event",
+      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "events_id", referencedColumnName = "id")
+  )
+  private List<Event> events;
 
-//  private String token;
-//  private String coordinates;
 }

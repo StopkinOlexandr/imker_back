@@ -1,6 +1,7 @@
 package de.imker.services.impl;
 
 import static de.imker.dto.UserDto.from;
+import static de.imker.utils.UtilsMethods.getPageRequest;
 
 import de.imker.dto.UpdateUserDto;
 import de.imker.dto.UserDto;
@@ -14,28 +15,36 @@ import de.imker.exeptions.NotFoundException;
 import de.imker.exeptions.RestException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
+import de.imker.services.FilesService;
 import de.imker.services.UsersService;
+import de.imker.services.telegrammNotice.TelegramNotice;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class UsersServiceImpl implements UsersService {
 
   UsersRepository usersRepository;
   PasswordEncoder passwordEncoder;
+  FilesService filesService;
 
 
-
-  private UserDto findByEmail(String email) {
-    UsersDto list = getAllUsers();
+  public UserDto findByEmail(String email) {
+    UsersDto list = getAllUsers(1, usersRepository.findAll().size(), "id", true);
     return list.getUsers()
         .stream()
         .filter(p -> p.getEmail().equals(email))
@@ -68,6 +77,21 @@ public class UsersServiceImpl implements UsersService {
     User user = usersRepository.findById(userDto.getId()).orElseThrow(
         () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
 
+    String message = String.format("""
+        User with ID %s tried to restore his password.
+          Email: %s
+          Name: %s
+          PLZ: %s
+          PhoneNumber: %s
+          Role: %s
+        """, user.getId().toString(),
+        user.getEmail(),
+        user.getName(),
+        user.getPlz(),
+        user.getPhone(),
+        user.getRole());
+    TelegramNotice.sendTelegramNotice(message);
+
     if (user.getSecretQuestion().equals(secretQuestionAnswer.getSecretQuestion())) {
       if (user.getAnswerSecretQuestion().equals(secretQuestionAnswer.getSecretQuestionAnswer())) {
         return UserIdDto.builder()
@@ -81,24 +105,43 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public UserDto setNewPassword(UserRestorePwdDto restorePwd) {
 
-    User user = getUserFromRepository(restorePwd.getId());
+    User user = getUserOrThrow(restorePwd.getId());
     user.setHashPassword(passwordEncoder.encode(restorePwd.getNewPassword()));
     usersRepository.save(user);
     return UserDto.from(user);
   }
 
   @Override
-  public UsersDto getAllUsers() {
+  public UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser) {
+    User user = getUserOrThrow(userId);
+    user.setName(updateUser.getName());
+    user.setPlz(updateUser.getPlz());
+    user.setPhone(updateUser.getPhone());
+    user.setImage(updateUser.getImage());
+    user.setState(User.State.valueOf(updateUser.getState()));
+    user.setRole(User.Role.valueOf(updateUser.getRole()));
 
+    usersRepository.save(user);
+    return UserDto.from(user);
+  }
+
+  @Override
+  public UsersDto getAllUsers(Integer page, Integer items, String orderBy, Boolean desc) {
+    Page<User> pageOfUsers;
+
+    PageRequest pageRequest = getPageRequest(page, items, orderBy, desc);
+
+    pageOfUsers = usersRepository.findAll(pageRequest);
     return UsersDto.builder()
-        .users(from(usersRepository.findAll()))
+        .users(from(pageOfUsers.getContent()))
+        .count((int) pageOfUsers.getTotalElements())
         .build();
   }
 
   @Override
   public UserDto deleteUser(Long userId) {
 
-    User user = getUserFromRepository(userId);
+    User user = getUserOrThrow(userId);
 
     usersRepository.delete(user);
     return UserDto.from(user);
@@ -106,13 +149,16 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
-    User user = getUserFromRepository(userId);
-    user.setName(updateUser.getNewName());
-    user.setPlz(updateUser.getNewPlz());
-    user.setPhone(updateUser.getNewPhone());
-    user.setImage(updateUser.getNewImage());
-    user.setState(User.State.valueOf(updateUser.getNewState()));
-    user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+    User user = getUserOrThrow(userId);
+
+    if (!user.getImage().isEmpty() && !Objects.equals(user.getImage(), updateUser.getImage())) {
+      filesService.deleteFileById(Long.valueOf(user.getImage()));
+    }
+
+    user.setName(updateUser.getName());
+    user.setPlz(updateUser.getPlz());
+    user.setPhone(updateUser.getPhone());
+    user.setImage(updateUser.getImage());
 
     usersRepository.save(user);
     return UserDto.from(user);
@@ -123,12 +169,7 @@ public class UsersServiceImpl implements UsersService {
     return from(getUserOrThrow(userId));
   }
 
-  private User getUserFromRepository(Long userId) {
-    return usersRepository.findById(userId).orElseThrow(
-        () -> new NotFoundException("User with id <" + userId + "> not found"));
-  }
-
-  private User getUserOrThrow(Long userId) {
+    private User getUserOrThrow(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
         () -> new RestException(HttpStatus.NOT_FOUND, "User with Id <" + userId + "> not found"));
   }

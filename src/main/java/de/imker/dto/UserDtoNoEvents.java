@@ -2,11 +2,9 @@ package de.imker.dto;
 
 import de.imker.models.Event;
 import de.imker.models.User;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDto {
+public class UserDtoNoEvents {
 
   @Schema(description = "User's ID", example = "1")
   private Long id;
@@ -43,8 +41,8 @@ public class UserDto {
   @Schema(description = "User's image", example = "1.jpg")
   private String image;
 
-  public static UserDto from(User user) {
-    return UserDto.builder()
+  public static UserDtoNoEvents from(User user) {
+    return UserDtoNoEvents.builder()
         .id(user.getId())
         .email(user.getEmail())
         .state(user.getState().name())
@@ -56,9 +54,9 @@ public class UserDto {
         .build();
   }
 
-  public static List<UserDto> from(List<User> users) {
+  public static List<UserDtoNoEvents> from(List<User> users) {
     return users.stream()
-        .map(UserDto::from)
+        .map(UserDtoNoEvents::from)
         .collect(Collectors.toList());
   }
 }

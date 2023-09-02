@@ -13,7 +13,7 @@ public interface UsersService {
 
 //  UserDto addUser(NewUserDto newUser);
 
-  UsersDto getAllUsers();
+  UsersDto getAllUsers(Integer page, Integer items, String orderBy, Boolean desc);
 
   UserDto deleteUser(Long userId);
 
@@ -26,4 +26,6 @@ public interface UsersService {
   UserIdDto getSecretQuestionAnswer(UserSecretQuestionAnswerDto secretQuestionAnswer);
 
   UserDto setNewPassword(UserRestorePwdDto restorePwd);
+
+  UserDto updateUserAdmin(Long userId, UpdateUserDto updateUser);
 }
