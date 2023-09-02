@@ -4,6 +4,7 @@ import de.imker.models.User;
 import de.imker.models.User.Role;
 import de.imker.models.User.State;
 import de.imker.repositories.UsersRepository;
+import de.imker.services.FilesService;
 import de.imker.services.impl.UsersServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,15 @@ import org.springframework.stereotype.Component;
 public class UserInitialization {
   private final UsersServiceImpl usersService;
   private final UsersRepository usersRepository;
+  private final FilesService filesService;
+
   PasswordEncoder passwordEncoder;
 
   @Autowired
-  public UserInitialization(UsersRepository usersRepository) {
-    this.usersService = new UsersServiceImpl(usersRepository, passwordEncoder);
+  public UserInitialization(UsersRepository usersRepository, FilesService filesService) {
+    this.usersService = new UsersServiceImpl(usersRepository, passwordEncoder, filesService);
     this.usersRepository = usersRepository;
+    this.filesService = filesService;
   }
 
   public void userInit() {
