@@ -135,6 +135,7 @@ public class UsersServiceImpl implements UsersService {
     return UsersDto.builder()
         .users(from(pageOfUsers.getContent()))
         .count((int) pageOfUsers.getTotalElements())
+        .pages(pageOfUsers.getTotalPages())
         .build();
   }
 
