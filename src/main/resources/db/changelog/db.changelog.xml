@@ -166,8 +166,8 @@
             <column name="description_top" type="varchar(10000)"/>
             <column name="title_bottom" type="varchar(150)"/>
             <column name="description_bottom" type="varchar(10000)"/>
-            <column name="image1" type="varchar(10)"/>
-            <column name="image2" type="varchar(10)"/>
+            <column name="image1" type="varchar(100)"/>
+            <column name="image2" type="varchar(100)"/>
         </createTable>
     </changeSet>
 
