@@ -568,8 +568,18 @@ public class FilesInitialization {
           .fileType("image/jpeg")
           .size((long) 80844)
           .build();
-      filesRepository.save(fileUpload);          
+      filesRepository.save(fileUpload);
 
+            fileUpload = FileUpload.builder()
+                .id(156L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("bee.png")
+                .storedName("!156-b74a0c87-c6b1-408e-b5c8-65be8bd374f9bee.png")
+                .fileType("image/jpeg")
+                .size((long) 26551)
+                .build();
+            filesRepository.save(fileUpload);
         }
     }
 }
