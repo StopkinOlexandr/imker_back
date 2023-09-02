@@ -3,6 +3,7 @@ package de.imker.InitializationData;
 import de.imker.dto.*;
 import de.imker.models.Post;
 import de.imker.repositories.PostsRepository;
+import de.imker.services.FilesService;
 import de.imker.services.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,11 +14,14 @@ import java.util.List;
 public class PostsInitialization {
   private final PostServiceImpl postService;
   private final PostsRepository postsRepository;
+  private final FilesService filesService;
+
 
   @Autowired
-  public PostsInitialization(PostsRepository postsRepository) {
-    this.postService = new PostServiceImpl(postsRepository);
+  public PostsInitialization(PostsRepository postsRepository, FilesService filesService) {
+    this.postService = new PostServiceImpl(postsRepository, filesService);
     this.postsRepository = postsRepository;
+    this.filesService = filesService;
   }
 
   public void postInit() {

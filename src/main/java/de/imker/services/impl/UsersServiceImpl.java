@@ -15,10 +15,13 @@ import de.imker.exeptions.NotFoundException;
 import de.imker.exeptions.RestException;
 import de.imker.models.User;
 import de.imker.repositories.UsersRepository;
+import de.imker.services.FilesService;
 import de.imker.services.UsersService;
 import de.imker.services.telegrammNotice.TelegramNotice;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -37,7 +40,7 @@ public class UsersServiceImpl implements UsersService {
 
   UsersRepository usersRepository;
   PasswordEncoder passwordEncoder;
-
+  FilesService filesService;
 
 
   public UserDto findByEmail(String email) {
@@ -147,6 +150,11 @@ public class UsersServiceImpl implements UsersService {
   @Override
   public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
     User user = getUserOrThrow(userId);
+
+    if (!user.getImage().isEmpty() && !Objects.equals(user.getImage(), updateUser.getImage())) {
+      filesService.deleteFileById(Long.valueOf(user.getImage()));
+    }
+
     user.setName(updateUser.getName());
     user.setPlz(updateUser.getPlz());
     user.setPhone(updateUser.getPhone());
