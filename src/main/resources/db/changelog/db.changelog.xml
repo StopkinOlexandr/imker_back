@@ -102,9 +102,9 @@
             <column name="instagram" type="varchar(150)"/>
         </createTable>
 
-        <loadData tableName="member"
-                  file="db/data/members.csv">
-        </loadData>
+<!--        <loadData tableName="member"-->
+<!--                  file="db/data/members.csv">-->
+<!--        </loadData>-->
 
     </changeSet>
 

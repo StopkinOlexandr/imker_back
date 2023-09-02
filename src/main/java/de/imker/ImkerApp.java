@@ -55,6 +55,9 @@ public class ImkerApp {
 
     AboutUsInitialisation aboutUsInitialisation = context.getBean(AboutUsInitialisation.class);
     aboutUsInitialisation.aboutUsInit();
+    MembersUsInitialisation memberInitialisation = context.getBean(MembersUsInitialisation.class);
+    memberInitialisation.MemberInit();
+
 
     addressInitialization.addressInit();
   }
