@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("api/")
 public interface UsersApi {
 
+  @PreAuthorize("isAuthenticated()")
   @Operation(summary = "Get User's profile", description = "Allowed to authenticated user. Get current user")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Users profile",
