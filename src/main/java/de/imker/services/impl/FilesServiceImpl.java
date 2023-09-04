@@ -118,15 +118,19 @@ public class FilesServiceImpl implements FilesService {
   }
 
   @Override
-  public FilesListDto getAllFiles(Integer page, Integer items) {
+  public FilesListDto getAllFiles(Integer page, Integer items, String filter) {
 
     PageRequest pageRequest;
     Page<FileUpload> pageOfFiles;
 
     pageRequest = PageRequest.of(page, items, Sort.by(Sort.Direction.DESC, "id"));
 
+    if (filter == null) {
+      filter = "ALL";
+    }
+
     Specification<FileUpload> spec = Specification
-        .where(FileUploadSpecifications.fileTypeIsNotEmpty());
+        .where(FileUploadSpecifications.fileFilter(filter));
 
     pageOfFiles = filesRepository.findAll(spec, pageRequest);
 

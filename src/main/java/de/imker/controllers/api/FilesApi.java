@@ -34,7 +34,7 @@ public interface FilesApi {
                            @RequestParam(value = "width") Integer width,
                            @Parameter(required = true, description = "Height", example = "300")
                            @RequestParam(value = "height") Integer height,
-                           @Parameter(required = true, description = "Category", example = "EVENT")
+                           @Parameter(required = true, description = "Category (AVATAR, EVENT, GALLERY, POST)", example = "EVENT")
                            @RequestParam(value = "category") String category) throws IOException;
 
   @Operation(summary = "Get file by ID", description = "Accessible to all users")
@@ -81,7 +81,9 @@ public interface FilesApi {
   FilesListDto getAllFiles(@Parameter(required = true, description = "Page number", example = "0")
                            @RequestParam(value = "page") Integer page,
                            @Parameter(required = true, description = "Number of items per page", example = "3")
-                           @RequestParam(value = "items") Integer items);
+                           @RequestParam(value = "items") Integer items,
+                           @Parameter(description = "Filter (ALL, AVATAR, EVENT, GALLERY, POST, NONE)", example = "EVENT")
+                           @RequestParam(value = "filter") String filter);
 
   @Operation(summary = "Delete file by ID", description = "Accessible to all users")
   @ApiResponses(value = {
