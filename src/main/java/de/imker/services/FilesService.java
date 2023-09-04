@@ -19,7 +19,7 @@ public interface FilesService {
 
   Resource getFileResource(Long fileId);
 
-  FilesListDto getAllFiles(Integer page, Integer items);
+  FilesListDto getAllFiles(Integer page, Integer items, String filter);
 
   FileUploadDto deleteFileById(Long fileId);
 }
