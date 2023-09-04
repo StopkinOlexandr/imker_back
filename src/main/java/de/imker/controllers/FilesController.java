@@ -45,8 +45,8 @@ public class FilesController implements FilesApi {
   }
 
   @Override
-  public FilesListDto getAllFiles(Integer page, Integer items) {
-    return filesService.getAllFiles(page, items);
+  public FilesListDto getAllFiles(Integer page, Integer items, String filter) {
+    return filesService.getAllFiles(page, items, filter);
   }
 
   @Override
