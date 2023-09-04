@@ -34,7 +34,11 @@ public class AboutUsInitialisation {
               "    <p>\n" +
               "<h4>Aufgaben eines Imkervereins:</h4></p>\n" +
               "    <p>\n" +
-              "<br>1. Organisation von Veranstaltungen: Der Verein organisiert Workshops, Schulungen, Vortr&auml;ge und Veranstaltungen, um Mitgliedern eine Plattform zum Lernen, Austauschen und Vernetzen zu bieten.<br>2. Forschungsf&ouml;rderung: Ein Imkerverein kann Forschungsprojekte zur Bienenkrankheit, zur Bienen&ouml;kologie und zur Verbesserung der Bienenhaltung unterst&uuml;tzen und f&ouml;rdern.<br>3. &Ouml;ffentlichkeitsarbeit: Der Verein f&ouml;rdert die &ouml;ffentliche Wahrnehmung der Bedeutung von Bienen und Imkerei durch Bildungsprogramme, Bienenfestivals und Informationsveranstaltungen.<br>4. Unterst&uuml;tzung von Anf&auml;ngern: Der Verein bietet Unterst&uuml;tzung und Ressourcen f&uuml;r Anf&auml;nger im Bereich der Imkerei, um ihnen den Einstieg zu erleichtern. </p>")
+              "<br>- Organisation von Veranstaltungen: Der Verein organisiert Workshops, " +
+              "Schulungen, Vortr&auml;ge und Veranstaltungen, um Mitgliedern eine Plattform zum " +
+              "Lernen, Austauschen und Vernetzen zu bieten.<br>- Forschungsf&ouml;rderung: Ein " +
+              "Imkerverein kann Forschungsprojekte zur Bienenkrankheit, zur Bienen&ouml;kologie " +
+              "und zur Verbesserung der Bienenhaltung unterst&uuml;tzen und f&ouml;rdern.<br>- &Ouml;ffentlichkeitsarbeit: Der Verein f&ouml;rdert die &ouml;ffentliche Wahrnehmung der Bedeutung von Bienen und Imkerei durch Bildungsprogramme, Bienenfestivals und Informationsveranstaltungen.<br>- Unterst&uuml;tzung von Anf&auml;ngern: Der Verein bietet Unterst&uuml;tzung und Ressourcen f&uuml;r Anf&auml;nger im Bereich der Imkerei, um ihnen den Einstieg zu erleichtern. </p>")
           .image1("154")
           .image2("155")
           .build();

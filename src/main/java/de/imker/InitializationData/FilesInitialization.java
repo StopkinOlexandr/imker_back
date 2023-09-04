@@ -580,6 +580,63 @@ public class FilesInitialization {
                 .size((long) 26551)
                 .build();
             filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                .id(157L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("images1.jpg")
+                .storedName("!157-c771cc8c-bc98-4fcd-a697-c46c299a3855images1.jpg")
+                .fileType("image/jpeg")
+                .size((long) 12286)
+                .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                .id(158L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("images6.jpg")
+                .storedName("!158-46d9e6f2-1336-4de3-ab7a-b7a09c68e51fimages6.jpg")
+                .fileType("image/jpeg")
+                .size((long) 12147)
+                .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                .id(159L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("images8.jpg")
+                .storedName("!159-393fcffb-2d8a-41be-85d9-c76f73fe5f9cimages8.jpg")
+                .fileType("image/jpeg")
+                .size((long) 12631)
+                .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                .id(160L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("images9.jpg")
+                .storedName("!160-9a7911ea-4918-4f0c-ac5a-98818812901fimages9.jpg")
+                .fileType("image/jpeg")
+                .size((long) 8918)
+                .build();
+            filesRepository.save(fileUpload);
+
+            fileUpload = FileUpload.builder()
+                .id(161L)
+                .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+                .category(FileUpload.Category.AVATAR)
+                .originalName("images10.jpg")
+                .storedName("!161-bc750daf-eacc-4394-800b-65fafdf962bcimages10.jpg")
+                .fileType("image/jpeg")
+                .size((long) 9038)
+                .build();
+            filesRepository.save(fileUpload);
+
+
         }
     }
 }
