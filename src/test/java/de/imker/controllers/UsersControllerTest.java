@@ -1,12 +1,5 @@
 package de.imker.controllers;
 
-
-import de.imker.dto.UserDto;
-import de.imker.models.User;
-import de.imker.models.User.Role;
-import de.imker.repositories.UsersRepository;
-import de.imker.services.impl.UsersServiceImpl;
-import java.util.Optional;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,13 +25,6 @@ class UsersControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
-
-  @Autowired
-  private UsersRepository usersRepository;
-
-  @Autowired
-  private UsersServiceImpl usersService;
-
 
   @Nested
   @DisplayName("getUser() and getMyProfile() methods is works: ")
@@ -159,14 +145,15 @@ class UsersControllerTest {
 
       mockMvc.perform(put("/api/users/admin/1")
               .header("Content-Type", "application/json")
-              .content("{\n"
-                  + "  \"name\": \"Alex Krause\",\n"
-                  + "  \"plz\": \"01234\",\n"
-                  + "  \"phone\": \"0123456789012\",\n"
-                  + "  \"image\": \"1\",\n"
-                  + "  \"state\": \"BANNED\",\n"
-                  + "  \"role\": \"MEMBER\"\n"
-                  + "}"))
+              .content("""
+                  {
+                    "name": "Alex Krause",
+                    "plz": "01234",
+                    "phone": "0123456789012",
+                    "image": "1",
+                    "state": "BANNED",
+                    "role": "MEMBER"
+                  }"""))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.id", is(1)))
           .andExpect(jsonPath("$.name", is("Alex Krause")))
@@ -185,14 +172,15 @@ class UsersControllerTest {
 
       mockMvc.perform(put("/api/users/2")
               .header("Content-Type", "application/json")
-              .content("{\n"
-                  + "  \"name\": \"Alex Krause\",\n"
-                  + "  \"plz\": \"01234\",\n"
-                  + "  \"phone\": \"0123456789012\",\n"
-                  + "  \"image\": \"1\",\n"
-                  + "  \"state\": \"BANNED\",\n"
-                  + "  \"role\": \"MEMBER\"\n"
-                  + "}"))
+              .content("""
+                  {
+                    "name": "Alex Krause",
+                    "plz": "01234",
+                    "phone": "0123456789012",
+                    "image": "1",
+                    "state": "BANNED",
+                    "role": "MEMBER"
+                  }"""))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.id", is(2)))
           .andExpect(jsonPath("$.name", is("Alex Krause")))
@@ -209,14 +197,15 @@ class UsersControllerTest {
 
       mockMvc.perform(put("/api/users/1")
               .header("Content-Type", "application/json")
-              .content("{\n"
-                  + "  \"name\": \"Alex Krause\",\n"
-                  + "  \"plz\": \"01234\",\n"
-                  + "  \"phone\": \"0123456789012\",\n"
-                  + "  \"image\": \"1\",\n"
-                  + "  \"state\": \"BANNED\",\n"
-                  + "  \"role\": \"MEMBER\"\n"
-                  + "}"))
+              .content("""
+                  {
+                    "name": "Alex Krause",
+                    "plz": "01234",
+                    "phone": "0123456789012",
+                    "image": "1",
+                    "state": "BANNED",
+                    "role": "MEMBER"
+                  }"""))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.id", is(1)))
           .andExpect(jsonPath("$.name", is("Alex Krause")))
@@ -231,14 +220,15 @@ class UsersControllerTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void updateNotExistUser() throws Exception {
       mockMvc.perform(put("/api/users/admin/4").header("Content-Type", "application/json")
-              .content("{\n"
-                  + "  \"name\": \"Alex Krause\",\n"
-                  + "  \"plz\": \"01234\",\n"
-                  + "  \"phone\": \"0123456789012\",\n"
-                  + "  \"image\": \"1\",\n"
-                  + "  \"state\": \"BANNED\",\n"
-                  + "  \"role\": \"MEMBER\"\n"
-                  + "}"))
+              .content("""
+                  {
+                    "name": "Alex Krause",
+                    "plz": "01234",
+                    "phone": "0123456789012",
+                    "image": "1",
+                    "state": "BANNED",
+                    "role": "MEMBER"
+                  }"""))
           .andExpect(status().isNotFound());
     }
 
@@ -246,15 +236,43 @@ class UsersControllerTest {
     @DisplayName("secretQuestions secretQuestionAnswer newPassword method - works: ")
     class RestorePasswordTests {
 
-//      @WithUserDetails(value = "user11@gmail.com")
       @Test
       @Sql(scripts = "/sql/data.sql")
       @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
       void getListOfSecretQuestions() throws Exception {
         mockMvc.perform(post("/api/questions").header("Content-Type", "application/json")
-                .content("{\n"
-                    + "  \"email\": \"user1@gmail.com\"\n"
-                    + "}"))
+                .content("""
+                    {
+                      "email": "user1@gmail.com"
+                    }"""))
+            .andExpect(status().isOk());
+      }
+
+      @Test
+      @Sql(scripts = "/sql/data.sql")
+      @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+      void sendAnswerForSecretQuestions() throws Exception {
+        mockMvc.perform(post("/api/question").header("Content-Type", "application/json")
+                .content("""
+                    {
+                       "id": 1,
+                       "email": "user1@gmail.com",
+                       "secretQuestion": "First car?",
+                       "secretQuestionAnswer": "Ford"
+                    }"""))
+            .andExpect(status().isOk());
+      }
+
+      @Test
+      @Sql(scripts = "/sql/data.sql")
+      @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+      void restorePassword() throws Exception {
+        mockMvc.perform(post("/api/restore").header("Content-Type", "application/json")
+                .content("""
+                    {
+                       "id": 1,
+                       "newPassword": "!User1password"
+                    }"""))
             .andExpect(status().isOk());
       }
     }
