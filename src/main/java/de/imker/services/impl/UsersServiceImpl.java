@@ -44,12 +44,11 @@ public class UsersServiceImpl implements UsersService {
 
 
   public UserDto findByEmail(String email) {
-    UsersDto list = getAllUsers(1, usersRepository.findAll().size(), "id", true);
-    return list.getUsers()
+    return from(Objects.requireNonNull(usersRepository.findAll()
         .stream()
         .filter(p -> p.getEmail().equals(email))
         .findFirst()
-        .orElse(null);
+        .orElse(null)));
   }
 
   @Override
