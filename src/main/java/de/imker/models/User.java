@@ -42,7 +42,6 @@ public class User {
   @Column(nullable = false)
   private String hashPassword;
 
-  @Column(nullable = false)
   private String secretQuestion;
 
   private String answerSecretQuestion;

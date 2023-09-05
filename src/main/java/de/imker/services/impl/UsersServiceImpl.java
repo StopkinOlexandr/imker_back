@@ -54,7 +54,9 @@ public class UsersServiceImpl implements UsersService {
 
   @Override
   public UserSecretQuestionsDto getSecretQuestions(UserEmailDto userEmail) {
-    UserDto userDto = findByEmail(userEmail.getEmail());                      //can refactor this
+    System.out.println("User email" + userEmail);
+    UserDto userDto = findByEmail(userEmail.getEmail());
+    System.out.println(userDto);
     User user = usersRepository.findById(userDto.getId()).orElseThrow(
         () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
 
@@ -152,9 +154,9 @@ public class UsersServiceImpl implements UsersService {
   public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
     User user = getUserOrThrow(userId);
 
-    if (!user.getImage().isEmpty() && !Objects.equals(user.getImage(), updateUser.getImage())) {
-      filesService.deleteFileById(Long.valueOf(user.getImage()));
-    }
+//    if (!user.getImage().isEmpty() && !Objects.equals(user.getImage(), updateUser.getImage())) {
+//      filesService.deleteFileById(Long.valueOf(user.getImage()));
+//    }
 
     user.setName(updateUser.getName());
     user.setPlz(updateUser.getPlz());
