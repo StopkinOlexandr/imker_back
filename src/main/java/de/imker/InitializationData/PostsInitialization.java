@@ -31,22 +31,22 @@ public class PostsInitialization {
           .titlePost("Zauber der Bienen: Einblick in die faszinierende Welt des Imkerns")
           .linkToImg("1")
           .shortPostDescription("Tauche ein in die lebhafte Welt der Bienen, erfahre, wie Imker ihr Handwerk pflegen und die Bedeutung der Bienen für unsere Umwelt.")
-          .textOfPost("<p style=\"text-align: center;\"><strong>Die faszinierende Welt der Imkerei</strong></p>\n" +
-              "<p>Die Imkerei ist weit mehr als nur Honigproduktion. Sie ist ein Zusammenspiel von Natur, Kunst und Engagement. Imker &ouml;ffnen uns das Tor zu einem faszinierenden Mikrokosmos, in dem Bienen emsig arbeiten.</p>\n" +
+          .textOfPost("<h3 style=\"text-align: center;\"><strong>Die faszinierende Welt der Imkerei</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Die Imkerei ist weit mehr als nur Honigproduktion. Sie ist ein Zusammenspiel von Natur, Kunst und Engagement. Imker &ouml;ffnen uns das Tor zu einem faszinierenden Mikrokosmos, in dem Bienen emsig arbeiten.</p>\n" +
               "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://img.welt.de/img/wirtschaft/mobile189946675/9782503547-ci102l-w1024/Extreme-close-up-of-honey-bee-apis-mellifera.jpg\" width=\"396\" height=\"387\"></p>\n" +
-              "<p style=\"text-align: center;\"><strong>Warum Imkerei so wichtig ist</strong></p>\n" +
-              "<p>Bienen sind wahre &Ouml;kosystem-Architekten. Sie best&auml;uben zahlreiche Pflanzen, die einen Gro&szlig;teil unserer Nahrung ausmachen. Erfahre, wie Imker dazu beitragen, die Artenvielfalt zu erhalten und die Umwelt zu sch&uuml;tzen.</p>\n" +
-              "<p style=\"text-align: center;\"><strong>Das Leben im Bienenstock</strong></p>\n" +
-              "<p>Ein Blick in den Bienenstock ist wie eine Reise in eine hochorganisierte Gesellschaft. Entdecke die Aufgaben der Bienenk&ouml;nigin, Arbeiterinnen und Drohnen und wie sie zusammenarbeiten, um den Stock am Laufen zu halten.</p>\n" +
-              "<p style=\"text-align: center;\"><strong>Vom Anf&auml;nger zum Meisterimker</strong></p>\n" +
-              "<p>Erfahre, wie Imker ihre Leidenschaft entdecken und ihr Wissen von Generation zu Generation weitergeben. Mit moderner Technologie und traditionellen Techniken bewahren sie das Erbe der Imkerei.</p>\n" +
-              "<p style=\"text-align: center;\"><strong>Herausforderungen und Belohnungen</strong></p>\n" +
-              "<p>Die Imkerei steht vor Herausforderungen wie Bienensterben und Umweltver&auml;nderungen. Trotzdem bringt sie unz&auml;hlige Belohnungen mit sich, von k&ouml;stlichem Honig bis hin zu einem tieferen Verst&auml;ndnis der Natur.</p>\n" +
-              "<p style=\"text-align: center;\"><strong>Imkervereine: Gemeinschaft und Wissen</strong></p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Warum Imkerei so wichtig ist</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Bienen sind wahre &Ouml;kosystem-Architekten. Sie best&auml;uben zahlreiche Pflanzen, die einen Gro&szlig;teil unserer Nahrung ausmachen. Erfahre, wie Imker dazu beitragen, die Artenvielfalt zu erhalten und die Umwelt zu sch&uuml;tzen.</p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Das Leben im Bienenstock</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Ein Blick in den Bienenstock ist wie eine Reise in eine hochorganisierte Gesellschaft. Entdecke die Aufgaben der Bienenk&ouml;nigin, Arbeiterinnen und Drohnen und wie sie zusammenarbeiten, um den Stock am Laufen zu halten.</p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Vom Anf&auml;nger zum Meisterimker</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Erfahre, wie Imker ihre Leidenschaft entdecken und ihr Wissen von Generation zu Generation weitergeben. Mit moderner Technologie und traditionellen Techniken bewahren sie das Erbe der Imkerei.</p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Herausforderungen und Belohnungen</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Die Imkerei steht vor Herausforderungen wie Bienensterben und Umweltver&auml;nderungen. Trotzdem bringt sie unz&auml;hlige Belohnungen mit sich, von k&ouml;stlichem Honig bis hin zu einem tieferen Verst&auml;ndnis der Natur.</p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Imkervereine: Gemeinschaft und Wissen</strong></h3>\n" +
               "<p style=\"text-align: center;\"><strong><img src=\"https://taz.de/picture/6316233/948/19-MEK-BuzzingSlovenia-Ljubljana-1.jpeg\"></strong></p>\n" +
-              "<p>In Imkervereinen teilen Enthusiasten ihre Erfahrungen, lernen voneinander und tragen zur Forschung bei. Hier treffen Anf&auml;nger auf erfahrene Imker, und jeder kann seinen Beitrag leisten.</p>\n" +
-              "<p style=\"text-align: center;\"><strong>Fazit: Die s&uuml;&szlig;e Welt der Imkerei entdecken</strong></p>\n" +
-              "<p>Die Imkerei &ouml;ffnet eine T&uuml;r zu einem erstaunlichen &Ouml;kosystem. Sie lehrt uns, die Natur zu sch&auml;tzen und zu sch&uuml;tzen. Wenn du den Zauber der Bienen erleben m&ouml;chtest, ist die Imkerei genau das Richtige f&uuml;r dich.</p>")
+              "<p>&nbsp; &nbsp;In Imkervereinen teilen Enthusiasten ihre Erfahrungen, lernen voneinander und tragen zur Forschung bei. Hier treffen Anf&auml;nger auf erfahrene Imker, und jeder kann seinen Beitrag leisten.</p>\n" +
+              "<h3 style=\"text-align: center;\"><strong>Fazit: Die s&uuml;&szlig;e Welt der Imkerei entdecken</strong></h3>\n" +
+              "<p>&nbsp; &nbsp;Die Imkerei &ouml;ffnet eine T&uuml;r zu einem erstaunlichen &Ouml;kosystem. Sie lehrt uns, die Natur zu sch&auml;tzen und zu sch&uuml;tzen. Wenn du den Zauber der Bienen erleben m&ouml;chtest, ist die Imkerei genau das Richtige f&uuml;r dich.</p>")
           .authorName("Jack Daniel")
           .build();
       postService.addPost(newPost);
@@ -150,6 +150,70 @@ public class PostsInitialization {
               "<p>Einige deutsche Imker haben innovative Ans&auml;tze entwickelt, um die Gesundheit der Bienen zu f&ouml;rdern. Von bienenfreundlichen G&auml;rten bis hin zu modernen Technologien, die die Bienen&uuml;berwachung erleichtern - diese Bienenfl&uuml;sterer setzen sich aktiv f&uuml;r den Erhalt der Bienen ein.</p>\n" +
               "<p>Die Leidenschaft der deutschen Imker geht &uuml;ber die Honigproduktion hinaus. Sie erkennen die Bedeutung der Bienen f&uuml;r unsere Umwelt und arbeiten daran, diese winzigen Best&auml;uber zu sch&uuml;tzen und zu unterst&uuml;tzen. Ihre Arbeit hinter den Kulissen tr&auml;gt dazu bei, das Gleichgewicht in der Natur aufrechtzuerhalten und die Grundlagen unserer Nahrungsmittelproduktion zu sichern.</p>")
           .authorName("")
+          .build();
+      postService.addPost(newPost);
+
+      newPost = NewPostDto.builder()
+          .titlePost("HONIGSORTEN")
+          .linkToImg("9")
+          .shortPostDescription("Entdecken Sie die Vielfalt des Honigs: Von Bitterem bis Waldhonig, jede Sorte hat einzigartige Geschmacksrichtungen und heilende Eigenschaften. Eine süße Reise durch die Welt des natürlichen Genusses und der Gesundheit.")
+          .textOfPost("<p style=\"text-align: center;\"><img src=\"http://beetools.ru/media/k2/items/cache/1ba6f013b03d3119f460bad3db0fbe5d_XL.jpg\" alt=\"\" width=\"681\" height=\"508\"></p>\n" +
+              "<p style=\"text-align: center;\">Dieses Produkt hat eine gro&szlig;e Anzahl von Arten. Fast jede von ihnen wird in der Volksmedizin verwendet.</p>\n" +
+              "<p style=\"text-align: center;\">&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BITTERER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Eine der wertvollsten Arten mit einem sehr s&uuml;&szlig;en, bis herben Geschmack und entsprechendem Geruch. Er ist sehr reich an Eisen und daher sehr n&uuml;tzlich f&uuml;r die Blutregeneration.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BLATT-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er hat eine eher helle Farbe mit einem gr&uuml;nlichen Schimmer und geh&ouml;rt zur Sorte des wei&szlig;en Honigs. Er hat einen ausgesprochen angenehmen und milden Geruch und gilt als der s&uuml;&szlig;este von allen. Er ist sehr nahrhaft, so dass er organische Verarmung schnell wieder ausgleicht. Wegen seines hohen Vitamingehalts wird er in der Volksmedizin h&auml;ufig verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WEISSER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Eine eher seltene Sorte, die am h&auml;ufigsten gef&auml;lscht wird. Seine Quellen sind die wei&szlig;e Akazie und der Wei&szlig;klee, manchmal auch die Linde und einige andere. Einige Arten erhalten die wei&szlig;e Farbe jedoch erst nach der Kristallisation. Daher kann er mehrere Namen haben. \"Rein\" kann er nicht sein, da es fast unm&ouml;glich ist, ihn frei von Verunreinigungen zu machen. Infolgedessen hat es oft eine gewisse T&ouml;nung.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KASTNUSSHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Mit einem bitteren Geschmack und einem k&ouml;stlichen Geruch nach Kastanienbl&uuml;ten. Sie ist eine der wenigen Sorten, die ihren fl&uuml;ssigen Zustand viel l&auml;nger als andere beibehalten kann - bis zu zwei Jahre. Diese dunkle Sorte enth&auml;lt eine Vielzahl von Vitaminen und Spurenelementen, einschlie&szlig;lich Metallen, und wird daher h&auml;ufig f&uuml;r medizinische Zwecke verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KIPRAY-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Reich an Vitamin C, was ihn zu einem wichtigen Mittel im Kampf gegen Erk&auml;ltungen macht.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">FALLHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Der Gattungsname \"gefallen\" bezieht sich auf das Sammeln der Bienen von Paddy und nicht von Pollen. Solche Sorten haben verschiedene Farben, aber unbedingt dunkel, bis hin zu schwarz. Und obwohl sie f&uuml;r Bienen nicht zur st&auml;ndigen Verwendung geeignet sind, sind sie f&uuml;r den Menschen nicht nur harmlos, sondern auch besonders n&uuml;tzlich.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">JUGGY-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er hat einen exquisiten Geschmack, ein bet&auml;ubendes Aroma und hervorragende medizinische Eigenschaften. Seine Farbe ist meist dunkel, kann aber auch rot sein. In der Medizin wird er haupts&auml;chlich als krampfl&ouml;sendes Mittel bei Magenproblemen verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">GELEE ROYALE HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Diese Mischung hat die F&auml;higkeit, den Menschen von vielen Krankheiten zu befreien. Er wird in einem Verh&auml;ltnis von 1 zu 150 gemischt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BL&Uuml;TENHONIG</h3>\n" +
+              "<p><br>&nbsp; &nbsp;Fast immer hat einen angenehmen Geschmack und w&uuml;rzigen Geruch. Er wird sowohl in der Volksmedizin als auch in der modernen Medizin aktiv eingesetzt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">DONNAKE-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Kann aus gelben Heilbl&uuml;ten und wei&szlig;en gew&ouml;hnlichen Bl&uuml;ten hergestellt werden. Hat in beiden F&auml;llen qualitative antimikrobielle Eigenschaften, beschleunigt die Heilung von Wunden, verhindert deren Vereiterung.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">AKAZIENHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er kann wei&szlig;, fast farblos oder gelb sein. V&ouml;llig ohne Bitterkeit, der Geschmack ist nicht stechend, ebenso wie der Geruch. Eine seltene Eigenschaft dieses Produkts ist seine lang anhaltende Best&auml;ndigkeit gegen Kristallisation. Er ist einfach ein hervorragendes Nahrungsmittel f&uuml;r Diabetiker und Kinder, da er vom menschlichen K&ouml;rper sehr schnell aufgenommen wird.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">SONNENBLUMENHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er kristallisiert sehr schnell aus und wird dann hell, gelegentlich mit gr&uuml;nem Beigeschmack. Die Vorteile einer solchen Substanz liegen vor allem in der Behandlung des Herz-Kreislauf-Systems und der Atemwege. Dar&uuml;ber hinaus entfernt er perfekt Giftstoffe aus dem menschlichen K&ouml;rper und dient als gutes Diuretikum.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BERGHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Der aus Bergkr&auml;utern gewonnene Bienenhonig gilt zu Recht als der reinste. Er enth&auml;lt Nektar von sehr seltenen Bl&uuml;ten, was dem Produkt eine besondere Heilkraft verleiht. Das Ergebnis dieser Mischung ist eine andere Farbe, ein anderes Aroma und ein anderer Geschmack. Er ist gut zur Behandlung von Erk&auml;ltungen geeignet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WILDER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Es handelt sich um den Honig von Wildbienen - das urspr&uuml;ngliche Heilmittel f&uuml;r die Ern&auml;hrung. Er enth&auml;lt eine F&uuml;lle von verschiedenen Vitaminen. Die Besonderheit dieser Sorte liegt in der besonderen Art und Weise, wie sie gesammelt wird. Die Waben werden sechs Monate lang nicht ausgepackt, um eine gr&ouml;&szlig;ere Dichte und einen besseren Geschmack des Produkts, d.h. eine h&ouml;here Konzentration, zu erreichen.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KR&Auml;UTERHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Meistens ist er von goldener Farbe. Die allgemein tonisierende Wirkung einer Substanz, die mit Vitaminen und einer Vielzahl von Spurenelementen angereichert ist, s&auml;ttigt den K&ouml;rper buchst&auml;blich mit Energie.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">SCHWARZER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Schwarz kann nur in zwei F&auml;llen sein. Entweder handelt es sich um ein brachliegendes Produkt, oder es wird aus den Bl&uuml;ten des Schwarzk&uuml;mmels gewonnen. Im letzteren Fall kann er nur in &Auml;gypten gesammelt werden, weshalb die Kosten f&uuml;r einen solchen Honig mit den Kosten f&uuml;r eine Reise in dieses Land gleichgesetzt werden k&ouml;nnen. Aber er hat einzigartige und besonders heilende Eigenschaften.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">GR&Uuml;NER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er wird zur St&auml;rkung des Immunsystems verwendet, da er Spirulina enth&auml;lt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WALDHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er gilt als eine der Elitesorten. Aufgrund seiner einzigartigen Eigenschaften wird er bei der Behandlung zahlreicher Krankheiten eingesetzt. Er hat einen spezifischen s&auml;uerlichen Geschmack und eine Farbpalette von hellgelb bis hellbraun.</p>")
+          .authorName("Alexander Friedrich Schmidt")
           .build();
       postService.addPost(newPost);
 
