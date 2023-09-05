@@ -16,6 +16,8 @@ public class FileUploadSpecifications {
           criteriaBuilder.equal(root.get("category"), FileUpload.Category.AVATAR);
       case "GALLERY" -> (root, query, criteriaBuilder) ->
           criteriaBuilder.equal(root.get("category"), FileUpload.Category.GALLERY);
+      case "SLIDER" -> (root, query, criteriaBuilder) ->
+          criteriaBuilder.equal(root.get("category"), FileUpload.Category.SLIDER);
       case "NONE" -> (root, query, criteriaBuilder) -> criteriaBuilder.and(
           criteriaBuilder.equal(root.get("category"), FileUpload.Category.NONE),
           criteriaBuilder.notEqual(root.get("fileType"), "empty -")
