@@ -21,7 +21,8 @@ public class FileUpload {
     POST,
     EVENT,
     GALLERY,
-    AVATAR
+    AVATAR,
+    SLIDER
   }
 
   @Id
