@@ -187,4 +187,17 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="#12" author="vadim">
+        <createTable tableName="slider">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_time_slider" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="link_to_img" type="int"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

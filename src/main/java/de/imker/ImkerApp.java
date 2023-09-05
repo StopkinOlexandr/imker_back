@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -44,21 +43,20 @@ public class ImkerApp {
     GoogleMapLinkInitialization googleMapLinkInitialization = context.getBean(GoogleMapLinkInitialization.class);
     EventInitialization eventInitialization = context.getBean(EventInitialization.class);
     GalleryInitialization galleryInitialization = context.getBean(GalleryInitialization.class);
+    SliderInitialization sliderInitialization = context.getBean(SliderInitialization.class);
     AddressInitialization addressInitialization = context.getBean(AddressInitialization.class);
+    AboutUsInitialisation aboutUsInitialisation = context.getBean(AboutUsInitialisation.class);
+    MembersUsInitialisation memberInitialisation = context.getBean(MembersUsInitialisation.class);
+    filesInitialization.filesInit();
     eventInitialization.eventInit();
     requestsInitialization.reqInit();
     postsInitialization.postInit();
-    filesInitialization.filesInit();
     usersInitialization.userInit();
     googleMapLinkInitialization.linkInit();
     galleryInitialization.galleryInit();
-
-    AboutUsInitialisation aboutUsInitialisation = context.getBean(AboutUsInitialisation.class);
+    sliderInitialization.galleryInit();
     aboutUsInitialisation.aboutUsInit();
-    MembersUsInitialisation memberInitialisation = context.getBean(MembersUsInitialisation.class);
     memberInitialisation.MemberInit();
-
-
     addressInitialization.addressInit();
   }
 
