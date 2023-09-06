@@ -120,6 +120,16 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
+      fileUpload = FileUpload.builder()
+          .id(9L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.POST)
+          .originalName("HONIGSORTEN.jpg")
+          .storedName("!009-74d4eab8-0606-4e86-91f6-daebdcaa024eHONIGSORTEN.jpg")
+          .fileType("image/jpeg")
+          .size((long) 51588)
+          .build();
+      filesRepository.save(fileUpload);
 
       fileUpload = FileUpload.builder()
           .id(21L)
