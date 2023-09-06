@@ -153,6 +153,69 @@ public class PostsInitialization {
           .build();
       postService.addPost(newPost);
 
+      newPost = NewPostDto.builder()
+          .titlePost("HONIGSORTEN")
+          .linkToImg("9")
+          .shortPostDescription("Entdecken Sie die Vielfalt des Honigs: Von Bitterem bis Waldhonig, jede Sorte hat einzigartige Geschmacksrichtungen und heilende Eigenschaften. Eine süße Reise durch die Welt des natürlichen Genusses und der Gesundheit.")
+          .textOfPost("<p style=\"text-align: center;\"><img src=\"http://beetools.ru/media/k2/items/cache/1ba6f013b03d3119f460bad3db0fbe5d_XL.jpg\" alt=\"\" width=\"681\" height=\"508\"></p>\n" +
+              "<p style=\"text-align: center;\">Dieses Produkt hat eine gro&szlig;e Anzahl von Arten. Fast jede von ihnen wird in der Volksmedizin verwendet.</p>\n" +
+              "<p style=\"text-align: center;\">&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BITTERER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Eine der wertvollsten Arten mit einem sehr s&uuml;&szlig;en, bis herben Geschmack und entsprechendem Geruch. Er ist sehr reich an Eisen und daher sehr n&uuml;tzlich f&uuml;r die Blutregeneration.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BLATT-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er hat eine eher helle Farbe mit einem gr&uuml;nlichen Schimmer und geh&ouml;rt zur Sorte des wei&szlig;en Honigs. Er hat einen ausgesprochen angenehmen und milden Geruch und gilt als der s&uuml;&szlig;este von allen. Er ist sehr nahrhaft, so dass er organische Verarmung schnell wieder ausgleicht. Wegen seines hohen Vitamingehalts wird er in der Volksmedizin h&auml;ufig verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WEISSER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Eine eher seltene Sorte, die am h&auml;ufigsten gef&auml;lscht wird. Seine Quellen sind die wei&szlig;e Akazie und der Wei&szlig;klee, manchmal auch die Linde und einige andere. Einige Arten erhalten die wei&szlig;e Farbe jedoch erst nach der Kristallisation. Daher kann er mehrere Namen haben. \"Rein\" kann er nicht sein, da es fast unm&ouml;glich ist, ihn frei von Verunreinigungen zu machen. Infolgedessen hat es oft eine gewisse T&ouml;nung.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KASTNUSSHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Mit einem bitteren Geschmack und einem k&ouml;stlichen Geruch nach Kastanienbl&uuml;ten. Sie ist eine der wenigen Sorten, die ihren fl&uuml;ssigen Zustand viel l&auml;nger als andere beibehalten kann - bis zu zwei Jahre. Diese dunkle Sorte enth&auml;lt eine Vielzahl von Vitaminen und Spurenelementen, einschlie&szlig;lich Metallen, und wird daher h&auml;ufig f&uuml;r medizinische Zwecke verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KIPRAY-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Reich an Vitamin C, was ihn zu einem wichtigen Mittel im Kampf gegen Erk&auml;ltungen macht.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">FALLHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Der Gattungsname \"gefallen\" bezieht sich auf das Sammeln der Bienen von Paddy und nicht von Pollen. Solche Sorten haben verschiedene Farben, aber unbedingt dunkel, bis hin zu schwarz. Und obwohl sie f&uuml;r Bienen nicht zur st&auml;ndigen Verwendung geeignet sind, sind sie f&uuml;r den Menschen nicht nur harmlos, sondern auch besonders n&uuml;tzlich.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">JUGGY-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er hat einen exquisiten Geschmack, ein bet&auml;ubendes Aroma und hervorragende medizinische Eigenschaften. Seine Farbe ist meist dunkel, kann aber auch rot sein. In der Medizin wird er haupts&auml;chlich als krampfl&ouml;sendes Mittel bei Magenproblemen verwendet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">GELEE ROYALE HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Diese Mischung hat die F&auml;higkeit, den Menschen von vielen Krankheiten zu befreien. Er wird in einem Verh&auml;ltnis von 1 zu 150 gemischt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BL&Uuml;TENHONIG</h3>\n" +
+              "<p><br>&nbsp; &nbsp;Fast immer hat einen angenehmen Geschmack und w&uuml;rzigen Geruch. Er wird sowohl in der Volksmedizin als auch in der modernen Medizin aktiv eingesetzt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">DONNAKE-HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Kann aus gelben Heilbl&uuml;ten und wei&szlig;en gew&ouml;hnlichen Bl&uuml;ten hergestellt werden. Hat in beiden F&auml;llen qualitative antimikrobielle Eigenschaften, beschleunigt die Heilung von Wunden, verhindert deren Vereiterung.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">AKAZIENHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er kann wei&szlig;, fast farblos oder gelb sein. V&ouml;llig ohne Bitterkeit, der Geschmack ist nicht stechend, ebenso wie der Geruch. Eine seltene Eigenschaft dieses Produkts ist seine lang anhaltende Best&auml;ndigkeit gegen Kristallisation. Er ist einfach ein hervorragendes Nahrungsmittel f&uuml;r Diabetiker und Kinder, da er vom menschlichen K&ouml;rper sehr schnell aufgenommen wird.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">SONNENBLUMENHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er kristallisiert sehr schnell aus und wird dann hell, gelegentlich mit gr&uuml;nem Beigeschmack. Die Vorteile einer solchen Substanz liegen vor allem in der Behandlung des Herz-Kreislauf-Systems und der Atemwege. Dar&uuml;ber hinaus entfernt er perfekt Giftstoffe aus dem menschlichen K&ouml;rper und dient als gutes Diuretikum.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">BERGHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Der aus Bergkr&auml;utern gewonnene Bienenhonig gilt zu Recht als der reinste. Er enth&auml;lt Nektar von sehr seltenen Bl&uuml;ten, was dem Produkt eine besondere Heilkraft verleiht. Das Ergebnis dieser Mischung ist eine andere Farbe, ein anderes Aroma und ein anderer Geschmack. Er ist gut zur Behandlung von Erk&auml;ltungen geeignet.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WILDER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Es handelt sich um den Honig von Wildbienen - das urspr&uuml;ngliche Heilmittel f&uuml;r die Ern&auml;hrung. Er enth&auml;lt eine F&uuml;lle von verschiedenen Vitaminen. Die Besonderheit dieser Sorte liegt in der besonderen Art und Weise, wie sie gesammelt wird. Die Waben werden sechs Monate lang nicht ausgepackt, um eine gr&ouml;&szlig;ere Dichte und einen besseren Geschmack des Produkts, d.h. eine h&ouml;here Konzentration, zu erreichen.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">KR&Auml;UTERHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Meistens ist er von goldener Farbe. Die allgemein tonisierende Wirkung einer Substanz, die mit Vitaminen und einer Vielzahl von Spurenelementen angereichert ist, s&auml;ttigt den K&ouml;rper buchst&auml;blich mit Energie.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">SCHWARZER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Schwarz kann nur in zwei F&auml;llen sein. Entweder handelt es sich um ein brachliegendes Produkt, oder es wird aus den Bl&uuml;ten des Schwarzk&uuml;mmels gewonnen. Im letzteren Fall kann er nur in &Auml;gypten gesammelt werden, weshalb die Kosten f&uuml;r einen solchen Honig mit den Kosten f&uuml;r eine Reise in dieses Land gleichgesetzt werden k&ouml;nnen. Aber er hat einzigartige und besonders heilende Eigenschaften.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">GR&Uuml;NER HONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er wird zur St&auml;rkung des Immunsystems verwendet, da er Spirulina enth&auml;lt.</p>\n" +
+              "<p>&nbsp;</p>\n" +
+              "<h3 style=\"text-align: center;\">WALDHONIG</h3>\n" +
+              "<p>&nbsp; &nbsp;Er gilt als eine der Elitesorten. Aufgrund seiner einzigartigen Eigenschaften wird er bei der Behandlung zahlreicher Krankheiten eingesetzt. Er hat einen spezifischen s&auml;uerlichen Geschmack und eine Farbpalette von hellgelb bis hellbraun.</p>")
+          .authorName("Alexander Friedrich Schmidt")
+          .build();
+      postService.addPost(newPost);
     }
   }
 }
