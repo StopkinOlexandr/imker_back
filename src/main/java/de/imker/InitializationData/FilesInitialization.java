@@ -131,7 +131,6 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
-
       fileUpload = FileUpload.builder()
           .id(21L)
           .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
