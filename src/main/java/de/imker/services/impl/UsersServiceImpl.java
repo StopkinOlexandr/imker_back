@@ -42,7 +42,6 @@ public class UsersServiceImpl implements UsersService {
   PasswordEncoder passwordEncoder;
   FilesService filesService;
 
-
   public UserDto findByEmail(String email) {
     return from(Objects.requireNonNull(usersRepository.findAll()
         .stream()
@@ -79,13 +78,13 @@ public class UsersServiceImpl implements UsersService {
         () -> new NotFoundException("User with id <" + userDto.getId() + "> not found"));
 
     String message = String.format("""
-        User with ID %s tried to restore his password.
-          Email: %s
-          Name: %s
-          PLZ: %s
-          PhoneNumber: %s
-          Role: %s
-        """, user.getId().toString(),
+            User with ID %s tried to restore his password.
+              Email: %s
+              Name: %s
+              PLZ: %s
+              PhoneNumber: %s
+              Role: %s
+            """, user.getId().toString(),
         user.getEmail(),
         user.getName(),
         user.getPlz(),
@@ -153,10 +152,6 @@ public class UsersServiceImpl implements UsersService {
   public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
     User user = getUserOrThrow(userId);
 
-//    if (!user.getImage().isEmpty() && !Objects.equals(user.getImage(), updateUser.getImage())) {
-//      filesService.deleteFileById(Long.valueOf(user.getImage()));
-//    }
-
     user.setName(updateUser.getName());
     user.setPlz(updateUser.getPlz());
     user.setPhone(updateUser.getPhone());
@@ -171,7 +166,7 @@ public class UsersServiceImpl implements UsersService {
     return from(getUserOrThrow(userId));
   }
 
-    private User getUserOrThrow(Long userId) {
+  private User getUserOrThrow(Long userId) {
     return usersRepository.findById(userId).orElseThrow(
         () -> new RestException(HttpStatus.NOT_FOUND, "User with Id <" + userId + "> not found"));
   }
