@@ -10,6 +10,7 @@ import de.imker.models.User.State;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.RegistrationService;
 import de.imker.services.telegrammNotice.TelegramNotice;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -28,6 +29,7 @@ public class RegisrationServiceImpl implements RegistrationService {
   @Transactional
   @Override
   public UserDto register(RegisterDto registerData) {
+    if (usersRepository.findByEmail(registerData.getEmail()).isPresent()) return null;
     User user = User.builder()
         .email(registerData.getEmail())
         .hashPassword(passwordEncoder.encode(registerData.getPassword()))

@@ -187,9 +187,7 @@ public interface UsersApi {
   @Operation(summary = "Get user by ID", description = "Allowed for all")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "User not found",
-          content = {
-              @Content()
-          }),
+          content = { @Content() }),
       @ApiResponse(responseCode = "200", description = "Information about user",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
