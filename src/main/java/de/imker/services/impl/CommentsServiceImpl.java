@@ -9,6 +9,7 @@ import de.imker.repositories.CommentsRepository;
 import de.imker.repositories.UsersRepository;
 import de.imker.services.CommentsService;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,21 +46,7 @@ public class CommentsServiceImpl implements CommentsService {
   @Override
   public CommentsListDto getAllPostComments(Long postId) {
     List<Comment> commentsList = commentsRepository.findAllByPostId(postId);
-    List<CommentDto> commentDtoList = new ArrayList<>();
-
-    commentsList.forEach(comment -> {
-      Optional<User> user = usersRepository.findById(comment.getUserId());
-      if (user.isPresent()) {
-        commentDtoList.add(CommentDto.builder()
-            .id(comment.getId())
-            .creationTime(comment.getCreationTimeComment().toString())
-            .commentText(comment.getCommentText())
-            .userId(comment.getUserId())
-            .userName(user.get().getName())
-            .userLogo(user.get().getImage())
-            .build());
-      }
-    });
+    List<CommentDto> commentDtoList = getCommentDto(commentsList);
     return CommentsListDto.builder()
         .commentsList(commentDtoList)
         .build();
@@ -68,6 +55,28 @@ public class CommentsServiceImpl implements CommentsService {
   @Override
   public CommentsListDto getAllEventComments(Long eventId) {
     List<Comment> commentsList = commentsRepository.findAllByEventId(eventId);
+    List<CommentDto> commentDtoList = getCommentDto(commentsList);
+    return CommentsListDto.builder()
+        .commentsList(commentDtoList)
+        .build();
+  }
+
+  @Override
+  public CommentDto deleteCommentById(Long commentId) {
+    Comment comment = commentsRepository.findCommentById(commentId);
+
+    commentsRepository.delete(comment);
+
+    return CommentDto.builder()
+        .id(comment.getId())
+        .creationTime(comment.getCreationTimeComment().toString())
+        .commentText(comment.getCommentText())
+        .userId(comment.getUserId())
+        .build();
+  }
+
+  @NotNull
+  private List<CommentDto> getCommentDto(List<Comment> commentsList) {
     List<CommentDto> commentDtoList = new ArrayList<>();
 
     commentsList.forEach(comment -> {
@@ -81,13 +90,6 @@ public class CommentsServiceImpl implements CommentsService {
           .userLogo(value.getImage())
           .build()));
     });
-    return CommentsListDto.builder()
-        .commentsList(commentDtoList)
-        .build();
-  }
-
-  @Override
-  public CommentDto deleteCommentById(Long commentId) {
-    return null;
+    return commentDtoList;
   }
 }
