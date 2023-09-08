@@ -55,7 +55,46 @@ public class UserInitialization {
       user = User.builder()
           .email("member@gmail.com")
           .hashPassword("$2a$10$INw4/IiTNe9XwikhBxmezeUNsS7MXJPWTs1rGb6lEwfPENWnBBasu") //!Boss12345
-          .name("Alex Member")
+          .name("Alexander Friedrich Schmidt")
+          .plz("01234")
+          .image("")
+          .phone("01234567890123")
+          .secretQuestion("Auto?")
+          .answerSecretQuestion("Ford")
+          .role(Role.MEMBER)
+          .state(State.CONFIRMED).build();
+      usersRepository.save(user);
+
+      user = User.builder()
+          .email("member2@gmail.com")
+          .hashPassword("$2a$10$INw4/IiTNe9XwikhBxmezeUNsS7MXJPWTs1rGb6lEwfPENWnBBasu") //!Boss12345
+          .name("Friedrich Schmidt")
+          .plz("01234")
+          .image("")
+          .phone("01234567890123")
+          .secretQuestion("Auto?")
+          .answerSecretQuestion("Ford")
+          .role(Role.MEMBER)
+          .state(State.CONFIRMED).build();
+      usersRepository.save(user);
+
+      user = User.builder()
+          .email("member3@gmail.com")
+          .hashPassword("$2a$10$INw4/IiTNe9XwikhBxmezeUNsS7MXJPWTs1rGb6lEwfPENWnBBasu") //!Boss12345
+          .name("Anna Müller")
+          .plz("01234")
+          .image("")
+          .phone("01234567890123")
+          .secretQuestion("Auto?")
+          .answerSecretQuestion("Ford")
+          .role(Role.MEMBER)
+          .state(State.CONFIRMED).build();
+      usersRepository.save(user);
+
+      user = User.builder()
+          .email("member4@gmail.com")
+          .hashPassword("$2a$10$INw4/IiTNe9XwikhBxmezeUNsS7MXJPWTs1rGb6lEwfPENWnBBasu") //!Boss12345
+          .name("Annabel Schmidt")
           .plz("01234")
           .image("")
           .phone("01234567890123")
