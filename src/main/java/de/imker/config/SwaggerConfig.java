@@ -38,7 +38,7 @@ public class SwaggerConfig {
             .addSchemas("StandardResponseDto", resolvedSchema.schema.description("StandardResponseDto")))
         .addSecurityItem(buildSecurity())
         .paths(buildAuthenticationPath())
-        .info(new Info().title("Imker API").version("0.1"));
+        .info(new Info().title("Todo Service API").version("0.1"));
   }
 
   static Paths buildAuthenticationPath() {
