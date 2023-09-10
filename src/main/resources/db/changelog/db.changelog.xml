@@ -119,7 +119,7 @@
             <column name="category" type="varchar(100)"/>
             <column name="original_name" type="varchar(100)"/>
             <column name="stored_name" type="varchar(150)"/>
-            <column name="file_type" type="varchar(10)"/>
+            <column name="file_type" type="varchar(30)"/>
             <column name="size" type="int"/>
         </createTable>
     </changeSet>
