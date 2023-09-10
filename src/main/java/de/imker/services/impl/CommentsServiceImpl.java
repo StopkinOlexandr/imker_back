@@ -33,6 +33,8 @@ public class CommentsServiceImpl implements CommentsService {
         .postId(newComment.getPostId())
         .build();
 
+    System.out.println(comment);
+
     commentsRepository.save(comment);
 
     return CommentDto.builder()
