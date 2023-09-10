@@ -47,7 +47,9 @@ public class UsersServiceImpl implements UsersService {
         .stream()
         .filter(p -> p.getEmail().equals(email))
         .findFirst()
-        .orElse(null)));
+        .orElseThrow(
+            () -> new RestException(HttpStatus.NOT_FOUND,
+                "User with Email <" + email + "> not found"))));
   }
 
   @Override
@@ -99,7 +101,7 @@ public class UsersServiceImpl implements UsersService {
             .build();
       }
     }
-    return null; //may be throw error?
+    throw new RestException(HttpStatus.NOT_FOUND,"Wrong secret question / answer combination");
   }
 
   @Override

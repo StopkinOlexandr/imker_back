@@ -63,7 +63,7 @@ public interface UsersApi {
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserSecretQuestionsDto.class))
           }),
-      @ApiResponse(responseCode = "401", description = "Wrong email",
+      @ApiResponse(responseCode = "404", description = "User not found",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = StandardResponseDto.class))
           })
@@ -187,7 +187,7 @@ public interface UsersApi {
   @Operation(summary = "Get user by ID", description = "Allowed for all")
   @ApiResponses(value = {
       @ApiResponse(responseCode = "404", description = "User not found",
-          content = { @Content() }),
+          content = {@Content()}),
       @ApiResponse(responseCode = "200", description = "Information about user",
           content = {
               @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
