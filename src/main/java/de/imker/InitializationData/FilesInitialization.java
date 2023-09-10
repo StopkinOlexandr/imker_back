@@ -578,7 +578,6 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
-
       fileUpload = FileUpload.builder()
           .id(151L)
           .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
@@ -586,7 +585,18 @@ public class FilesInitialization {
           .originalName("team1.jpg")
           .storedName("!151-c5d57669-2182-4e00-8db1-a1eb9318a4f9team1.jpg")
           .fileType("image/jpeg")
-          .size((long) 17179)
+          .size((long) 14087)
+          .build();
+      filesRepository.save(fileUpload);
+
+      fileUpload = FileUpload.builder()
+          .id(152L)
+          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
+          .category(FileUpload.Category.AVATAR)
+          .originalName("team3.jpg")
+          .storedName("!152-66cae5ef-ff98-4455-a6d5-dd44b47776e3team3.jpg")
+          .fileType("image/jpeg")
+          .size((long) 14418)
           .build();
       filesRepository.save(fileUpload);
 
@@ -601,16 +611,6 @@ public class FilesInitialization {
           .build();
       filesRepository.save(fileUpload);
 
-      fileUpload = FileUpload.builder()
-          .id(152L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("team3.jpg")
-          .storedName("!152-66cae5ef-ff98-4455-a6d5-dd44b47776e3team3.jpg")
-          .fileType("image/jpeg")
-          .size((long) 14418)
-          .build();
-      filesRepository.save(fileUpload);
 
       fileUpload = FileUpload.builder()
           .id(154L)
@@ -638,8 +638,8 @@ public class FilesInitialization {
           .id(156L)
           .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
           .category(FileUpload.Category.AVATAR)
-          .originalName("bee.png")
-          .storedName("!156-b74a0c87-c6b1-408e-b5c8-65be8bd374f9bee.png")
+          .originalName("bee.jpg")
+          .storedName("!156-b74a0c87-c6b1-408e-b5c8-65be8bd374f9bee.jpg")
           .fileType("image/jpeg")
           .size((long) 26551)
           .build();
@@ -666,40 +666,6 @@ public class FilesInitialization {
           .size((long) 12147)
           .build();
       filesRepository.save(fileUpload);
-
-      fileUpload = FileUpload.builder()
-          .id(159L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("images8.jpg")
-          .storedName("!159-393fcffb-2d8a-41be-85d9-c76f73fe5f9cimages8.jpg")
-          .fileType("image/jpeg")
-          .size((long) 12631)
-          .build();
-      filesRepository.save(fileUpload);
-
-      fileUpload = FileUpload.builder()
-          .id(160L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("images9.jpg")
-          .storedName("!160-9a7911ea-4918-4f0c-ac5a-98818812901fimages9.jpg")
-          .fileType("image/jpeg")
-          .size((long) 8918)
-          .build();
-      filesRepository.save(fileUpload);
-
-      fileUpload = FileUpload.builder()
-          .id(161L)
-          .creationTime(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-          .category(FileUpload.Category.AVATAR)
-          .originalName("images10.jpg")
-          .storedName("!161-bc750daf-eacc-4394-800b-65fafdf962bcimages10.jpg")
-          .fileType("image/jpeg")
-          .size((long) 9038)
-          .build();
-      filesRepository.save(fileUpload);
-
 
     }
   }
