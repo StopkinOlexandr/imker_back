@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -143,21 +144,28 @@ public class FilesServiceImpl implements FilesService {
 
   @Override
   public FileUploadDto deleteFileById(Long fileId) {
-    FileUpload fileUpload = filesRepository.getFileById(fileId).orElseThrow(
-        () -> new NotFoundException("File with id <" + fileId + "> not found"));
+    Optional<FileUpload> fileUploadTemp = filesRepository.getFileById(fileId);
+    if (fileUploadTemp.isPresent()){
+
+      FileUpload fileUpload =  fileUploadTemp.get();
 
     Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
 
     if (Files.exists(filePath)) {
       try {
         Files.delete(filePath);
-        filesRepository.delete(fileUpload);
       } catch (IOException e) {
         throw new NotFoundException("Failed to delete file: " + e.getMessage());
       }
     }
-
+        filesRepository.delete(fileUpload);
     return FileUploadDto.from(fileUpload);
+    }
+
+
+    return FileUploadDto.builder()
+        .storedName("File not found")
+        .build();
   }
 
 }
