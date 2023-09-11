@@ -95,7 +95,8 @@ public class MembersUsInitialisation {
           .state(Member.State.SHOW)
           .name("Web - Admin")
           .position("Administrator")
-          .description("Der Website-Administrator für Imker ist für die Verwaltung und Aktualisierung der Website verantwortlich, um sicherzustellen, dass Imker stets auf aktuelle Informationen und Ressourcen zugreifen können.")
+          .description("Unser Administrator sorgt dafür, dass die Website der Imker gepflegt und " +
+              "aktualisiert wird, um sicherzustellen, dass die Imker stets Zugriff auf aktuelle Informationen und Ressourcen haben. Ihm liegt die Bequemlichkeit der Informationsvermittlung an unsere Leser am Herzen.")
           .image("158")
           .phone("+ 49 ")
           .facebook("https://www.facebook.com/")
