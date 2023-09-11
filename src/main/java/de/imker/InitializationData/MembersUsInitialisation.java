@@ -66,7 +66,7 @@ public class MembersUsInitialisation {
       Member newMember = Member.builder()
           .state(Member.State.SHOW)
           .name("Bärbel Grube")
-          .position("Schriftführerin")
+          .position("Schriftführer")
           .description("Die Schriftführerin ist eine engagierte Imkerin, die für die Dokumentation und Aufzeichnung der Aktivitäten eines Imkervereins verantwortlich ist. Sie führt Protokolle, verwaltet die Korrespondenz und trägt zur organisatorischen Effizienz des Vereins bei.")
           .image("151")
           .phone("+ 49 ")
