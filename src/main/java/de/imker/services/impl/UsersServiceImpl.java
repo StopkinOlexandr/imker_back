@@ -119,7 +119,12 @@ public class UsersServiceImpl implements UsersService {
     user.setName(updateUser.getName());
     user.setPlz(updateUser.getPlz());
     user.setPhone(updateUser.getPhone());
+
+    if (!user.getImage().equals(updateUser.getImage())){
+      filesService.deleteFileById(Long.valueOf(user.getImage()));
+    }
     user.setImage(updateUser.getImage());
+
     user.setState(User.State.valueOf(updateUser.getState()));
     user.setRole(User.Role.valueOf(updateUser.getRole()));
 
@@ -147,6 +152,7 @@ public class UsersServiceImpl implements UsersService {
     User user = getUserOrThrow(userId);
 
     usersRepository.delete(user);
+    filesService.deleteFileById(Long.valueOf(user.getImage()));
     return UserDto.from(user);
   }
 
@@ -157,6 +163,10 @@ public class UsersServiceImpl implements UsersService {
     user.setName(updateUser.getName());
     user.setPlz(updateUser.getPlz());
     user.setPhone(updateUser.getPhone());
+
+    if (!user.getImage().equals(updateUser.getImage())){
+      filesService.deleteFileById(Long.valueOf(user.getImage()));
+    }
     user.setImage(updateUser.getImage());
 
     usersRepository.save(user);
