@@ -118,9 +118,10 @@ public class FilesServiceImpl implements FilesService {
   @Override
   public Resource getFileResource(Long fileId) {
     FileUploadDto fileUploadDto = getFileInfoById(fileId);
-    File file = new File(uploadPath, fileUploadDto.getStoredName());
+//    File file = new File(uploadPath, fileUploadDto.getStoredName());
 
     try {
+      File file = fileStorageService.getFileFromSpaces(fileUploadDto.getStoredName());
       byte[] fileContent = Files.readAllBytes(file.toPath());
       return new ByteArrayResource(fileContent);
     } catch (IOException e) {
@@ -154,6 +155,9 @@ public class FilesServiceImpl implements FilesService {
 
   @Override
   public FileUploadDto deleteFileById(Long fileId) {
+
+    fileStorageService.deleteFileFromSpaces(fileId.toString());
+
     Optional<FileUpload> fileUploadTemp = filesRepository.getFileById(fileId);
     if (fileUploadTemp.isPresent()) {
 
@@ -168,8 +172,6 @@ public class FilesServiceImpl implements FilesService {
 //          throw new NotFoundException("Failed to delete file: " + e.getMessage());
 //        }
 //      }
-
-      fileStorageService.deleteFileFromSpaces(fileUpload.getStoredName());
 
       filesRepository.delete(fileUpload);
       return FileUploadDto.from(fileUpload);

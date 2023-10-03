@@ -22,6 +22,7 @@ import static de.imker.dto.MemberDto.transformMemberToMemberDto;
 public class AboutUsServiceImpl implements AboutUsService {
 
   private final AboutUsRepository aboutUsRepository;
+  private final FilesServiceImpl filesService;
 
 
   @Override
@@ -48,7 +49,15 @@ public class AboutUsServiceImpl implements AboutUsService {
     updAboutUs.setDescriptionTop(updateAboutUsDto.getDescriptionTop());
     updAboutUs.setTitleBottom(updateAboutUsDto.getTitleBottom());
     updAboutUs.setDescriptionBottom(updateAboutUsDto.getDescriptionBottom());
+
+    if (!updAboutUs.getImage1().equals(updateAboutUsDto.getImage1())){
+      filesService.deleteFileById(Long.valueOf(updAboutUs.getImage1()));
+    }
     updAboutUs.setImage1(updateAboutUsDto.getImage1());
+
+    if (!updAboutUs.getImage2().equals(updateAboutUsDto.getImage2())){
+      filesService.deleteFileById(Long.valueOf(updAboutUs.getImage2()));
+    }
     updAboutUs.setImage2(updateAboutUsDto.getImage2());
 
     aboutUsRepository.save(updAboutUs);

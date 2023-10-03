@@ -20,6 +20,7 @@ import static de.imker.dto.MemberDto.transformMemberToMemberDto;
 public class MembersServiceImpl implements MembersService {
 
   private final MembersRepository memberRepository;
+  private final FilesServiceImpl filesService;
 
   String newState;
 
@@ -79,7 +80,12 @@ public class MembersServiceImpl implements MembersService {
     updMember.setName(updateMemberDto.getName());
     updMember.setPosition(updateMemberDto.getPosition());
     updMember.setDescription(updateMemberDto.getDescription());
+
+    if (!updMember.getImage().equals(updateMemberDto.getImage())){
+      filesService.deleteFileById(Long.valueOf(updMember.getImage()));
+    }
     updMember.setImage(updateMemberDto.getImage());
+
     updMember.setPhone(updMember.getPhone());
     updMember.setEmail(updateMemberDto.getEmail());
     updMember.setFacebook(updateMemberDto.getFacebook());
@@ -94,6 +100,7 @@ public class MembersServiceImpl implements MembersService {
   public MemberDto deleteMemberById(Integer memberId) {
     Member delMmember = getMemberOrThrow(memberId);
     memberRepository.delete(delMmember);
+    filesService.deleteFileById(Long.valueOf(delMmember.getImage()));
 
     return transformMemberToMemberDto(delMmember);
   }

@@ -28,7 +28,8 @@ import static de.imker.utils.UtilsMethods.getPageRequest;
 @Service
 public class SliderPhotoServiceImpl implements SliderPhotoService {
   private final SliderPhotoRepository sliderPhotoRepository;
-  private final FilesRepository filesRepository;
+//  private final FilesRepository filesRepository;
+private final FilesServiceImpl filesService;
 
   @Value("${files.upload.path}")
   private String uploadPath;
@@ -63,19 +64,21 @@ public class SliderPhotoServiceImpl implements SliderPhotoService {
   public SliderPhotoDto deletePhotoById(Long photoId) {
     SliderPhoto galleryPhoto = (SliderPhoto) sliderPhotoRepository.getSliderPhotoById(photoId).orElseThrow(
         () -> new NotFoundException("Slider photo with id <" + photoId + "> not found"));
+    filesService.deleteFileById(galleryPhoto.getLinkToImg());
+    sliderPhotoRepository.delete(galleryPhoto);
 
-    FileUpload fileUpload = filesRepository.getFileById(galleryPhoto.getLinkToImg()).orElseThrow(
-        () -> new NotFoundException("File with id <" + galleryPhoto.getLinkToImg() + "> not found"));
+//    FileUpload fileUpload = filesRepository.getFileById(galleryPhoto.getLinkToImg()).orElseThrow(
+//        () -> new NotFoundException("File with id <" + galleryPhoto.getLinkToImg() + "> not found"));
+//
+//    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
 
-    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
+//    try {
+//      Files.delete(filePath);
+//      filesRepository.delete(fileUpload);
+//    } catch (IOException e) {
+//      throw new NotFoundException("File not found");
+//    }
 
-    try {
-      Files.delete(filePath);
-      filesRepository.delete(fileUpload);
-      sliderPhotoRepository.delete(galleryPhoto);
-    } catch (IOException e) {
-      throw new NotFoundException("File not found");
-    }
     return SliderPhotoDto.from(galleryPhoto);
   }
 

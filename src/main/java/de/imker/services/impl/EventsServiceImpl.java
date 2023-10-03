@@ -34,7 +34,8 @@ public class EventsServiceImpl implements EventsService {
 
     private final EventsRepository eventsRepository;
     private final UsersRepository usersRepository;
-    private final UsersServiceImpl usersService;
+    private final FilesServiceImpl filesService;
+
 
     @Value("${events.sort.fields}")
     private List<String> sortFields;
@@ -79,6 +80,7 @@ public class EventsServiceImpl implements EventsService {
     public EventDto deleteEvent(Long eventId) {
         Event event = getEventOrThrow(eventId);
         eventsRepository.delete(event);
+        filesService.deleteFileById(Long.valueOf(event.getPhoto()));
         return from(event);
     }
 
@@ -120,6 +122,7 @@ public class EventsServiceImpl implements EventsService {
 
         if (!Objects.equals(eventToUpdate.getPhoto(), eventWithUpdatedData.getPhoto()) &&
                 !(eventWithUpdatedData.getPhoto().isEmpty() && eventWithUpdatedData.getPhoto().isBlank())) {
+            filesService.deleteFileById(Long.valueOf(eventToUpdate.getPhoto()));
             eventToUpdate.setPhoto(eventWithUpdatedData.getPhoto());
         }
 
@@ -311,5 +314,4 @@ public class EventsServiceImpl implements EventsService {
                 .followedStatus(false)
                 .build();
     }
-
 }
