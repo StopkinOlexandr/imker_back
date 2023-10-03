@@ -58,7 +58,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- added by Vadim -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -102,9 +101,13 @@
             <artifactId>thumbnailator</artifactId>
             <version>0.4.14</version>
         </dependency>
-        <!-- added by Vadim -->
 
-        <!-- added by Valetyna -->
+<!--        <dependency>-->
+<!--            <groupId>com.amazonaws</groupId>-->
+<!--            <artifactId>aws-java-sdk-s3</artifactId>-->
+<!--            <version>1.12.261</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.jpomykala</groupId>
             <artifactId>spring-higher-order-components</artifactId>
@@ -115,7 +118,24 @@
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-security</artifactId>-->
 <!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>1.12.44</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
