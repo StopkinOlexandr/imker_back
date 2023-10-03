@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface GalleryPhotoRepository extends JpaRepository<GalleryPhoto, Long> {
-  Optional<Object> getGalleryPhotoById(Long photoId);
+  Optional<GalleryPhoto> getGalleryPhotoById(Long photoId);
 
 }

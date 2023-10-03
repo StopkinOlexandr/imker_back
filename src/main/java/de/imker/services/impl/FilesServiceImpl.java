@@ -6,6 +6,7 @@ import de.imker.exeptions.NotFoundException;
 import de.imker.models.FileUpload;
 import de.imker.repositories.FilesRepository;
 import de.imker.services.FilesService;
+import de.imker.utils.FileStorageService;
 import de.imker.utils.FileUploadSpecifications;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnails;
@@ -35,9 +36,13 @@ import java.util.UUID;
 public class FilesServiceImpl implements FilesService {
 
   private final FilesRepository filesRepository;
+  private final FileStorageService fileStorageService;
 
   @Value("${files.upload.path}")
   private String uploadPath;
+
+  @Value("${aws.s3.endpointUrl}")
+  private String awsS3EndpointUrl;
 
   @Override
   public File convertToFile(MultipartFile multipartFile) throws IOException {
@@ -67,14 +72,14 @@ public class FilesServiceImpl implements FilesService {
   @Override
   public FileUploadDto uploadFile(MultipartFile file, Integer width, Integer height, String category) throws IOException {
     String originalName = file.getOriginalFilename();
-    String storedName = UUID.randomUUID() + originalName;
+//    String storedName = UUID.randomUUID() + originalName;
 
     File sourceFile = convertToFile(file);
     File resizedFile = resizeImage(sourceFile, width, height, uploadPath);
 
     byte[] resizedFileBytes = Files.readAllBytes(resizedFile.toPath());
 
-    Files.write(Paths.get(uploadPath + storedName), resizedFileBytes);
+//    Files.write(Paths.get(uploadPath + storedName), resizedFileBytes);
 
     if (!EnumUtils.isValidEnum(FileUpload.Category.class, category)) {
       category = "NONE";
@@ -83,12 +88,17 @@ public class FilesServiceImpl implements FilesService {
     FileUpload fileUpload = FileUpload.builder()
         .category(FileUpload.Category.valueOf(category))
         .originalName(originalName)
-        .storedName(storedName)
+        .storedName("tmp")
         .fileType(file.getContentType())
         .size((long) resizedFileBytes.length)
         .build();
 
     filesRepository.save(fileUpload);
+    fileUpload.setStoredName(fileUpload.getId().toString());
+    filesRepository.save(fileUpload);
+
+    fileStorageService.uploadFile(fileUpload.getStoredName(), resizedFile);
+
 
     // Ignore the results of delete since it's a temporary file
     sourceFile.delete();
@@ -145,21 +155,24 @@ public class FilesServiceImpl implements FilesService {
   @Override
   public FileUploadDto deleteFileById(Long fileId) {
     Optional<FileUpload> fileUploadTemp = filesRepository.getFileById(fileId);
-    if (fileUploadTemp.isPresent()){
+    if (fileUploadTemp.isPresent()) {
 
-      FileUpload fileUpload =  fileUploadTemp.get();
+      FileUpload fileUpload = fileUploadTemp.get();
 
-    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
+//      Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
+//
+//      if (Files.exists(filePath)) {
+//        try {
+//          Files.delete(filePath);
+//        } catch (IOException e) {
+//          throw new NotFoundException("Failed to delete file: " + e.getMessage());
+//        }
+//      }
 
-    if (Files.exists(filePath)) {
-      try {
-        Files.delete(filePath);
-      } catch (IOException e) {
-        throw new NotFoundException("Failed to delete file: " + e.getMessage());
-      }
-    }
-        filesRepository.delete(fileUpload);
-    return FileUploadDto.from(fileUpload);
+      fileStorageService.deleteFileFromSpaces(fileUpload.getStoredName());
+
+      filesRepository.delete(fileUpload);
+      return FileUploadDto.from(fileUpload);
     }
 
 

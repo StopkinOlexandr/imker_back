@@ -25,6 +25,15 @@ spring:
       allowed-origins: http://localhost:5173
 
 
+# DigitalOcean Spaces settings
+aws:
+  accessKeyId: DO00H2QQZY9Y389QVZKL
+  secretKey: QkPN3Lc61q5vXJOM+jxjz3IVHXgK6OVxBw1W371p65s
+  s3:
+    bucketName: imker
+    endpointUrl: fra1.digitaloceanspaces.com
+
+
 #logging:
 #  level:
 #    org:
