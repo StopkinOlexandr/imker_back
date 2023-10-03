@@ -9,6 +9,7 @@ import de.imker.models.GalleryPhoto;
 import de.imker.repositories.FilesRepository;
 import de.imker.repositories.GalleryPhotoRepository;
 import de.imker.services.GalleryPhotoService;
+import de.imker.utils.FileStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -16,10 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 import static de.imker.utils.UtilsMethods.getPageRequest;
 
@@ -29,6 +27,8 @@ import static de.imker.utils.UtilsMethods.getPageRequest;
 public class GalleryPhotoServiceImpl implements GalleryPhotoService {
   private final GalleryPhotoRepository galleryPhotoRepository;
   private final FilesRepository filesRepository;
+  private final FileStorageService fileStorageService;
+
 
   @Value("${files.upload.path}")
   private String uploadPath;
@@ -61,21 +61,50 @@ public class GalleryPhotoServiceImpl implements GalleryPhotoService {
 
   @Override
   public GalleryPhotoDto deletePhotoById(Long photoId) {
-    GalleryPhoto galleryPhoto = (GalleryPhoto) galleryPhotoRepository.getGalleryPhotoById(photoId).orElseThrow(
-        () -> new NotFoundException("Gallery photo with id <" + photoId + "> not found"));
 
-    FileUpload fileUpload = filesRepository.getFileById(galleryPhoto.getLinkToImg()).orElseThrow(
-        () -> new NotFoundException("File with id <" + galleryPhoto.getLinkToImg() + "> not found"));
+    GalleryPhoto galleryPhoto = null;
 
-    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
-
-    try {
-      Files.delete(filePath);
-      filesRepository.delete(fileUpload);
+    Optional<GalleryPhoto> optionalGalleryPhoto = galleryPhotoRepository.getGalleryPhotoById(photoId);
+    if (optionalGalleryPhoto.isPresent()) {
+      galleryPhoto = optionalGalleryPhoto.get();
+      Long linkToImg = galleryPhoto.getLinkToImg();
       galleryPhotoRepository.delete(galleryPhoto);
-    } catch (IOException e) {
-      throw new NotFoundException("File not found");
+
+      Optional<FileUpload> optionalFileUpload = filesRepository.getFileById(linkToImg);
+      if (optionalFileUpload.isPresent()) {
+        FileUpload fileUpload = optionalFileUpload.get();
+
+        fileStorageService.deleteFileFromSpaces(fileUpload.getStoredName());
+        filesRepository.delete(fileUpload);
+      } else {
+        System.out.println("file not found");
+      }
+    } else {
+      throw new NotFoundException("Gallery photo with id <" + photoId + "> not found");
     }
+
+
+//    GalleryPhoto galleryPhoto = (GalleryPhoto) galleryPhotoRepository.getGalleryPhotoById(photoId).orElseThrow(
+//        () -> new NotFoundException("Gallery photo with id <" + photoId + "> not found"));
+//
+//    FileUpload fileUpload = filesRepository.getFileById(galleryPhoto.getLinkToImg()).orElseThrow(
+//        () -> new NotFoundException("File with id <" + galleryPhoto.getLinkToImg() + "> not found"));
+//
+//
+//    fileStorageService.deleteFileFromSpaces(fileUpload.getStoredName());
+//    galleryPhotoRepository.delete(galleryPhoto);
+//    filesRepository.delete(fileUpload);
+
+//    Path filePath = Paths.get(uploadPath, fileUpload.getStoredName());
+//
+//    try {
+//      Files.delete(filePath);
+//      filesRepository.delete(fileUpload);
+//      galleryPhotoRepository.delete(galleryPhoto);
+//    } catch (IOException e) {
+//      throw new NotFoundException("File not found");
+//    }
+    assert galleryPhoto != null;
     return GalleryPhotoDto.from(galleryPhoto);
   }
 
